@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcours Universitaire | Séraphin Eyala</title>
+    <meta name="description" content="Découvrez mon parcours universitaire et mes compétences académiques">
+    <link rel="stylesheet" href="../Styles/styles.css" type="text/css">
+    <link rel="stylesheet" href="../Styles/university-styles.css" type="text/css">
+    <!-- Intégration des icônes Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-logo">Séraphin Eyala</a>
+            <div class="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar-menu">
+                <li class="navbar-item"><a href="../index.html" class="navbar-link">Accueil</a></li>
+                <li class="navbar-item"><a href="about.html" class="navbar-link">À propos</a></li>
+                <li class="navbar-item"><a href="university.html" class="navbar-link active">Universitaire</a></li>
+                <li class="navbar-item"><a href="projects.html" class="navbar-link">Projets</a></li>
+                <li class="navbar-item"><a href="../index.html#contact" class="navbar-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- En-tête de la page -->
+    <div class="slider">
+        <img src="../IMG/profil.webp" class="slider-background" alt="Image de profil">
+        <div class="slider-content">
+            <h1>Mon Parcours Universitaire</h1>
+            <p>Découvrez mon parcours et mes compétences académiques</p>
+        </div>
+    </div>
+
+    <!-- Section introduction -->
+    <div class="section">
+        <div class="boxed">
+            <div class="section-title fade-in">
+                <h2>Mon parcours en BUT Informatique</h2>
+            </div>
+            <div class="university-intro fade-in">
+                <p>
+                    Moi, Eyala Séraphin, j'étudie en 2ème année de BUT informatique à l'Université Sorbonne Paris Nord. 
+                    Mes études me permettent de mettre en œuvre ma créativité en développant des sites web et d'apprendre 
+                    comment fonctionnent les sites au quotidien.
+                </p>
+                <p>
+                    Je me suis orienté dans le BUT informatique car je veux savoir comment fonctionnent toutes ces applications, 
+                    sites... qui nous entourent. Plus tard je voudrais faire Webmaster car je pourrais tout en répondant aux 
+                    exigences du client faire en sorte de mettre en valeur leurs sites.
+                </p>
+                <p>
+                    Il y a aussi la possibilité de se lancer en freelance qui m'intéresse car si j'ai assez de compétences 
+                    en développement je pourrais alors me lancer seul pour pouvoir lancer ma start-up. Je suis déterminé à 
+                    continuer de progresser et à utiliser chaque retour pour affiner mes compétences en développement logiciel, 
+                    en gestion de projets, et en travail collaboratif.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section compétences universitaires -->
+    <div class="section dark">
+        <div class="boxed">
+            <div class="section-title fade-in">
+                <h2>Bilan des compétences universitaires</h2>
+            </div>
+            <div class="competences-grid fade-in">
+                <!-- Compétence 1 -->
+                <div class="competence-card" onclick="openCompetenceModal('competence1')">
+                    <div class="competence-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Réaliser un développement d'application</h3>
+                    <p>Cliquez pour découvrir mes projets</p>
+                </div>
+
+                <!-- Compétence 2 -->
+                <div class="competence-card" onclick="openCompetenceModal('competence2')">
+                    <div class="competence-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Optimiser des applications informatiques</h3>
+                    <p>Cliquez pour découvrir mes projets</p>
+                </div>
+
+                <!-- Compétence 3 -->
+                <div class="competence-card" onclick="openCompetenceModal('competence3')">
+                    <div class="competence-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Administrer des systèmes informatiques communicants</h3>
+                    <p>Cliquez pour découvrir mes projets</p>
+                </div>
+
+                <!-- Compétence 4 -->
+                <div class="competence-card" onclick="openCompetenceModal('competence4')">
+                    <div class="competence-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Gérer des données de l'information</h3>
+                    <p>Cliquez pour découvrir mes projets</p>
+                </div>
+
+                <!-- Compétence 5 -->
+                <div class="competence-card" onclick="openCompetenceModal('competence5')">
+                    <div class="competence-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Conduire un projet</h3>
+                    <p>Cliquez pour découvrir mes projets</p>
+                </div>
+
+                <!-- Compétence 6 -->
+                <div class="competence-card" onclick="openCompetenceModal('competence6')">
+                    <div class="competence-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Travailler en équipe informatique</h3>
+                    <p>Cliquez pour découvrir mes projets</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals pour chaque compétence lié à mon université -->
+    <!-- Modal Compétence 1 -->
+    <div id="competence1" class="competence-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCompetenceModal('competence1')">&times;</span>
+            <h2>Réaliser un développement d'application</h2>
+            
+            <!-- Projet 1 -->
+            <div class="modal-project">
+                <h3>Projet 1: Manipulation de tableaux en Python</h3>
+                <div class="project-description">
+                    <p>
+                        Dans le cadre d'un projet réalisé en Python, j'ai eu à plusieurs reprises l'occasion de créer des fonctions 
+                        permettant de manipuler des tableaux ou de calculer des directions à partir de coordonnées géographiques 
+                        (latitude et longitude). Ce projet a marqué une véritable évolution dans mon parcours, car Python est le 
+                        tout premier langage de programmation que j'ai appris.
+                    </p>
+                    <p>
+                        Travailler dessus m'a permis de développer une meilleure compréhension de la logique de développement et 
+                        des bases de la programmation. Grâce à cette expérience, j'ai renforcé mes compétences en algorithmique et 
+                        en résolution de problèmes, ce qui a grandement contribué à mon apprentissage global du code.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 1/Projet 1/img1.png" alt="Python Projet">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 1/Projet 1/img2.png" alt="Python Projet">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 1/Projet 1/img3.png" alt="Python Projet">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 1/Projet 1/img4.png" alt="Python Projet">
+                            </div>
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 0)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 0)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projet 2 -->
+            <div class="modal-project">
+                <h3>Projet 2: Calculatrice en Java</h3>
+                <div class="project-description">
+                    <p>
+                        J'ai également eu l'occasion de développer une calculatrice en Java intégrant la gestion des exceptions, 
+                        notamment grâce à l'utilisation des bloc try-catch, par exemple pour gérer les cas de division par zéro. 
+                        Cette expérience m'a permis de mieux comprendre le fonctionnement des exceptions, un concept fondamental 
+                        que l'on retrouve dans de nombreux langages de programmation.
+                    </p>
+                    <p>
+                        Savoir les utiliser m'a aidé à améliorer la robustesse et la qualité de mon code. Le fait de pratiquer 
+                        moi-même ces notions a été très bénéfique pour en saisir l'importance. J'ai également mis en œuvre les 
+                        concepts d'héritage et d'interface, ce qui m'a permis d'aborder des notions clés de la programmation 
+                        orientée objet. Ce projet m'a réellement fait progresser dans l'utilisation du langage Java et m'a aidé 
+                        à en comprendre les bases essentielles.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 1/Projet2/img1.png" alt="Java Calculatrice">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 1/Projet2/img2.png" alt="Java Calculatrice">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 1/Projet2/img3.png" alt="Java Calculatrice">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 1/Projet2/img4.png" alt="Java Calculatrice">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 1/Projet2/img5.png" alt="Java Calculatrice">
+                            </div>
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 1)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 1)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projet 3 -->
+            <div class="modal-project">
+                <h3>Projet 3: Dessin de formes en Java</h3>
+                <div class="project-description">
+                    <p>
+                        En Java, j'ai également eu l'occasion de créer des formes comme des triangles ou des cercles à l'aide de 
+                        bibliothèques graphiques, dans le but de dessiner une maison entourée de montagnes. Ce projet a marqué mon 
+                        premier véritable contact avec l'utilisation de bibliothèques externes, un concept essentiel dans le 
+                        développement moderne.
+                    </p>
+                    <p>
+                        Même si j'ai réussi à les utiliser, je n'ai pas tout de suite compris en profondeur leur fonctionnement. 
+                        Cependant, cette première approche m'a permis de me familiariser avec leur rôle et leur importance dans un 
+                        projet. Cela m'a aussi donné envie d'approfondir mes connaissances pour mieux comprendre comment les 
+                        bibliothèques facilitent le développement, en fournissant des outils puissants et réutilisables.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                            <div class="slide">
+                                <img src="../IMG/ProjetsRealisé.png" alt="Java Graphique">
+                            </div>
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 2)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 2)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Compétence 2 -->
+    <div id="competence2" class="competence-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCompetenceModal('competence2')">&times;</span>
+            <h2>Optimiser des applications informatiques</h2>
+            
+            <!-- Projet 1 -->
+            <div class="modal-project">
+                <h3>Projet: Ensemble de Mandelbrot en Python</h3>
+                <div class="project-description">
+                    <p>
+                        J'ai travaillé sur un projet Python portant sur la résolution de problèmes mathématiques, en particulier 
+                        liés à l'ensemble de Mandelbrot. Il s'agissait de créer des algorithmes capables de manipuler des nombres 
+                        complexes et de générer des graphes permettant de les représenter visuellement.
+                    </p>
+                    <p>
+                        Ce projet nous a entraînés à pratiquer l'algorithmique d'un point de vue plus mathématique. Même si cela 
+                        a été l'un des projets scolaires que j'ai le moins apprécié notamment en raison de la complexité du 
+                        fonctionnement mathématique à coder, il m'a tout de même permis de découvrir la richesse des fonctionnalités 
+                        offertes par Python. Ce fut une expérience difficile mais utile, car elle m'a montré que ce langage peut 
+                        être utilisé dans des domaines très variés, allant de la visualisation graphique à la manipulation avancée 
+                        de données mathématiques.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Competences 2/Projet 1/img1.png" alt="Mandelbrot Python">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Competences 2/Projet 1/img2.png" alt="Mandelbrot Python">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Competences 2/Projet 1/img3.png" alt="Mandelbrot Python">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Competences 2/Projet 1/img4.png" alt="Mandelbrot Python">
+                            </div>
+
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 3)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 3)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Compétence 3 -->
+    <div id="competence3" class="competence-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCompetenceModal('competence3')">&times;</span>
+            <h2>Administrer des systèmes informatiques communicants</h2>
+            
+            <!-- Projet 1 -->
+            <div class="modal-project">
+                <h3>Projet 1: Préparation d'un serveur</h3>
+                <div class="project-description">
+                    <p>
+                        La problématique de ce projet était de préparer un serveur. Cela m'a permis de vivre ma première expérience 
+                        d'installation de services réseau et d'apprendre à rédiger et présenter un compte rendu technique, à l'écrit 
+                        comme à l'oral.
+                    </p>
+                    <p>
+                        Cependant, j'ai eu des difficultés à comprendre l'utilité réelle de certaines étapes, ainsi que le 
+                        fonctionnement global des outils utilisés. Ce projet ne m'a pas particulièrement aidé à progresser 
+                        techniquement, mais il m'a tout de même donné un premier aperçu du travail en environnement réseau et m'a 
+                        permis de me confronter à un type de mission que je ne connaissais pas.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                            <!-- pas de diapo pour la compétence 3 -->
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 4)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 4)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projet 2 -->
+            <div class="modal-project">
+                <h3>Projet 2: Environnement LAMP</h3>
+                <div class="project-description">
+                    <p>
+                        Ce projet, en lien avec le précédent, avait pour problématique professionnelle la préparation d'un poste de 
+                        travail destiné à des besoins de développement. Nous avons dû mettre en place un service réseau. Nous avons 
+                        choisi de mettre en place un environnement LAMP (acronyme désignant l'ensemble Linux, Apache, Mysql ou 
+                        MariaDB, PHP).
+                    </p>
+                    <p>
+                        Il m'a permis d'expérimenter les missions liées à l'installation et à la configuration d'un poste, en tenant 
+                        compte des outils nécessaires au développement. Cette expérience m'a aidé à mieux comprendre les étapes de 
+                        mise en place d'un environnement de travail technique, même si certaines notions restaient encore floues 
+                        pour moi.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                                                        <!-- pas de diapo pour la compétence 3 -->
+
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 5)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 5)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Compétence 4 -->
+    <div id="competence4" class="competence-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCompetenceModal('competence4')">&times;</span>
+            <h2>Gérer des données de l'information</h2>
+            
+            <!-- Projet 1 -->
+            <div class="modal-project">
+                <h3>Projet 1: Base de données universitaire</h3>
+                <div class="project-description">
+                    <p>
+                        La problématique de ce projet était la création d'une base de données. Il m'a offert un premier contact 
+                        concret avec la formalisation et l'implémentation d'un modèle de données. J'ai dû concevoir une base de 
+                        données universitaire comprenant plusieurs tables, comme étudiant ou évaluation.
+                    </p>
+                    <p>
+                        Le travail a consisté à analyser les besoins, puis à réaliser une base cohérente répondant à une partie 
+                        d'un système d'information à développer. J'ai trouvé ce projet relativement simple, car il m'a permis de 
+                        mettre en pratique les notions de base que j'avais récemment apprises. Cela m'a donné une première 
+                        expérience positive en conception de base de données.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 4/Projet 1/img1.png" alt="Serveur">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 4/Projet 1/img2.png" alt="Serveur">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 4/Projet 1/img3.png" alt="Serveur">
+                            </div>
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 6)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 6)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projet 2 -->
+            <div class="modal-project">
+                <h3>Projet 2: Système de gestion des notes</h3>
+                <div class="project-description">
+                    <p>
+                        Ce projet est la continuité du projet universitaire précédent consistant à concevoir un système de gestion 
+                        des notes des étudiants en BUT en mettant en place une base de données adaptée. En partant d'un cahier des 
+                        charges, il fallait réaliser et étudier une base de données.
+                    </p>
+                    <p>
+                        L'objectif principal était de créer un modèle de données efficace pour gérer les notes, les bilans et autres 
+                        éléments dérivés, comme la collecte des résultats et l'établissement de rapports. En parallèle, des 
+                        restrictions d'accès devaient être définies pour garantir la sécurité des données, en fonction des rôles des 
+                        utilisateurs, tels que les étudiants, enseignants et responsables de matières.
+                    </p>
+                    <p>
+                        Ce projet m'a permis de travailler à la fois sur la structure de la base de données et sur la gestion des 
+                        permissions d'accès aux informations sensibles, tout en m'assurant de la sécurité et de la cohérence des 
+                        données. La difficulté comparée au premier projet était les restrictions qui nous étaient imposées pour que 
+                        notre base simule réellement un environnement de production. Cela a approfondi ma compréhension des bases de 
+                        données et m'a fait réaliser la complexité de ce langage.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 4/Projet 2/img1.png" alt="Gestion des notes">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 4/Projet 2/img2.png" alt="Gestion des notes">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 4/Projet 2/img3.png" alt="Gestion des notes">
+                            </div>
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 7)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 7)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Compétence 5 -->
+    <div id="competence5" class="competence-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCompetenceModal('competence5')">&times;</span>
+            <h2>Conduire un projet</h2>
+            
+            <!-- Projet 1 -->
+            <div class="modal-project">
+                <h3>Projet: Simulation client/développeur</h3>
+                <div class="project-description">
+                    <p>
+                        Le projet que l'on a réalisé est un simple projet où nous avons simulé le fait d'être des clients et donc 
+                        de réaliser un cahier des charges pour un site dont l'on aurait besoin pour un thème spécifique. En même 
+                        temps nous avons aussi joué le rôle du développeur donc reçu des consignes par d'autres élèves qui simulent 
+                        le rôle du client.
+                    </p>
+                    <p>
+                        La problématique professionnelle est la conduite de projet à partir d'un besoin client. Ce projet permet une 
+                        première approche du recueil de besoins à travers le dialogue continu avec le client pour affiner les 
+                        attentes fonctionnelles. Il a donc fallu créer un site qui satisfasse les demandes du client.
+                    </p>
+                    <p>
+                        J'ai bien aimé ce projet car même si le thème nous est imposé, pour le reste nous pouvons exprimer notre 
+                        créativité tout en respectant les consignes du client, c'est mon premier projet qui m'a permis de créer un 
+                        site qui simule une vraie utilisation, site qui aura un réel but. Donc même si avec le recul je me rends 
+                        compte que mon site n'est pas aussi beau que je ne le pensais, ce premier projet en utilisant HTML CSS et JS 
+                        m'a fait faire mes premiers pas dans mon objectif de devenir webMaster.
+                    </p>
+                    <p>
+                        Il a aussi donné les réels aspects de travailler à distance avec un client notamment l'envoi de maquette 
+                        avant de commencer à coder ou encore attendre les réponses par mail, j'ai pu apercevoir que quand un client 
+                        ne répondait pas je pouvais prendre du retard sur le projet.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences5/Projet 1/img1.png" alt="Projet client">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences5/Projet 1/img2.png" alt="Projet client">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences5/Projet 1/img3.png" alt="Projet client">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences5/Projet 1/img4.png" alt="Projet client">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences5/Projet 1/img5.png" alt="Projet client">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences5/Projet 1/img6.png" alt="Projet client">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences5/Projet 1/img7.png" alt="Projet client">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences5/Projet 1/img8.png" alt="Projet client">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences5/Projet 1/img9.png" alt="Projet client">
+                            </div>
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 8)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 8)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Compétence 6 -->
+    <div id="competence6" class="competence-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCompetenceModal('competence6')">&times;</span>
+            <h2>Travailler en équipe informatique</h2>
+            
+            <!-- Projet 1 -->
+            <div class="modal-project">
+                <h3>Projet: Site web d'exposition artistique</h3>
+                <div class="project-description">
+                    <p>
+                        Ce projet scolaire, réalisé en groupe, avait pour objectif la création d'un site web en lien avec une 
+                        exposition d'art intitulée "À quatre mains", mettant en lumière les œuvres de Basquiat et Andy Warhol. 
+                        À partir des œuvres observées, nous devions concevoir et présenter un site web retraçant l'exposition, 
+                        tout en imaginant une exposition fictive à venir.
+                    </p>
+                    <p>
+                        C'est l'un de mes projets scolaires préférés, car il portait sur un thème artistique, ce qui offrait de 
+                        nombreuses possibilités créatives. J'ai particulièrement apprécié la liberté de pouvoir imaginer la 
+                        conception du site web, notamment dans l'invention de l'exposition future, qui m'a demandé de faire preuve 
+                        d'imagination et de recherche.
+                    </p>
+                    <p>
+                        Un autre aspect marquant de ce projet est qu'il a été réalisé en fin d'année, ce qui m'a permis de mobiliser 
+                        toutes les compétences acquises au cours de ma première année. Par exemple, j'ai appris à utiliser le langage 
+                        JavaScript, ce qui m'a permis d'ajouter une fonctionnalité de traduction sur le site.
+                    </p>
+                    <p>
+                        Finalement, ce projet m'a permis de mettre en pratique mes connaissances en développement front-end, et j'ai 
+                        été très satisfait du résultat obtenu pour un premier site complet réalisé durant ma première année d'études. 
+                        Ça m'a permis de voir la progression en 1 an de mes efforts et de mon apprentissage.
+                    </p>
+                </div>
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slides">
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 6/Projet 1/img1.png" alt="Exposition Basquiat">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 6/Projet 1/img2.png" alt="Exposition Basquiat">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 6/Projet 1/img3.png" alt="Exposition Basquiat">
+                            </div>
+                            <div class="slide">
+                                <img src="../IMG/imgProjets/Compétences 6/Projet 1/img4.png" alt="Exposition Basquiat">
+                            </div>
+                        </div>
+                        <button class="gallery-prev" onclick="changeSlide(-1, 9)">&#10094;</button>
+                        <button class="gallery-next" onclick="changeSlide(1, 9)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <footer>
+        <div class="boxed">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Séraphin Eyala</h3>
+                    <p>Étudiant en informatique qui aime le développement web et la programmation.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/SKGE93" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="university.html">Universitaire</a></li>
+                        <li><a href="projects.html">Projets</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Paris, France</li>
+                        <li><i class="fas fa-envelope"></i> eyalas472@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Séraphin Eyala. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Script JavaScript -->
+    <script src="../Scripts/script.js"></script>
+    <script src="../Scripts/university.js"></script>
+</body>
+</html>

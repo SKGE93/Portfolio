@@ -1,0 +1,92 @@
+/* Styles pour la section des compétences techniques agrandie */
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.skills-category {
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.dark .skills-category {
+    background-color: #1a1a1a;
+}
+
+.skills-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.skills-category h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.skills-category h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #000;
+    transition: width 0.3s ease;
+}
+
+.dark .skills-category h3::after {
+    background-color: #fff;
+}
+
+.skills-category:hover h3::after {
+    width: 100%;
+}
+
+.skills-content {
+    margin-top: 15px;
+}
+
+.skills-content p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* Styles pour les liens de cartes sur la page d'accueil */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+    min-width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover {
+    transform: translateY(-10px);
+}
+
+.card-link .card {
+    height: 100%;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .skills-category {
+        padding: 20px;
+    }
+    
+    .skills-category h3 {
+        font-size: 1.5rem;
+    }
+    
+    .skills-content p {
+        font-size: 1rem;
+    }
+}
