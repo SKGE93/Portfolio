@@ -3,170 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon portfolio | Séraphin Eyala</title>
-    <meta name="description" content="Ceci est mon portfolio">
-    <link rel="stylesheet" href="Styles/styles.css" type="text/css">
-    <!-- Intégration des icônes Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Séraphin Eyala — Développeur Web</title>
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- Barre de navigation -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-logo">Séraphin Eyala</a>
-            <div class="menu-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="navbar-menu">
-                <li class="navbar-item"><a href="index.html" class="navbar-link active">Accueil</a></li>
-                <li class="navbar-item"><a href="pages/about.html" class="navbar-link">À propos</a></li>
-                <li class="navbar-item"><a href="pages/university.html" class="navbar-link">Universitaire</a></li>
-                <li class="navbar-item"><a href="pages/projects.html" class="navbar-link">Projets</a></li>
-                <li class="navbar-item"><a href="#contact" class="navbar-link">Contact</a></li>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">S<span class="accent">.</span>E</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#experience">Expériences</a></li>
+                <li><a href="#skills">Stack</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Section d'accueil avec slider -->
-    <div class="slider">
-        <img src="IMG/profil.webp" class="slider-background" alt="Image de profil">
-        <div class="slider-content">
-            <h1>Séraphin Eyala</h1>
-            <p>Je suis un étudiant en informatique</p>
-            <a href="pages/about.html" class="cta-button">En savoir plus</a>
-        </div>
-    </div>
-
-    <!-- Section des cartes de navigation -->
-    <div class="section">
-        <div class="boxed">
-            <div class="section-title fade-in">
-                <h2>Découvrez mon portfolio</h2>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-content">
+            <p class="hero-greeting fade-up">Salut, moi c'est</p>
+            <h1 class="hero-name fade-up delay-1">Séraphin <span class="accent">Eyala</span></h1>
+            <h2 class="hero-title fade-up delay-2">Développeur Web Full-Stack</h2>
+            <p class="hero-description fade-up delay-3">
+                Étudiant en BUT Informatique à l'IUT de Villetaneuse, passionné par le développement web et la création d'expériences digitales.
+            </p>
+            <div class="hero-cta fade-up delay-4">
+                <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+                <a href="#contact" class="btn btn-outline">Me contacter</a>
             </div>
-            <div class="flex cards centered-cards">
-                <a href="pages/about.html" class="card fade-in" style="text-decoration: none; color: inherit;">
-                    <div class="card-image">
-                        <img src="IMG/APDM.png" alt="À propos de moi" />
-                    </div>
-                    <div class="card-content">
-                        <h3>À propos de moi</h3>
-                        <p>Découvrez mon parcours et mes compétences</p>
-                    </div>
-                </a>
-
-                <a href="pages/university.html" class="card fade-in" style="text-decoration: none; color: inherit;">
-                    <div class="card-image">
-                        <img src="IMG/PU.png" alt="Parcours universitaire" />
-                    </div>
-                    <div class="card-content">
-                        <h3>Parcours universitaire</h3>
-                        <p>Découvrez mes compétences académiques</p>
-                    </div>
-                </a>
-
-                <a href="pages/projects.html" class="card fade-in" style="text-decoration: none; color: inherit;">
-                    <div class="card-image">
-                        <img src="IMG/ProjetsRealisé.png" alt="Projets réalisés" />
-                    </div>
-                    <div class="card-content">
-                        <h3>Projets réalisés</h3>
-                        <p>Découvrez mes réalisations</p>
-                    </div>
-                </a>
+            <div class="hero-socials fade-up delay-4">
+                <a href="https://github.com/SKGE93" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com/in/seraphin-eyala-68557b279/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:eyalas472@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
-    </div>
-      
-    <!-- Section contact -->
-    <div id="contact" class="section dark">
-        <div class="boxed">
-            <div class="section-title fade-in">
-                <h2>Contact</h2>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="mouse-wheel"></div>
             </div>
-            <div class="flex cards centered-cards">
-                <div class="card fade-in">
-                    <div class="card-image">
-                        <img src="IMG/Contact.png" alt="Email" />
-                    </div>
-                    <div class="card-content">
-                        <h3>Email</h3>
-                        <p>eyalas472@gmail.com</p>
-                    </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title fade-up">À propos <span class="accent">de moi</span></h2>
+            <div class="about-grid">
+                <div class="about-text fade-up">
+                    <p>
+                        Je suis <strong>Séraphin Eyala</strong>, étudiant en 2ème année de BUT Informatique à l'<strong>IUT de Villetaneuse</strong> (Université Sorbonne Paris Nord). Passionné par le développement web, je construis des applications complètes, du front-end au back-end.
+                    </p>
+                    <p>
+                        En parallèle de mes études, je suis agent de sécurité incendie certifié <strong>SSIAP1</strong>. J'ai eu la chance de travailler au <strong>Grand Palais pendant les JO de Paris 2024</strong> — une expérience qui m'a appris la rigueur, la gestion du stress et le travail en équipe dans des conditions exigeantes.
+                    </p>
+                    <p>
+                        Mon objectif : devenir développeur full-stack et créer des produits qui ont un réel impact.
+                    </p>
                 </div>
-                <div class="card fade-in">
-                    <div class="card-image">
-                        <a href="https://www.linkedin.com/in/seraphin-eyala-68557b279/" target="_blank">
-                            <img src="IMG/Linkedin.png" alt="LinkedIn" />
-                          </a>
+                <div class="about-details fade-up">
+                    <div class="detail-card">
+                        <div class="detail-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div>
+                            <h4>Formation</h4>
+                            <p>BUT Informatique — IUT de Villetaneuse</p>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <h3>LinkedIn</h3>
-                        <p>linkedin.com/in/seraphin-eyala</p>
+                    <div class="detail-card">
+                        <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <h4>Localisation</h4>
+                            <p>Paris, France</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card fade-in">
-                    <div class="card-image">
-                        <a href="https://github.com/SKGE93" target="_blank">
-                            <img src="IMG/Github.png" alt="Github" />
-                          </a>
-                    </div>
-                    <div class="card-content">
-                        <h3>GitHub</h3>
-                        <p>github.com/SKGE93</p>
+                    <div class="detail-card">
+                        <div class="detail-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <div>
+                            <h4>Centres d'intérêt</h4>
+                            <p>Musique, Cinéma, Gaming, Anime/Manga</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-      
-    <!-- Pied de page -->
-    <footer>
-        <div class="boxed">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Séraphin Eyala</h3>
-                    <p>Étudiant en informatique qui aime le développement web et la programmation.</p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/seraphin-eyala-68557b279/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/SKGE93" target="_blank"><i class="fab fa-github"></i></a>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section section-alt" id="experience">
+        <div class="container">
+            <h2 class="section-title fade-up">Mon <span class="accent">Parcours</span></h2>
+            <div class="timeline">
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 — Présent</span>
+                        <h3>BUT Informatique — 2ème année</h3>
+                        <p class="timeline-place">IUT de Villetaneuse, Université Sorbonne Paris Nord</p>
+                        <p>Développement web, bases de données, algorithmes, gestion de projets agile, développement mobile Android.</p>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Liens rapides</h3>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="pages/about.html">À propos</a></li>
-                        <li><a href="pages/university.html">Universitaire</a></li>
-                        <li><a href="pages/projects.html">Projets</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Juin — Août 2024</span>
+                        <h3>Agent SSIAP1 — JO Paris 2024</h3>
+                        <p class="timeline-place">Grand Palais · BSL Sécurité</p>
+                        <p>Sécurité incendie lors des Jeux Olympiques. Gestion du stress, rigueur, travail en équipe dans un environnement à haute pression.</p>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Liens rapides</h3>
-                    <ul class="footer-links">
-                        <li><a href="../index.html">Accueil</a></li>
-                        <li><a href="about.html">À propos</a></li>
-                        <li><a href="university.html">Universitaire</a></li>
-                        <li><a href="projects.html">Projets</a></li>
-                        <li><a href="../index.html#contact">Contact</a></li>
-                    </ul>
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Fév — Avril 2024</span>
+                        <h3>Stage Développeur Web</h3>
+                        <p class="timeline-place">Association Jean-Luc François · 8 semaines</p>
+                        <p>Développement web en autonomie, intégration dans une équipe, retours constructifs du client. Découverte du travail en conditions réelles.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024</span>
+                        <h3>Certifications SSIAP1 & APS</h3>
+                        <p class="timeline-place">FP Académie</p>
+                        <p>Certifications professionnelles en sécurité incendie et prévention.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022</span>
+                        <h3>Baccalauréat STI2D SI</h3>
+                        <p class="timeline-place">Lycée Le Corbusier, Aubervilliers</p>
+                        <p>Spécialité Systèmes d'Information et Numérique.</p>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Séraphin Eyala. Tous droits réservés.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title fade-up">Ma <span class="accent">Stack</span></h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-up">
+                    <h3><i class="fa-solid fa-palette"></i> Front-end</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">WordPress</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3><i class="fa-solid fa-server"></i> Back-end</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">MVC</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3><i class="fa-solid fa-database"></i> Bases de données</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3><i class="fa-solid fa-screwdriver-wrench"></i> Outils</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git / GitHub</span>
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Android Studio</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3><i class="fa-solid fa-users"></i> Soft Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Créativité</span>
+                        <span class="skill-tag">Autonomie</span>
+                        <span class="skill-tag">Esprit d'équipe</span>
+                        <span class="skill-tag">Ambition</span>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section section-alt" id="projects">
+        <div class="container">
+            <h2 class="section-title fade-up">Mes <span class="accent">Projets</span></h2>
+            <div class="projects-grid">
+
+                <div class="project-card fade-up">
+                    <div class="project-image">
+                        <img src="IMG/Ws.png" alt="Application de messagerie instantanée">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Cheick6/SAE_S4" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Messagerie Instantanée</h3>
+                        <p>Application de messagerie en temps réel avec WebSocket et système d'annotations obligatoires. Communication via Ratchet (PHP).</p>
+                        <div class="project-tags">
+                            <span>PHP</span>
+                            <span>WebSocket</span>
+                            <span>JavaScript</span>
+                            <span>UX/UI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-up">
+                    <div class="project-image">
+                        <img src="IMG/A4MAIN.png" alt="Site exposition Basquiat & Warhol">
+                        <div class="project-overlay">
+                            <a href="https://github.com/SKGE93/Expo_Basquiat" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>À Quatre Mains — Basquiat & Warhol</h3>
+                        <p>Site d'exposition fictif avec intégration vidéo et traduction anglaise dynamique. Design réalisé sur Figma.</p>
+                        <div class="project-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Figma</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-up">
+                    <div class="project-image">
+                        <img src="IMG/FDLV.png" alt="La Ferme de la Ville">
+                        <div class="project-overlay">
+                            <a href="https://github.com/SKGE93/La-ferme-de-la-ville" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>La Ferme de la Ville</h3>
+                        <p>Simulation client-développeur avec design responsive et itérations basées sur les retours client. Bootstrap.</p>
+                        <div class="project-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-up">
+                    <div class="project-image">
+                        <img src="IMG/FormeJava.png" alt="Affichage de formes en Java">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Shapes — Dessin Java</h3>
+                        <p>Application graphique Java pour dessiner des formes géométriques (maison, montagnes). POO, UML et gestion d'exceptions.</p>
+                        <div class="project-tags">
+                            <span>Java</span>
+                            <span>UML</span>
+                            <span>OOP</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-up">Me <span class="accent">Contacter</span></h2>
+            <p class="contact-subtitle fade-up">Un projet en tête ? Une opportunité ? N'hésitez pas à me contacter.</p>
+            <div class="contact-links fade-up">
+                <a href="mailto:eyalas472@gmail.com" class="contact-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>eyalas472@gmail.com</p>
+                </a>
+                <a href="https://linkedin.com/in/seraphin-eyala-68557b279/" target="_blank" class="contact-card">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <h4>LinkedIn</h4>
+                    <p>Séraphin Eyala</p>
+                </a>
+                <a href="https://github.com/SKGE93" target="_blank" class="contact-card">
+                    <i class="fa-brands fa-github"></i>
+                    <h4>GitHub</h4>
+                    <p>SKGE93</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Séraphin Eyala — Tous droits réservés</p>
         </div>
     </footer>
 
-    <!-- Bouton pour retour en haut -->
-    <a href="#" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <!-- Script JavaScript -->
-    <script src="Scripts/script.js"></script>
+    <script src="Scripts/main.js"></script>
 </body>
 </html>
