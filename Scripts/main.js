@@ -79,4 +79,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Custom Cursor ---
+    const cursor = document.querySelector('.cursor');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    if (cursor && cursorOutline) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorOutline.style.left = e.clientX + 'px';
+            cursorOutline.style.top = e.clientY + 'px';
+        });
+
+        const hoverTargets = document.querySelectorAll('a, button, .btn, .project-card, .contact-card');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                cursorOutline.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                cursorOutline.classList.remove('hover');
+            });
+        });
+    }
+
 });

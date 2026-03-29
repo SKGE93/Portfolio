@@ -32,6 +32,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    cursor: none;
 }
 
 body {
@@ -41,6 +42,47 @@ body {
     line-height: 1.7;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    cursor: none;
+}
+
+/* --- Custom Cursor --- */
+.cursor {
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.15s ease, background-color 0.2s ease;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-outline {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.08s ease, width 0.3s ease, height 0.3s ease, border-color 0.2s ease;
+    transform: translate(-50%, -50%);
+}
+
+.cursor.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: var(--accent-hover);
+}
+
+.cursor-outline.hover {
+    width: 50px;
+    height: 50px;
+    border-color: var(--accent-hover);
 }
 
 a {
