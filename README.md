@@ -1,70 +1,57 @@
-# Portfolio d'Étudiant en Informatique
+# Portfolio — Séraphin Eyala
 
-## Présentation du projet
+Portfolio personnel présentant mon parcours, mes compétences et mes projets en développement web et mobile.
 
-Ce portfolio a été conçu pour présenter votre profil d'étudiant en informatique de manière professionnelle et attrayante. Il comprend plusieurs pages avec des effets visuels modernes et une navigation fluide entre les différentes sections.
+## Aperçu
+
+Site vitrine moderne avec un thème sombre, des animations au scroll et un curseur personnalisé. Il regroupe mes projets réalisés en et hors cadre scolaire.
+
+## Projets présentés
+
+| Projet | Stack |
+|--------|-------|
+| **CinéSearch** | React, Vite, TMDB API |
+| **OtakuGo** | Flutter, Dart, JSON |
+| **WeatherDash** | Angular 19, TypeScript, Chart.js |
+| **Messagerie Instantanée** | PHP, WebSocket, JavaScript |
+| **À Quatre Mains — Basquiat & Warhol** | HTML, CSS, JavaScript |
+| **Shapes — Dessin Java** | Java, UML, OOP |
+
+## Stack technique
+
+- **HTML5 / CSS3 / JavaScript** — structure, style et interactions
+- **Font Awesome** — icônes
+- **Google Fonts** — Inter & JetBrains Mono
+- **GitHub Pages** — hébergement
 
 ## Structure du projet
-
-Le projet est organisé de la manière suivante :
 
 ```
 Portfolio/
 ├── index.html              # Page d'accueil
 ├── Styles/
-│   └── styles.css          # Feuille de style principale
+│   ├── main.css            # Style principal (index.html)
+│   └── styles.css          # Style des sous-pages
 ├── Scripts/
-│   └── script.js           # Script JavaScript pour les interactions
-├── IMG/                    # Dossier pour les images
-│   ├── profil.webp
-│   ├── APDM.png
-│   ├── ProjetsRealisé.png
-│   └── Contact.png
+│   ├── main.js             # Animations, navbar, curseur custom
+│   └── script.js           # Script des sous-pages
+├── IMG/                    # Images des projets
 └── pages/
-    ├── about.html          # Page "À propos de moi"
-    └── projects.html       # Page "Projets réalisés"
+    ├── about.html          # À propos
+    ├── university.html     # Parcours universitaire
+    └── projects.html       # Détail des projets
 ```
 
-## Fonctionnalités implémentées
+## Lancer en local
 
-1. **Design responsive** : Le site s'adapte à toutes les tailles d'écran (mobile, tablette, ordinateur)
-2. **Navigation intuitive** : Menu de navigation fixe avec état actif pour la page courante
-3. **Effets visuels** :
-   - Zoom sur les images au survol
-   - Animations au défilement
-   - Transitions fluides entre les états
-   - Effets de survol sur les boutons et liens
-4. **Structure claire** : Organisation en sections distinctes avec une hiérarchie visuelle cohérente
-5. **Pied de page complet** : Avec liens de navigation et informations de contact
+```bash
+git clone https://github.com/SKGE93/Portfolio.git
+cd Portfolio
+```
 
-## Personnalisation
+Ouvrir `index.html` dans un navigateur.
 
-Pour personnaliser ce portfolio selon vos besoins :
+## Auteur
 
-1. **Images** : Remplacez les images dans le dossier `IMG/` par vos propres images
-2. **Contenu** : Modifiez le texte dans les fichiers HTML pour refléter votre parcours et vos projets
-3. **Couleurs** : Ajustez les couleurs dans le fichier `styles.css` selon vos préférences
-4. **Projets** : Ajoutez ou supprimez des projets dans la page `projects.html`
-
-## Conseils techniques
-
-- Les commentaires dans le code vous guideront pour les modifications
-- La structure HTML est sémantique pour un bon référencement
-- Le JavaScript est modulaire et facile à étendre
-- Les effets visuels sont optimisés pour les performances
-
-## Compatibilité
-
-Le portfolio est compatible avec les navigateurs modernes :
-- Chrome
-- Firefox
-- Safari
-- Edge
-
-## Déploiement
-
-Pour déployer ce portfolio en ligne, vous pouvez simplement télécharger tous les fichiers sur votre hébergement web préféré.
-
----
-
-N'hésitez pas à personnaliser ce portfolio selon vos besoins et à le faire évoluer au fil de votre parcours académique et professionnel.
+**Séraphin Eyala** — Étudiant en BUT Informatique 3ème année
+[LinkedIn](https://linkedin.com/in/seraphin-eyala-68557b279/) · [GitHub](https://github.com/SKGE93)
