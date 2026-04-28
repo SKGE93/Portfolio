@@ -256,6 +256,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Expandable Timeline Cards ---
+    document.querySelectorAll('.timeline-expand-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const targetId = btn.getAttribute('aria-controls');
+            const content = document.getElementById(targetId);
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+            btn.setAttribute('aria-expanded', String(!isExpanded));
+            btn.classList.toggle('open', !isExpanded);
+            btn.querySelector('i').className = isExpanded ? 'fa-solid fa-plus' : 'fa-solid fa-minus';
+            content.classList.toggle('open', !isExpanded);
+        });
+    });
+
     // --- Active nav ---
     const sections = document.querySelectorAll('section[id]');
     window.addEventListener('scroll', () => {

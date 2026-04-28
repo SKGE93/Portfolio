@@ -14,11 +14,8 @@
 </head>
 <body>
 
-    <!-- Cursor -->
     <div class="cursor"></div>
     <div class="cursor-outline"></div>
-
-    <!-- Particles Background -->
     <canvas id="particles"></canvas>
 
     <!-- Navigation -->
@@ -34,9 +31,7 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="nav-toggle" id="navToggle" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
@@ -46,7 +41,7 @@
         <div class="hero-content">
             <div class="hero-badge fade-up">
                 <span class="pulse-dot"></span>
-                DISPONIBLE — STAGE MARS 2026
+                EN STAGE IFFP — DISPONIBLE JUIN 2026
             </div>
             <h1 class="hero-name fade-up delay-1">
                 Séraphin<br><span class="gradient-text">EYALA</span>
@@ -97,7 +92,7 @@
                         Je suis <strong>Séraphin Eyala</strong>, étudiant en 3ème année de BUT Informatique à l'<strong>IUT de Villetaneuse</strong> (Université Sorbonne Paris Nord). Passionné par le développement web, je construis des applications complètes, du front-end au back-end.
                     </p>
                     <p>
-                        En parallèle, je suis en <strong>contrat étudiant</strong> chez <strong>Actor Sécurité</strong> en tant qu'agent de sécurité incendie certifié SSIAP1. J'ai travaillé au <strong>Grand Palais pendant les JO de Paris 2024</strong> — rigueur, gestion du stress et travail en équipe dans des conditions exigeantes.
+                        Actuellement en <strong>stage à l'IFFP</strong> jusqu'en juin 2026, je travaille sur l'administration réseau, la sécurité IT et l'automatisation. J'ai également exercé chez <strong>Actor Sécurité</strong> en tant qu'agent SSIAP1, notamment au <strong>Grand Palais pendant les JO de Paris 2024</strong>.
                     </p>
                 </div>
                 <div class="about-cards fade-up">
@@ -119,7 +114,7 @@
                         <i class="fa-solid fa-calendar-check"></i>
                         <div>
                             <h4>Disponibilité</h4>
-                            <p>Stage de 14 semaines — Mars 2026</p>
+                            <p>Disponible dès Juin 2026</p>
                         </div>
                     </div>
                 </div>
@@ -182,9 +177,9 @@
                     <div class="expertise-icon"><i class="fa-solid fa-users-gear"></i></div>
                     <h3>Méthodologies</h3>
                     <ul class="expertise-list">
-                        <li>Méthodologie Agile, Scrum</li>
-                        <li>Diagramme de Gantt</li>
+                        <li>Agile, Scrum, Gantt</li>
                         <li>UML, Figma, WordPress</li>
+                        <li>MCP — Model Context Protocol</li>
                     </ul>
                 </div>
             </div>
@@ -207,33 +202,14 @@
                     <h3 class="flagship-name">CinéSearch</h3>
                     <p class="flagship-desc">Application web de recherche et d'exploration de films construite avec React et l'API TMDB. Projet personnel réalisé pour progresser sur des technologies non vues en cours.</p>
                     <div class="flagship-steps">
-                        <div class="step">
-                            <span class="step-number">1</span>
-                            <span>Affichage des films populaires du moment</span>
-                        </div>
-                        <div class="step">
-                            <span class="step-number">2</span>
-                            <span>Recherche dynamique avec debounce</span>
-                        </div>
-                        <div class="step">
-                            <span class="step-number">3</span>
-                            <span>Page de détail par film (synopsis, note, date)</span>
-                        </div>
-                        <div class="step">
-                            <span class="step-number">4</span>
-                            <span>Interface en français via l'API TMDB</span>
-                        </div>
-                        <div class="step">
-                            <span class="step-number">5</span>
-                            <span>Navigation SPA sans rechargement de page</span>
-                        </div>
+                        <div class="step"><span class="step-number">1</span><span>Affichage des films populaires du moment</span></div>
+                        <div class="step"><span class="step-number">2</span><span>Recherche dynamique avec debounce</span></div>
+                        <div class="step"><span class="step-number">3</span><span>Page de détail — synopsis, note, date de sortie</span></div>
+                        <div class="step"><span class="step-number">4</span><span>Interface entièrement en français via l'API TMDB</span></div>
+                        <div class="step"><span class="step-number">5</span><span>Navigation SPA sans rechargement de page</span></div>
                     </div>
                     <div class="flagship-tech">
-                        <span>React</span>
-                        <span>Vite</span>
-                        <span>React Router</span>
-                        <span>Axios</span>
-                        <span>TMDB API</span>
+                        <span>React</span><span>Vite</span><span>React Router</span><span>Axios</span><span>TMDB API</span>
                     </div>
                     <a href="https://github.com/SKGE93/cine-search" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> Voir le code</a>
                 </div>
@@ -246,80 +222,90 @@
         <div class="container">
             <div class="section-label fade-up">// RÉALISATIONS</div>
             <h2 class="section-title fade-up">Mes <span class="gradient-text">Projets</span></h2>
-            <div class="projects-grid">
+            <div class="projects-list">
 
-                <div class="project-card fade-up">
-                    <div class="project-image">
-                        <img src="IMG/AnimeApp.png.png" alt="OtakuGo">
-                        <div class="project-overlay">
-                            <a href="https://github.com/SKGE93/Application-mobile-de-recommendations-anime" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
+                <!-- 01 — WeatherDash -->
+                <div class="project-row fade-up">
+                    <div class="project-row-image">
+                        <img src="IMG/WeatherDash.png" alt="WeatherDash">
+                        <div class="project-row-overlay">
+                            <a href="https://github.com/SKGE93/weather-dash" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Voir le code</a>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>OtakuGo</h3>
-                        <p>App mobile cross-platform de recommandation d'animés selon les préférences utilisateur.</p>
+                    <div class="project-row-info">
+                        <div class="project-row-num">01</div>
+                        <h3 class="project-row-name proj-blue">WeatherDash</h3>
+                        <p>Application météo interactive avec prévisions de température sur 24h sous forme de graphique. Projet personnel pour progresser sur Angular et la visualisation de données.</p>
+                        <div class="project-tags">
+                            <span>Angular 19</span><span>TypeScript</span><span>Chart.js</span><span>OpenWeatherMap API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 — OtakuGo -->
+                <div class="project-row reverse fade-up">
+                    <div class="project-row-image">
+                        <img src="IMG/AnimeApp.png.png" alt="OtakuGo">
+                        <div class="project-row-overlay">
+                            <a href="https://github.com/SKGE93/Application-mobile-de-recommendations-anime" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Voir le code</a>
+                        </div>
+                    </div>
+                    <div class="project-row-info">
+                        <div class="project-row-num">02</div>
+                        <h3 class="project-row-name proj-teal">OtakuGo</h3>
+                        <p>Application mobile cross-platform suggérant des contenus selon les préférences utilisateur. Données locales en JSON. Réalisé en équipe de 5 développeurs.</p>
                         <div class="project-tags">
                             <span>Flutter</span><span>Dart</span><span>JSON</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card fade-up">
-                    <div class="project-image">
-                        <img src="IMG/WeatherDash.png" alt="WeatherDash">
-                        <div class="project-overlay">
-                            <a href="https://github.com/SKGE93/weather-dash" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>WeatherDash</h3>
-                        <p>App météo interactive avec graphique des températures sur 24h via OpenWeatherMap.</p>
-                        <div class="project-tags">
-                            <span>Angular 19</span><span>TypeScript</span><span>Chart.js</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <div class="project-image">
+                <!-- 03 — Messagerie -->
+                <div class="project-row fade-up">
+                    <div class="project-row-image">
                         <img src="IMG/message.png" alt="Messagerie Instantanée">
-                        <div class="project-overlay">
-                            <a href="https://github.com/Cheick6/SAE_S4" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
+                        <div class="project-row-overlay">
+                            <a href="https://github.com/Cheick6/SAE_S4" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Voir le code</a>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Messagerie Instantanée</h3>
-                        <p>App de messagerie temps réel avec WebSocket et annotations obligatoires.</p>
+                    <div class="project-row-info">
+                        <div class="project-row-num">03</div>
+                        <h3 class="project-row-name proj-coral">Messagerie Instantanée</h3>
+                        <p>Application de messagerie temps réel avec annotations obligatoires des messages. Back-end PHP avec architecture MVC et WebSocket via Ratchet.</p>
                         <div class="project-tags">
-                            <span>PHP</span><span>WebSocket</span><span>JavaScript</span>
+                            <span>PHP</span><span>WebSocket</span><span>JavaScript</span><span>Ratchet</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card fade-up">
-                    <div class="project-image">
+                <!-- 04 — Basquiat -->
+                <div class="project-row reverse fade-up">
+                    <div class="project-row-image">
                         <img src="IMG/expo.png" alt="Expo Basquiat & Warhol">
-                        <div class="project-overlay">
-                            <a href="https://github.com/SKGE93/Expo_Basquiat" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
+                        <div class="project-row-overlay">
+                            <a href="https://github.com/SKGE93/Expo_Basquiat" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Voir le code</a>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>À Quatre Mains — Basquiat & Warhol</h3>
-                        <p>Site d'exposition fictif avec traduction dynamique. UI conçue sur Figma.</p>
+                    <div class="project-row-info">
+                        <div class="project-row-num">04</div>
+                        <h3 class="project-row-name proj-rose">À Quatre Mains — Basquiat & Warhol</h3>
+                        <p>Site d'exposition fictif autour des œuvres collaboratives de Basquiat et Warhol. Traduction dynamique en JavaScript et intégration vidéo. UI conçue sur Figma.</p>
                         <div class="project-tags">
-                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Figma</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card fade-up">
-                    <div class="project-image">
+                <!-- 05 — Shapes Java -->
+                <div class="project-row fade-up">
+                    <div class="project-row-image">
                         <img src="IMG/imgMaison.png" alt="Shapes Java">
-                        <div class="project-overlay"></div>
+                        <div class="project-row-overlay"></div>
                     </div>
-                    <div class="project-info">
-                        <h3>Shapes — Dessin Java</h3>
-                        <p>Application graphique Java : formes géométriques, POO, UML.</p>
+                    <div class="project-row-info">
+                        <div class="project-row-num">05</div>
+                        <h3 class="project-row-name proj-gold">Shapes — Dessin Java</h3>
+                        <p>Application graphique Java pour dessiner des formes géométriques. Premier contact avec les bibliothèques externes, la POO et la modélisation UML.</p>
                         <div class="project-tags">
                             <span>Java</span><span>UML</span><span>OOP</span>
                         </div>
@@ -344,7 +330,7 @@
                 <div class="glass-card method-card fade-up">
                     <div class="method-icon"><i class="fa-solid fa-file-lines"></i></div>
                     <h4>Documentation rigoureuse</h4>
-                    <p>Chaque configuration, chaque projet est documenté proprement : schémas, notes techniques et commentaires clairs.</p>
+                    <p>Chaque configuration, chaque projet est documenté proprement — schémas, notes techniques et commentaires clairs pour l'équipe.</p>
                 </div>
                 <div class="glass-card method-card fade-up">
                     <div class="method-icon"><i class="fa-solid fa-flask-vial"></i></div>
@@ -366,41 +352,109 @@
             <div class="section-label fade-up">// MON PARCOURS</div>
             <h2 class="section-title fade-up">Expériences <span class="gradient-text">& Formation</span></h2>
             <div class="timeline">
+
+                <!-- IFFP — EN COURS -->
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker timeline-marker-current"></div>
+                    <div class="glass-card timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">Avril 2026 — Juin 2026</span>
+                            <span class="timeline-now-badge"><i class="fa-solid fa-circle-dot"></i> En cours</span>
+                        </div>
+                        <h3>Stagiaire Développeur — Administration Réseau</h3>
+                        <p class="timeline-place">IFFP · Île-de-France</p>
+                        <ul class="timeline-detail-list">
+                            <li><i class="fa-solid fa-network-wired"></i> Segmentation réseau par VLANs sur switchs Cisco</li>
+                            <li><i class="fa-solid fa-map"></i> Mapping réseau et documentation de l'infrastructure</li>
+                            <li><i class="fa-solid fa-wifi"></i> Configuration de portails captifs sur bornes Wi-Fi</li>
+                            <li><i class="fa-solid fa-robot"></i> Automatisation IT via Google Apps Script</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- BUT Info — expandable -->
                 <div class="timeline-item fade-up">
                     <div class="timeline-marker"></div>
-                    <div class="glass-card timeline-content">
-                        <span class="timeline-date">2023 — Présent</span>
+                    <div class="glass-card timeline-content timeline-interactive">
+                        <div class="timeline-header">
+                            <span class="timeline-date">2023 — 2026</span>
+                            <button class="timeline-expand-btn" aria-expanded="false" aria-controls="but-details" title="Voir le détail">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
                         <h3>BUT Informatique — 3ème année</h3>
                         <p class="timeline-place">IUT de Villetaneuse, Université Sorbonne Paris Nord</p>
-                        <p>Full Stack, MVC, NoSQL, Admin Système, Agile & DevOps, Docker, Java JSP/Servlet.</p>
+                        <p>Développement Full Stack, MVC, NoSQL, Administration Système, Agile &amp; DevOps, Docker, Java JSP/Servlet.</p>
+                        <div class="timeline-expandable-content" id="but-details">
+                            <div class="timeline-expand-grid">
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-laptop-code"></i> Développement & Réseaux</h5>
+                                    <p>Full Stack Web, Architecture MVC, Administration Linux, Virtualisation, Protocoles réseaux TCP/IP</p>
+                                </div>
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-chart-bar"></i> Analyse & Stratégie</h5>
+                                    <p>Analyses PESTEL et SWOT appliquées au marketing digital et à la stratégie IT des entreprises</p>
+                                </div>
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-scale-balanced"></i> Droit du Numérique</h5>
+                                    <p>RGPD, propriété intellectuelle, contrats informatiques et obligations légales du développeur</p>
+                                </div>
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-users-gear"></i> Gestion de Projet</h5>
+                                    <p>Méthode Agile, Scrum, Gantt — SAE sur des projets concrets en équipe pluridisciplinaire</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Agent sécurité — expandable soft skills -->
                 <div class="timeline-item fade-up">
                     <div class="timeline-marker"></div>
-                    <div class="glass-card timeline-content">
-                        <span class="timeline-date">Juin 2024 — Présent</span>
+                    <div class="glass-card timeline-content timeline-interactive">
+                        <div class="timeline-header">
+                            <span class="timeline-date">Juin 2024 — Début 2026</span>
+                            <button class="timeline-expand-btn" aria-expanded="false" aria-controls="securite-details" title="Voir mes soft skills">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
                         <h3>Agent de sécurité incendie — CDI étudiant</h3>
                         <p class="timeline-place">Actor Sécurité · Île-de-France (Week-ends)</p>
-                        <p>Surveillance, prévention des risques (SSIAP 1), gestion des conflits, intervention rapide.</p>
+                        <p>Surveillance, prévention des risques SSIAP 1. Intervention au Grand Palais pendant les JO de Paris 2024.</p>
+                        <div class="timeline-expandable-content" id="securite-details">
+                            <div class="soft-skills-grid">
+                                <div class="soft-skill"><i class="fa-solid fa-shield-halved"></i><span>Rigueur & discipline</span></div>
+                                <div class="soft-skill"><i class="fa-solid fa-clock"></i><span>Ponctualité exemplaire</span></div>
+                                <div class="soft-skill"><i class="fa-solid fa-brain"></i><span>Gestion du stress</span></div>
+                                <div class="soft-skill"><i class="fa-solid fa-people-arrows"></i><span>Travail en équipe</span></div>
+                                <div class="soft-skill"><i class="fa-solid fa-bolt"></i><span>Réactivité & décision rapide</span></div>
+                                <div class="soft-skill"><i class="fa-solid fa-comments"></i><span>Communication claire</span></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- JLF Stage -->
                 <div class="timeline-item fade-up">
                     <div class="timeline-marker"></div>
                     <div class="glass-card timeline-content">
                         <span class="timeline-date">2025</span>
                         <h3>Stagiaire Informatique & Web</h3>
                         <p class="timeline-place">Association Jean Luc François · Pantin</p>
-                        <p>WordPress, automatisation No-Code (Airtable, Zapier), force de proposition technique.</p>
+                        <p>WordPress, automatisation No-Code avec Airtable et Zapier, force de proposition technique.</p>
                     </div>
                 </div>
+
+                <!-- Bac -->
                 <div class="timeline-item fade-up">
                     <div class="timeline-marker"></div>
                     <div class="glass-card timeline-content">
                         <span class="timeline-date">2022</span>
-                        <h3>Baccalauréat STI2D SI</h3>
+                        <h3>Baccalauréat STI2D — Systèmes d'Information</h3>
                         <p class="timeline-place">Lycée Le Corbusier, Aubervilliers</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -411,14 +465,14 @@
             <div class="cta-box fade-up">
                 <div class="cta-text">
                     <div class="section-label">// DISPONIBILITÉ</div>
-                    <h2>Prêt à intégrer<br>votre équipe<br><span class="gradient-text">Mars 2026</span></h2>
-                    <p class="cta-location">Île-de-France · Présentiel ou hybride<br>Stage de 14 semaines</p>
+                    <h2>Disponible dès<br>la fin de mon stage<br><span class="gradient-text">Juin 2026</span></h2>
+                    <p class="cta-location">Île-de-France · Présentiel ou hybride</p>
                 </div>
                 <div class="cta-checks">
-                    <div class="cta-check"><i class="fa-solid fa-circle-check"></i> Disponible dès Mars 2026 pour un stage</div>
+                    <div class="cta-check"><i class="fa-solid fa-circle-check"></i> Libre dès Juin 2026 pour un poste ou un stage</div>
                     <div class="cta-check"><i class="fa-solid fa-circle-check"></i> Mobilité sur toute l'Île-de-France</div>
                     <div class="cta-check"><i class="fa-solid fa-circle-check"></i> Ouvert au présentiel, hybride ou full remote</div>
-                    <div class="cta-check"><i class="fa-solid fa-circle-check"></i> BUT Informatique en cours de validation</div>
+                    <div class="cta-check"><i class="fa-solid fa-circle-check"></i> BUT Informatique — validation Juin 2026</div>
                     <a href="#contact" class="btn btn-primary" style="margin-top:24px;"><i class="fa-solid fa-calendar"></i> Planifier un entretien</a>
                 </div>
             </div>
@@ -450,10 +504,9 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Séraphin Eyala — Tous droits réservés</p>
+            <p>&copy; 2026 Séraphin Eyala — Tous droits réservés</p>
         </div>
     </footer>
 
