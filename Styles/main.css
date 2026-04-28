@@ -387,10 +387,11 @@ strong { color: #fff; }
 
 .project-row-info { padding: 8px 0; }
 .project-row-name {
-    font-size: 1.8rem; font-weight: 800;
-    margin-bottom: 12px; letter-spacing: -0.5px;
-    display: inline-block;
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    font-size: 1.5rem; font-weight: 800;
+    margin-bottom: 16px; letter-spacing: -0.5px;
+    display: inline-block; padding: 10px 24px;
+    border-radius: 8px; color: #fff;
+    -webkit-text-fill-color: #fff;
 }
 .proj-violet { background: linear-gradient(135deg, #a855f7, #7c3aed); }
 .proj-blue  { background: linear-gradient(135deg, #3b82f6, #06b6d4); }

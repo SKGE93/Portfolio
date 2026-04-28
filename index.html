@@ -440,14 +440,39 @@
                     </div>
                 </div>
 
-                <!-- JLF Stage -->
+                <!-- JLF Stage — expandable -->
                 <div class="timeline-item fade-up">
                     <div class="timeline-marker"></div>
-                    <div class="glass-card timeline-content">
-                        <span class="timeline-date">2025</span>
+                    <div class="glass-card timeline-content timeline-interactive">
+                        <div class="timeline-header">
+                            <span class="timeline-date">2025</span>
+                            <button class="timeline-expand-btn" aria-expanded="false" aria-controls="jlf-details" title="Voir le détail">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
                         <h3>Stagiaire Informatique & Web</h3>
                         <p class="timeline-place">Association Jean Luc François · Pantin</p>
                         <p>WordPress, automatisation No-Code avec Airtable et Zapier, force de proposition technique.</p>
+                        <div class="timeline-expandable-content" id="jlf-details">
+                            <div class="timeline-expand-grid">
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-globe"></i> Développement Web</h5>
+                                    <p>Création et maintenance du site vitrine sur WordPress, personnalisation du thème, gestion des contenus</p>
+                                </div>
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-gears"></i> Automatisation No-Code</h5>
+                                    <p>Mise en place de workflows automatisés via Airtable et Zapier pour la gestion des données internes</p>
+                                </div>
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-lightbulb"></i> Force de proposition</h5>
+                                    <p>Identification des besoins techniques, propositions d'améliorations et solutions adaptées au budget associatif</p>
+                                </div>
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-handshake"></i> Autonomie & initiative</h5>
+                                    <p>Travail en autonomie sur les missions confiées, reporting régulier et communication avec l'équipe</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
