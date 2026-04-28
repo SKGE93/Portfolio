@@ -25,7 +25,6 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#expertise">Expertises</a></li>
-                <li><a href="#flagship">Projet Phare</a></li>
                 <li><a href="#projects">Projets</a></li>
                 <li><a href="#methodology">Méthodologie</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -186,128 +185,141 @@
         </div>
     </section>
 
-    <!-- ==================== PROJET PHARE ==================== -->
-    <section class="section" id="flagship">
-        <div class="container">
-            <div class="section-label fade-up">// PROJET PHARE</div>
-            <h2 class="section-title fade-up">Focus <span class="gradient-text">Projet</span></h2>
-            <div class="flagship-grid">
-                <div class="flagship-preview fade-up">
-                    <div class="flagship-image-wrapper">
-                        <img src="IMG/CineSearch.png.png" alt="CinéSearch">
-                        <div class="flagship-badge">Projet Personnel</div>
-                    </div>
-                </div>
-                <div class="flagship-details fade-up">
-                    <h3 class="flagship-name">CinéSearch</h3>
-                    <p class="flagship-desc">Application web de recherche et d'exploration de films construite avec React et l'API TMDB. Projet personnel réalisé pour progresser sur des technologies non vues en cours.</p>
-                    <div class="flagship-steps">
-                        <div class="step"><span class="step-number">1</span><span>Affichage des films populaires du moment</span></div>
-                        <div class="step"><span class="step-number">2</span><span>Recherche dynamique avec debounce</span></div>
-                        <div class="step"><span class="step-number">3</span><span>Page de détail — synopsis, note, date de sortie</span></div>
-                        <div class="step"><span class="step-number">4</span><span>Interface entièrement en français via l'API TMDB</span></div>
-                        <div class="step"><span class="step-number">5</span><span>Navigation SPA sans rechargement de page</span></div>
-                    </div>
-                    <div class="flagship-tech">
-                        <span>React</span><span>Vite</span><span>React Router</span><span>Axios</span><span>TMDB API</span>
-                    </div>
-                    <a href="https://github.com/SKGE93/cine-search" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> Voir le code</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ==================== PROJECTS ==================== -->
-    <section class="section section-alt" id="projects">
+    <section class="section" id="projects">
         <div class="container">
             <div class="section-label fade-up">// RÉALISATIONS</div>
             <h2 class="section-title fade-up">Mes <span class="gradient-text">Projets</span></h2>
             <div class="projects-list">
 
-                <!-- 01 — WeatherDash -->
+                <!-- 01 — CinéSearch -->
                 <div class="project-row fade-up">
                     <div class="project-row-image">
-                        <img src="IMG/WeatherDash.png" alt="WeatherDash">
-                        <div class="project-row-overlay">
-                            <a href="https://github.com/SKGE93/weather-dash" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Voir le code</a>
-                        </div>
+                        <img src="IMG/CineSearch.png.png" alt="CinéSearch">
                     </div>
                     <div class="project-row-info">
                         <div class="project-row-num">01</div>
-                        <h3 class="project-row-name proj-blue">WeatherDash</h3>
-                        <p>Application météo interactive avec prévisions de température sur 24h sous forme de graphique. Projet personnel pour progresser sur Angular et la visualisation de données.</p>
-                        <div class="project-tags">
-                            <span>Angular 19</span><span>TypeScript</span><span>Chart.js</span><span>OpenWeatherMap API</span>
+                        <h3 class="project-row-name proj-violet">CinéSearch</h3>
+                        <p>Application web de recherche et d'exploration de films construite avec React et l'API TMDB. Projet personnel réalisé pour progresser sur des technologies non vues en cours.</p>
+                        <div class="project-steps">
+                            <div class="step"><span class="step-number">1</span><span>Affichage des films populaires du moment</span></div>
+                            <div class="step"><span class="step-number">2</span><span>Recherche dynamique avec debounce</span></div>
+                            <div class="step"><span class="step-number">3</span><span>Page de détail — synopsis, note, date de sortie</span></div>
+                            <div class="step"><span class="step-number">4</span><span>Interface entièrement en français via l'API TMDB</span></div>
+                            <div class="step"><span class="step-number">5</span><span>Navigation SPA sans rechargement de page</span></div>
                         </div>
+                        <div class="project-tech">
+                            <span>React</span><span>Vite</span><span>React Router</span><span>Axios</span><span>TMDB API</span>
+                        </div>
+                        <a href="https://github.com/SKGE93/cine-search" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> Voir le code</a>
                     </div>
                 </div>
 
-                <!-- 02 — OtakuGo -->
+                <!-- 02 — WeatherDash -->
                 <div class="project-row reverse fade-up">
                     <div class="project-row-image">
-                        <img src="IMG/AnimeApp.png.png" alt="OtakuGo">
-                        <div class="project-row-overlay">
-                            <a href="https://github.com/SKGE93/Application-mobile-de-recommendations-anime" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Voir le code</a>
-                        </div>
+                        <img src="IMG/WeatherDash.png" alt="WeatherDash">
                     </div>
                     <div class="project-row-info">
                         <div class="project-row-num">02</div>
-                        <h3 class="project-row-name proj-teal">OtakuGo</h3>
-                        <p>Application mobile cross-platform suggérant des contenus selon les préférences utilisateur. Données locales en JSON. Réalisé en équipe de 5 développeurs.</p>
-                        <div class="project-tags">
-                            <span>Flutter</span><span>Dart</span><span>JSON</span>
+                        <h3 class="project-row-name proj-blue">WeatherDash</h3>
+                        <p>Application météo interactive affichant la météo en temps réel et les prévisions de température sur 24h sous forme de graphique. Projet personnel pour progresser sur Angular et la visualisation de données.</p>
+                        <div class="project-steps">
+                            <div class="step"><span class="step-number">1</span><span>Recherche de ville avec autocomplétion</span></div>
+                            <div class="step"><span class="step-number">2</span><span>Météo actuelle — température, humidité, vent</span></div>
+                            <div class="step"><span class="step-number">3</span><span>Graphique des températures sur 24h via Chart.js</span></div>
+                            <div class="step"><span class="step-number">4</span><span>Consommation de l'API OpenWeatherMap via HttpClient</span></div>
                         </div>
+                        <div class="project-tech">
+                            <span>Angular 19</span><span>TypeScript</span><span>Chart.js</span><span>HttpClient</span><span>OpenWeatherMap API</span>
+                        </div>
+                        <a href="https://github.com/SKGE93/weather-dash" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> Voir le code</a>
                     </div>
                 </div>
 
-                <!-- 03 — Messagerie -->
+                <!-- 03 — OtakuGo -->
                 <div class="project-row fade-up">
                     <div class="project-row-image">
-                        <img src="IMG/message.png" alt="Messagerie Instantanée">
-                        <div class="project-row-overlay">
-                            <a href="https://github.com/Cheick6/SAE_S4" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Voir le code</a>
-                        </div>
+                        <img src="IMG/AnimeApp.png.png" alt="OtakuGo">
                     </div>
                     <div class="project-row-info">
                         <div class="project-row-num">03</div>
-                        <h3 class="project-row-name proj-coral">Messagerie Instantanée</h3>
-                        <p>Application de messagerie temps réel avec annotations obligatoires des messages. Back-end PHP avec architecture MVC et WebSocket via Ratchet.</p>
-                        <div class="project-tags">
-                            <span>PHP</span><span>WebSocket</span><span>JavaScript</span><span>Ratchet</span>
+                        <h3 class="project-row-name proj-teal">OtakuGo</h3>
+                        <p>Application mobile cross-platform suggérant des contenus selon les préférences utilisateur. Gestion de données locales en JSON. Réalisé en équipe de 5 développeurs.</p>
+                        <div class="project-steps">
+                            <div class="step"><span class="step-number">1</span><span>Sélection des genres et préférences utilisateur</span></div>
+                            <div class="step"><span class="step-number">2</span><span>Moteur de recommandation basé sur les choix</span></div>
+                            <div class="step"><span class="step-number">3</span><span>Fiches détaillées par animé — synopsis, note, épisodes</span></div>
+                            <div class="step"><span class="step-number">4</span><span>Persistance des données en JSON local</span></div>
                         </div>
+                        <div class="project-tech">
+                            <span>Flutter</span><span>Dart</span><span>JSON</span>
+                        </div>
+                        <a href="https://github.com/SKGE93/Application-mobile-de-recommendations-anime" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> Voir le code</a>
                     </div>
                 </div>
 
-                <!-- 04 — Basquiat -->
+                <!-- 04 — Messagerie -->
                 <div class="project-row reverse fade-up">
                     <div class="project-row-image">
-                        <img src="IMG/expo.png" alt="Expo Basquiat & Warhol">
-                        <div class="project-row-overlay">
-                            <a href="https://github.com/SKGE93/Expo_Basquiat" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Voir le code</a>
-                        </div>
+                        <img src="IMG/message.png" alt="Messagerie Instantanée">
                     </div>
                     <div class="project-row-info">
                         <div class="project-row-num">04</div>
-                        <h3 class="project-row-name proj-rose">À Quatre Mains — Basquiat & Warhol</h3>
-                        <p>Site d'exposition fictif autour des œuvres collaboratives de Basquiat et Warhol. Traduction dynamique en JavaScript et intégration vidéo. UI conçue sur Figma.</p>
-                        <div class="project-tags">
-                            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Figma</span>
+                        <h3 class="project-row-name proj-coral">Messagerie Instantanée</h3>
+                        <p>Application de messagerie temps réel avec une particularité — chaque utilisateur doit annoter les messages pour continuer à échanger. Projet de groupe en SAE.</p>
+                        <div class="project-steps">
+                            <div class="step"><span class="step-number">1</span><span>Échanges en temps réel via WebSocket (Ratchet)</span></div>
+                            <div class="step"><span class="step-number">2</span><span>Système d'annotations obligatoires des messages</span></div>
+                            <div class="step"><span class="step-number">3</span><span>Back-end PHP avec architecture MVC</span></div>
+                            <div class="step"><span class="step-number">4</span><span>Interface responsive conçue en équipe</span></div>
                         </div>
+                        <div class="project-tech">
+                            <span>PHP</span><span>WebSocket</span><span>JavaScript</span><span>Ratchet</span><span>MVC</span>
+                        </div>
+                        <a href="https://github.com/Cheick6/SAE_S4" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> Voir le code</a>
                     </div>
                 </div>
 
-                <!-- 05 — Shapes Java -->
+                <!-- 05 — Basquiat -->
                 <div class="project-row fade-up">
                     <div class="project-row-image">
-                        <img src="IMG/imgMaison.png" alt="Shapes Java">
-                        <div class="project-row-overlay"></div>
+                        <img src="IMG/expo.png" alt="Expo Basquiat & Warhol">
                     </div>
                     <div class="project-row-info">
                         <div class="project-row-num">05</div>
+                        <h3 class="project-row-name proj-rose">À Quatre Mains — Basquiat & Warhol</h3>
+                        <p>Site web fictif présentant une exposition imaginée autour des œuvres collaboratives de Basquiat et Warhol. Maquettes conçues sur Figma avant intégration.</p>
+                        <div class="project-steps">
+                            <div class="step"><span class="step-number">1</span><span>Présentation des artistes et de leurs œuvres</span></div>
+                            <div class="step"><span class="step-number">2</span><span>Traduction anglaise dynamique via JavaScript</span></div>
+                            <div class="step"><span class="step-number">3</span><span>Intégration vidéo immersive</span></div>
+                            <div class="step"><span class="step-number">4</span><span>Maquettes UI/UX réalisées sur Figma</span></div>
+                        </div>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Figma</span>
+                        </div>
+                        <a href="https://github.com/SKGE93/Expo_Basquiat" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> Voir le code</a>
+                    </div>
+                </div>
+
+                <!-- 06 — Shapes Java -->
+                <div class="project-row reverse fade-up">
+                    <div class="project-row-image">
+                        <img src="IMG/imgMaison.png" alt="Shapes Java">
+                    </div>
+                    <div class="project-row-info">
+                        <div class="project-row-num">06</div>
                         <h3 class="project-row-name proj-gold">Shapes — Dessin Java</h3>
-                        <p>Application graphique Java pour dessiner des formes géométriques. Premier contact avec les bibliothèques externes, la POO et la modélisation UML.</p>
-                        <div class="project-tags">
-                            <span>Java</span><span>UML</span><span>OOP</span>
+                        <p>Application graphique Java pour dessiner des formes géométriques — maisons, montagnes, paysages. Premier contact avec les bibliothèques externes et la POO.</p>
+                        <div class="project-steps">
+                            <div class="step"><span class="step-number">1</span><span>Modélisation UML des classes de formes</span></div>
+                            <div class="step"><span class="step-number">2</span><span>Dessin de formes géométriques via bibliothèque graphique</span></div>
+                            <div class="step"><span class="step-number">3</span><span>Composition de scènes complexes — maison, montagnes</span></div>
+                            <div class="step"><span class="step-number">4</span><span>Gestion des exceptions avec try-catch</span></div>
+                        </div>
+                        <div class="project-tech">
+                            <span>Java</span><span>UML</span><span>OOP</span><span>Bibliothèque graphique</span>
                         </div>
                     </div>
                 </div>
