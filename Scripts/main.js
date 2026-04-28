@@ -128,18 +128,25 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
 
-        gsap.utils.toArray('.project-card').forEach((card, i) => {
-            gsap.fromTo(card,
-                { opacity: 0, y: 40, rotateX: 4 },
+        gsap.utils.toArray('.project-row').forEach((row, i) => {
+            const img = row.querySelector('.project-row-image');
+            const info = row.querySelector('.project-row-info');
+            const isReverse = row.classList.contains('reverse');
+            gsap.fromTo(img,
+                { opacity: 0, x: isReverse ? 50 : -50 },
                 {
-                    opacity: 1, y: 0, rotateX: 0, duration: 0.7,
+                    opacity: 1, x: 0, duration: 0.9,
                     ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 88%',
-                        toggleActions: 'play none none none'
-                    },
-                    delay: (i % 2) * 0.15
+                    scrollTrigger: { trigger: row, start: 'top 85%', toggleActions: 'play none none none' }
+                }
+            );
+            gsap.fromTo(info,
+                { opacity: 0, x: isReverse ? -50 : 50 },
+                {
+                    opacity: 1, x: 0, duration: 0.9,
+                    ease: 'power3.out',
+                    scrollTrigger: { trigger: row, start: 'top 85%', toggleActions: 'play none none none' },
+                    delay: 0.15
                 }
             );
         });
@@ -159,23 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             );
         });
-
-        gsap.fromTo('.flagship-preview',
-            { opacity: 0, x: -50 },
-            {
-                opacity: 1, x: 0, duration: 1,
-                ease: 'power3.out',
-                scrollTrigger: { trigger: '.flagship-grid', start: 'top 80%' }
-            }
-        );
-        gsap.fromTo('.flagship-details',
-            { opacity: 0, x: 50 },
-            {
-                opacity: 1, x: 0, duration: 1,
-                ease: 'power3.out',
-                scrollTrigger: { trigger: '.flagship-grid', start: 'top 80%' }
-            }
-        );
 
         gsap.fromTo('.cta-box',
             { opacity: 0, scale: 0.92 },
