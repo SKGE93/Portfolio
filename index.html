@@ -198,7 +198,6 @@
                         <img src="IMG/CineSearch.png.png" alt="CinéSearch">
                     </div>
                     <div class="project-row-info">
-                        <div class="project-row-num">01</div>
                         <h3 class="project-row-name proj-violet">CinéSearch</h3>
                         <p>Application web de recherche et d'exploration de films construite avec React et l'API TMDB. Projet personnel réalisé pour progresser sur des technologies non vues en cours.</p>
                         <div class="project-steps">
@@ -221,7 +220,6 @@
                         <img src="IMG/WeatherDash.png" alt="WeatherDash">
                     </div>
                     <div class="project-row-info">
-                        <div class="project-row-num">02</div>
                         <h3 class="project-row-name proj-blue">WeatherDash</h3>
                         <p>Application météo interactive affichant la météo en temps réel et les prévisions de température sur 24h sous forme de graphique. Projet personnel pour progresser sur Angular et la visualisation de données.</p>
                         <div class="project-steps">
@@ -243,7 +241,6 @@
                         <img src="IMG/AnimeApp.png.png" alt="OtakuGo">
                     </div>
                     <div class="project-row-info">
-                        <div class="project-row-num">03</div>
                         <h3 class="project-row-name proj-teal">OtakuGo</h3>
                         <p>Application mobile cross-platform suggérant des contenus selon les préférences utilisateur. Gestion de données locales en JSON. Réalisé en équipe de 5 développeurs.</p>
                         <div class="project-steps">
@@ -265,7 +262,6 @@
                         <img src="IMG/message.png" alt="Messagerie Instantanée">
                     </div>
                     <div class="project-row-info">
-                        <div class="project-row-num">04</div>
                         <h3 class="project-row-name proj-coral">Messagerie Instantanée</h3>
                         <p>Application de messagerie temps réel avec une particularité — chaque utilisateur doit annoter les messages pour continuer à échanger. Projet de groupe en SAE.</p>
                         <div class="project-steps">
@@ -287,7 +283,6 @@
                         <img src="IMG/expo.png" alt="Expo Basquiat & Warhol">
                     </div>
                     <div class="project-row-info">
-                        <div class="project-row-num">05</div>
                         <h3 class="project-row-name proj-rose">À Quatre Mains — Basquiat & Warhol</h3>
                         <p>Site web fictif présentant une exposition imaginée autour des œuvres collaboratives de Basquiat et Warhol. Maquettes conçues sur Figma avant intégration.</p>
                         <div class="project-steps">
@@ -309,7 +304,6 @@
                         <img src="IMG/imgMaison.png" alt="Shapes Java">
                     </div>
                     <div class="project-row-info">
-                        <div class="project-row-num">06</div>
                         <h3 class="project-row-name proj-gold">Shapes — Dessin Java</h3>
                         <p>Application graphique Java pour dessiner des formes géométriques — maisons, montagnes, paysages. Premier contact avec les bibliothèques externes et la POO.</p>
                         <div class="project-steps">
@@ -446,14 +440,39 @@
                     </div>
                 </div>
 
-                <!-- JLF Stage -->
+                <!-- JLF Stage — expandable -->
                 <div class="timeline-item fade-up">
                     <div class="timeline-marker"></div>
-                    <div class="glass-card timeline-content">
-                        <span class="timeline-date">2025</span>
+                    <div class="glass-card timeline-content timeline-interactive">
+                        <div class="timeline-header">
+                            <span class="timeline-date">2025</span>
+                            <button class="timeline-expand-btn" aria-expanded="false" aria-controls="jlf-details" title="Voir le détail">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
                         <h3>Stagiaire Informatique & Web</h3>
                         <p class="timeline-place">Association Jean Luc François · Pantin</p>
                         <p>WordPress, automatisation No-Code avec Airtable et Zapier, force de proposition technique.</p>
+                        <div class="timeline-expandable-content" id="jlf-details">
+                            <div class="timeline-expand-grid">
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-globe"></i> Développement Web</h5>
+                                    <p>Création et maintenance du site vitrine sur WordPress, personnalisation du thème, gestion des contenus</p>
+                                </div>
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-gears"></i> Automatisation No-Code</h5>
+                                    <p>Mise en place de workflows automatisés via Airtable et Zapier pour la gestion des données internes</p>
+                                </div>
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-lightbulb"></i> Force de proposition</h5>
+                                    <p>Identification des besoins techniques, propositions d'améliorations et solutions adaptées au budget associatif</p>
+                                </div>
+                                <div class="timeline-expand-block">
+                                    <h5><i class="fa-solid fa-handshake"></i> Autonomie & initiative</h5>
+                                    <p>Travail en autonomie sur les missions confiées, reporting régulier et communication avec l'équipe</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
