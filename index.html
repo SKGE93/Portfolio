@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Séraphin Eyala — Développeur Web</title>
+    <title>Séraphin Eyala — Développeur Full-Stack</title>
     <link rel="stylesheet" href="Styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Custom Cursor -->
+    <!-- Cursor -->
     <div class="cursor"></div>
     <div class="cursor-outline"></div>
+
+    <!-- Particles Background -->
+    <canvas id="particles"></canvas>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -22,9 +25,10 @@
             <a href="#hero" class="nav-logo">S<span class="accent">.</span>E</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">À propos</a></li>
-                <li><a href="#experience">Expériences</a></li>
-                <li><a href="#skills">Stack</a></li>
+                <li><a href="#expertise">Expertises</a></li>
+                <li><a href="#flagship">Projet Phare</a></li>
                 <li><a href="#projects">Projets</a></li>
+                <li><a href="#methodology">Méthodologie</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="nav-toggle" id="navToggle" aria-label="Menu">
@@ -35,19 +39,39 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ==================== HERO ==================== -->
     <section class="hero" id="hero">
-        <div class="hero-bg-grid"></div>
         <div class="hero-content">
-            <p class="hero-greeting fade-up">Salut, moi c'est</p>
-            <h1 class="hero-name fade-up delay-1">Séraphin <span class="accent">Eyala</span></h1>
-            <h2 class="hero-title fade-up delay-2">Développeur Web Full-Stack</h2>
+            <div class="hero-badge fade-up">
+                <span class="pulse-dot"></span>
+                DISPONIBLE — STAGE MARS 2026
+            </div>
+            <h1 class="hero-name fade-up delay-1">
+                Séraphin<br><span class="gradient-text">EYALA</span>
+            </h1>
+            <h2 class="hero-title fade-up delay-2">Développeur Full-Stack Junior</h2>
             <p class="hero-description fade-up delay-3">
-                Étudiant en BUT Informatique à l'IUT de Villetaneuse, passionné par le développement web et la création d'expériences digitales.
+                Doté d'autonomie et de rigueur, je souhaite mettre en pratique mes compétences en développement informatique et contribuer à vos projets.
             </p>
             <div class="hero-cta fade-up delay-4">
-                <a href="#projects" class="btn btn-primary">Voir mes projets</a>
-                <a href="#contact" class="btn btn-outline">Me contacter</a>
+                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> Voir mes projets</a>
+                <a href="#contact" class="btn btn-glass"><i class="fa-solid fa-paper-plane"></i> Me contacter</a>
+            </div>
+            <div class="hero-stats fade-up delay-4">
+                <div class="stat">
+                    <span class="stat-number" data-count="3">0</span>
+                    <span class="stat-label">Année BUT Info</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="6">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Projets réalisés</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="15">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
             </div>
             <div class="hero-socials fade-up delay-4">
                 <a href="https://github.com/SKGE93" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
@@ -56,48 +80,44 @@
             </div>
         </div>
         <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="mouse-wheel"></div>
-            </div>
+            <div class="mouse"><div class="mouse-wheel"></div></div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ==================== ABOUT ==================== -->
     <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title fade-up">À propos <span class="accent">de moi</span></h2>
+            <div class="section-label fade-up">// QUI JE SUIS</div>
+            <h2 class="section-title fade-up">À propos <span class="gradient-text">de moi</span></h2>
             <div class="about-grid">
                 <div class="about-text fade-up">
                     <p>
                         Je suis <strong>Séraphin Eyala</strong>, étudiant en 3ème année de BUT Informatique à l'<strong>IUT de Villetaneuse</strong> (Université Sorbonne Paris Nord). Passionné par le développement web, je construis des applications complètes, du front-end au back-end.
                     </p>
                     <p>
-                        En parallèle de mes études, je suis actuellement en <strong>contrat étudiant</strong> en tant qu'agent de sécurité incendie certifié <strong>SSIAP1</strong> chez <strong>Actor Sécurité</strong>. J'ai également eu la chance de travailler au <strong>Grand Palais pendant les JO de Paris 2024</strong> — une expérience qui m'a appris la rigueur, la gestion du stress et le travail en équipe dans des conditions exigeantes.
-                    </p>
-                    <p>
-                        Mon objectif : devenir développeur full-stack et créer des produits qui ont un réel impact.
+                        En parallèle, je suis en <strong>contrat étudiant</strong> chez <strong>Actor Sécurité</strong> en tant qu'agent de sécurité incendie certifié SSIAP1. J'ai travaillé au <strong>Grand Palais pendant les JO de Paris 2024</strong> — rigueur, gestion du stress et travail en équipe dans des conditions exigeantes.
                     </p>
                 </div>
-                <div class="about-details fade-up">
-                    <div class="detail-card">
-                        <div class="detail-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="about-cards fade-up">
+                    <div class="glass-card mini-card">
+                        <i class="fa-solid fa-graduation-cap"></i>
                         <div>
                             <h4>Formation</h4>
-                            <p>BUT Informatique — IUT de Villetaneuse</p>
+                            <p>BUT Informatique 3ème année — USPN</p>
                         </div>
                     </div>
-                    <div class="detail-card">
-                        <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="glass-card mini-card">
+                        <i class="fa-solid fa-location-dot"></i>
                         <div>
                             <h4>Localisation</h4>
-                            <p>Paris, France</p>
+                            <p>Montreuil (93) / Aubergenville (78)</p>
                         </div>
                     </div>
-                    <div class="detail-card">
-                        <div class="detail-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                    <div class="glass-card mini-card">
+                        <i class="fa-solid fa-calendar-check"></i>
                         <div>
-                            <h4>Centres d'intérêt</h4>
-                            <p>Musique, Cinéma, Gaming, Anime/Manga</p>
+                            <h4>Disponibilité</h4>
+                            <p>Stage de 14 semaines — Mars 2026</p>
                         </div>
                     </div>
                 </div>
@@ -105,251 +125,201 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section class="section section-alt" id="experience">
+    <!-- ==================== EXPERTISES ==================== -->
+    <section class="section section-alt" id="expertise">
         <div class="container">
-            <h2 class="section-title fade-up">Mon <span class="accent">Parcours</span></h2>
-            <div class="timeline">
-                <div class="timeline-item fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2023 — Présent</span>
-                        <h3>BUT Informatique — 3ème année</h3>
-                        <p class="timeline-place">IUT de Villetaneuse, Université Sorbonne Paris Nord</p>
-                        <p>Développement Full Stack, Architecture MVC, NoSQL, Administration Système, Gestion de projet Agile & DevOps (Docker), Algorithmique avancée, Bases de données (SQL), Web (JS/PHP), Java (JSP/Servlet).</p>
-                    </div>
+            <div class="section-label fade-up">// COMPÉTENCES TECHNIQUES</div>
+            <h2 class="section-title fade-up">Mes <span class="gradient-text">Expertises</span></h2>
+            <div class="expertise-grid">
+                <div class="glass-card expertise-card fade-up">
+                    <div class="expertise-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Langages</h3>
+                    <ul class="expertise-list">
+                        <li>Python, Java, JavaScript, PHP</li>
+                        <li>TypeScript, Dart, HTML, CSS</li>
+                        <li>SQL</li>
+                    </ul>
                 </div>
-                <div class="timeline-item fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Juin 2024 — Présent</span>
-                        <h3>Agent de sécurité incendie — CDI étudiant</h3>
-                        <p class="timeline-place">Actor Sécurité · Île-de-France (Week-ends)</p>
-                        <p>Surveillance des sites, assistance aux personnes et prévention des risques (SSIAP 1). Gestion des conflits et intervention rapide en cas d'incident. Autonomie, esprit d'équipe et rigueur.</p>
-                    </div>
+                <div class="glass-card expertise-card fade-up">
+                    <div class="expertise-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3>Frameworks & Bibliothèques</h3>
+                    <ul class="expertise-list">
+                        <li>React, Angular, Vue.js</li>
+                        <li>Spring Boot, Node.js, Flutter</li>
+                        <li>Chart.js, Bootstrap, Axios</li>
+                    </ul>
                 </div>
-                <div class="timeline-item fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2025</span>
-                        <h3>Stagiaire Informatique & Web</h3>
-                        <p class="timeline-place">Association Jean Luc François · Pantin</p>
-                        <p>Optimisation et maintenance du site web sous WordPress. Conception de solutions d'automatisation No-Code (Airtable, Zapier). Force de proposition technique et adaptabilité.</p>
-                    </div>
+                <div class="glass-card expertise-card fade-up">
+                    <div class="expertise-icon"><i class="fa-solid fa-database"></i></div>
+                    <h3>SGBD</h3>
+                    <ul class="expertise-list">
+                        <li>MySQL, PostgreSQL</li>
+                        <li>MongoDB, Redis</li>
+                        <li>CockroachDB</li>
+                    </ul>
                 </div>
-                <div class="timeline-item fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2024</span>
-                        <h3>Certifications SSIAP1 & APS</h3>
-                        <p class="timeline-place">FP Académie</p>
-                        <p>Certifications professionnelles en sécurité incendie et prévention.</p>
-                    </div>
+                <div class="glass-card expertise-card fade-up">
+                    <div class="expertise-icon"><i class="fa-solid fa-terminal"></i></div>
+                    <h3>Outils & DevOps</h3>
+                    <ul class="expertise-list">
+                        <li>Git / GitHub, Docker</li>
+                        <li>VS Code, IntelliJ, Eclipse</li>
+                        <li>Linux, VirtualBox, Jira</li>
+                    </ul>
                 </div>
-                <div class="timeline-item fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2022</span>
-                        <h3>Baccalauréat STI2D SI</h3>
-                        <p class="timeline-place">Lycée Le Corbusier, Aubervilliers</p>
-                        <p>Spécialité Systèmes d'Information et Numérique.</p>
-                    </div>
+                <div class="glass-card expertise-card fade-up">
+                    <div class="expertise-icon"><i class="fa-solid fa-globe"></i></div>
+                    <h3>Web & API</h3>
+                    <ul class="expertise-list">
+                        <li>API REST, WebSocket</li>
+                        <li>Architecture MVC</li>
+                        <li>JSP/Servlet, Ratchet</li>
+                    </ul>
+                </div>
+                <div class="glass-card expertise-card fade-up">
+                    <div class="expertise-icon"><i class="fa-solid fa-users-gear"></i></div>
+                    <h3>Méthodologies</h3>
+                    <ul class="expertise-list">
+                        <li>Méthodologie Agile, Scrum</li>
+                        <li>Diagramme de Gantt</li>
+                        <li>UML, Figma, WordPress</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="section" id="skills">
+    <!-- ==================== PROJET PHARE ==================== -->
+    <section class="section" id="flagship">
         <div class="container">
-            <h2 class="section-title fade-up">Ma <span class="accent">Stack</span></h2>
-            <div class="skills-grid">
-                <div class="skill-category fade-up">
-                    <h3><i class="fa-solid fa-palette"></i> Front-end</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">React Router</span>
-                        <span class="skill-tag">Angular</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">Vue.js</span>
-                        <span class="skill-tag">Chart.js</span>
-                        <span class="skill-tag">Bootstrap</span>
-                        <span class="skill-tag">Flutter</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">WordPress</span>
+            <div class="section-label fade-up">// PROJET PHARE</div>
+            <h2 class="section-title fade-up">Focus <span class="gradient-text">Projet</span></h2>
+            <div class="flagship-grid">
+                <div class="flagship-preview fade-up">
+                    <div class="flagship-image-wrapper">
+                        <img src="IMG/CineSearch.png.png" alt="CinéSearch">
+                        <div class="flagship-badge">Projet Personnel</div>
                     </div>
                 </div>
-                <div class="skill-category fade-up">
-                    <h3><i class="fa-solid fa-server"></i> Back-end</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">PHP</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">JSP/Servlet</span>
-                        <span class="skill-tag">API REST</span>
-                        <span class="skill-tag">Axios</span>
-                        <span class="skill-tag">WebSocket</span>
-                        <span class="skill-tag">Dart</span>
-                        <span class="skill-tag">MVC</span>
+                <div class="flagship-details fade-up">
+                    <h3 class="flagship-name">CinéSearch</h3>
+                    <p class="flagship-desc">Application web de recherche et d'exploration de films construite avec React et l'API TMDB. Projet personnel réalisé pour progresser sur des technologies non vues en cours.</p>
+                    <div class="flagship-steps">
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            <span>Affichage des films populaires du moment</span>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            <span>Recherche dynamique avec debounce</span>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            <span>Page de détail par film (synopsis, note, date)</span>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">4</span>
+                            <span>Interface en français via l'API TMDB</span>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">5</span>
+                            <span>Navigation SPA sans rechargement de page</span>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-category fade-up">
-                    <h3><i class="fa-solid fa-database"></i> Bases de données</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Redis</span>
-                        <span class="skill-tag">CockroachDB</span>
-                        <span class="skill-tag">SQL</span>
+                    <div class="flagship-tech">
+                        <span>React</span>
+                        <span>Vite</span>
+                        <span>React Router</span>
+                        <span>Axios</span>
+                        <span>TMDB API</span>
                     </div>
-                </div>
-                <div class="skill-category fade-up">
-                    <h3><i class="fa-solid fa-screwdriver-wrench"></i> Outils & DevOps</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git / GitHub</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">IntelliJ</span>
-                        <span class="skill-tag">Eclipse</span>
-                        <span class="skill-tag">VirtualBox</span>
-                        <span class="skill-tag">Jira</span>
-                    </div>
-                </div>
-                <div class="skill-category fade-up">
-                    <h3><i class="fa-solid fa-users"></i> Méthodologies & Soft Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Méthodologie Agile</span>
-                        <span class="skill-tag">Scrum</span>
-                        <span class="skill-tag">Autonomie</span>
-                        <span class="skill-tag">Esprit d'équipe</span>
-                        <span class="skill-tag">Esprit d'analyse</span>
-                        <span class="skill-tag">Persévérance</span>
-                    </div>
+                    <a href="https://github.com/SKGE93/cine-search" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> Voir le code</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- ==================== PROJECTS ==================== -->
     <section class="section section-alt" id="projects">
         <div class="container">
-            <h2 class="section-title fade-up">Mes <span class="accent">Projets</span></h2>
+            <div class="section-label fade-up">// RÉALISATIONS</div>
+            <h2 class="section-title fade-up">Mes <span class="gradient-text">Projets</span></h2>
             <div class="projects-grid">
 
                 <div class="project-card fade-up">
                     <div class="project-image">
-                        <img src="IMG/CineSearch.png.png" alt="CinéSearch — Recherche de films">
-                        <div class="project-overlay">
-                            <a href="https://github.com/SKGE93/cine-search" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>CinéSearch</h3>
-                        <p>Application web de recherche et d'exploration de films avec l'API TMDB. Recherche dynamique, pages de détail, interface en français. Projet personnel pour progresser sur React et la consommation d'API REST.</p>
-                        <div class="project-tags">
-                            <span>React</span>
-                            <span>Vite</span>
-                            <span>React Router</span>
-                            <span>Axios</span>
-                            <span>TMDB API</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <div class="project-image">
-                        <img src="IMG/AnimeApp.png.png" alt="OtakuGo — Recommandation d'animés">
+                        <img src="IMG/AnimeApp.png.png" alt="OtakuGo">
                         <div class="project-overlay">
                             <a href="https://github.com/SKGE93/Application-mobile-de-recommendations-anime" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>OtakuGo</h3>
-                        <p>Application mobile cross-platform suggérant des contenus selon les préférences de l'utilisateur. Gestion de données locales en JSON. Projet en équipe de 5.</p>
+                        <p>App mobile cross-platform de recommandation d'animés selon les préférences utilisateur.</p>
                         <div class="project-tags">
-                            <span>Flutter</span>
-                            <span>Dart</span>
-                            <span>JSON</span>
+                            <span>Flutter</span><span>Dart</span><span>JSON</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="project-card fade-up">
                     <div class="project-image">
-                        <img src="IMG/WeatherDash.png" alt="WeatherDash — Application météo">
+                        <img src="IMG/WeatherDash.png" alt="WeatherDash">
                         <div class="project-overlay">
                             <a href="https://github.com/SKGE93/weather-dash" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>WeatherDash</h3>
-                        <p>Application météo interactive avec météo en temps réel et graphique des températures sur 24h. Projet personnel pour progresser sur Angular et la visualisation de données.</p>
+                        <p>App météo interactive avec graphique des températures sur 24h via OpenWeatherMap.</p>
                         <div class="project-tags">
-                            <span>Angular 19</span>
-                            <span>TypeScript</span>
-                            <span>Chart.js</span>
-                            <span>OpenWeatherMap API</span>
+                            <span>Angular 19</span><span>TypeScript</span><span>Chart.js</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="project-card fade-up">
                     <div class="project-image">
-                        <img src="IMG/message.png" alt="Application de messagerie instantanée">
+                        <img src="IMG/message.png" alt="Messagerie Instantanée">
                         <div class="project-overlay">
                             <a href="https://github.com/Cheick6/SAE_S4" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>Messagerie Instantanée</h3>
-                        <p>Application de messagerie en temps réel avec WebSocket et système d'annotations obligatoires. Communication via Ratchet (PHP).</p>
+                        <p>App de messagerie temps réel avec WebSocket et annotations obligatoires.</p>
                         <div class="project-tags">
-                            <span>PHP</span>
-                            <span>WebSocket</span>
-                            <span>JavaScript</span>
-                            <span>UX/UI</span>
+                            <span>PHP</span><span>WebSocket</span><span>JavaScript</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="project-card fade-up">
                     <div class="project-image">
-                        <img src="IMG/expo.png" alt="Site exposition Basquiat & Warhol">
+                        <img src="IMG/expo.png" alt="Expo Basquiat & Warhol">
                         <div class="project-overlay">
                             <a href="https://github.com/SKGE93/Expo_Basquiat" target="_blank" class="btn btn-small"><i class="fa-brands fa-github"></i> Code</a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>À Quatre Mains — Basquiat & Warhol</h3>
-                        <p>Site d'exposition fictif avec intégration vidéo et traduction anglaise dynamique. Design réalisé sur Figma.</p>
+                        <p>Site d'exposition fictif avec traduction dynamique. UI conçue sur Figma.</p>
                         <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>Figma</span>
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="project-card fade-up">
                     <div class="project-image">
-                        <img src="IMG/imgMaison.png" alt="Affichage de formes en Java">
+                        <img src="IMG/imgMaison.png" alt="Shapes Java">
                         <div class="project-overlay"></div>
                     </div>
                     <div class="project-info">
                         <h3>Shapes — Dessin Java</h3>
-                        <p>Application graphique Java pour dessiner des formes géométriques (maison, montagnes). POO, UML et gestion d'exceptions.</p>
+                        <p>Application graphique Java : formes géométriques, POO, UML.</p>
                         <div class="project-tags">
-                            <span>Java</span>
-                            <span>UML</span>
-                            <span>OOP</span>
+                            <span>Java</span><span>UML</span><span>OOP</span>
                         </div>
                     </div>
                 </div>
@@ -358,23 +328,118 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
+    <!-- ==================== METHODOLOGY ==================== -->
+    <section class="section" id="methodology">
         <div class="container">
-            <h2 class="section-title fade-up">Me <span class="accent">Contacter</span></h2>
-            <p class="contact-subtitle fade-up">Un projet en tête ? Une opportunité ? N'hésitez pas à me contacter.</p>
+            <div class="section-label fade-up">// COMMENT JE TRAVAILLE</div>
+            <h2 class="section-title fade-up"><span class="gradient-text">Méthodologie</span></h2>
+            <div class="method-grid">
+                <div class="glass-card method-card fade-up">
+                    <div class="method-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h4>Analyse avant tout</h4>
+                    <p>Je commence toujours par comprendre le contexte et les besoins avant de proposer une solution technique, pour éviter le solutionnisme inutile.</p>
+                </div>
+                <div class="glass-card method-card fade-up">
+                    <div class="method-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <h4>Documentation rigoureuse</h4>
+                    <p>Chaque configuration, chaque projet est documenté proprement : schémas, notes techniques et commentaires clairs.</p>
+                </div>
+                <div class="glass-card method-card fade-up">
+                    <div class="method-icon"><i class="fa-solid fa-flask-vial"></i></div>
+                    <h4>Itération & tests</h4>
+                    <p>Je teste en environnement local avant toute mise en production. Les erreurs en labo, pas en prod — c'est ma règle d'or.</p>
+                </div>
+                <div class="glass-card method-card fade-up">
+                    <div class="method-icon"><i class="fa-solid fa-people-group"></i></div>
+                    <h4>Esprit d'équipe</h4>
+                    <p>Autonome mais pas isolé. Je communique, je documente pour mes collègues et je fais monter en compétence collectivement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PARCOURS ==================== -->
+    <section class="section section-alt" id="parcours">
+        <div class="container">
+            <div class="section-label fade-up">// MON PARCOURS</div>
+            <h2 class="section-title fade-up">Expériences <span class="gradient-text">& Formation</span></h2>
+            <div class="timeline">
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="glass-card timeline-content">
+                        <span class="timeline-date">2023 — Présent</span>
+                        <h3>BUT Informatique — 3ème année</h3>
+                        <p class="timeline-place">IUT de Villetaneuse, Université Sorbonne Paris Nord</p>
+                        <p>Full Stack, MVC, NoSQL, Admin Système, Agile & DevOps, Docker, Java JSP/Servlet.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="glass-card timeline-content">
+                        <span class="timeline-date">Juin 2024 — Présent</span>
+                        <h3>Agent de sécurité incendie — CDI étudiant</h3>
+                        <p class="timeline-place">Actor Sécurité · Île-de-France (Week-ends)</p>
+                        <p>Surveillance, prévention des risques (SSIAP 1), gestion des conflits, intervention rapide.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="glass-card timeline-content">
+                        <span class="timeline-date">2025</span>
+                        <h3>Stagiaire Informatique & Web</h3>
+                        <p class="timeline-place">Association Jean Luc François · Pantin</p>
+                        <p>WordPress, automatisation No-Code (Airtable, Zapier), force de proposition technique.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="glass-card timeline-content">
+                        <span class="timeline-date">2022</span>
+                        <h3>Baccalauréat STI2D SI</h3>
+                        <p class="timeline-place">Lycée Le Corbusier, Aubervilliers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== AVAILABILITY ==================== -->
+    <section class="section cta-section" id="availability">
+        <div class="container">
+            <div class="cta-box fade-up">
+                <div class="cta-text">
+                    <div class="section-label">// DISPONIBILITÉ</div>
+                    <h2>Prêt à intégrer<br>votre équipe<br><span class="gradient-text">Mars 2026</span></h2>
+                    <p class="cta-location">Île-de-France · Présentiel ou hybride<br>Stage de 14 semaines</p>
+                </div>
+                <div class="cta-checks">
+                    <div class="cta-check"><i class="fa-solid fa-circle-check"></i> Disponible dès Mars 2026 pour un stage</div>
+                    <div class="cta-check"><i class="fa-solid fa-circle-check"></i> Mobilité sur toute l'Île-de-France</div>
+                    <div class="cta-check"><i class="fa-solid fa-circle-check"></i> Ouvert au présentiel, hybride ou full remote</div>
+                    <div class="cta-check"><i class="fa-solid fa-circle-check"></i> BUT Informatique en cours de validation</div>
+                    <a href="#contact" class="btn btn-primary" style="margin-top:24px;"><i class="fa-solid fa-calendar"></i> Planifier un entretien</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <div class="section-label fade-up">// ME CONTACTER</div>
+            <h2 class="section-title fade-up">Parlons de <span class="gradient-text">votre projet</span></h2>
             <div class="contact-links fade-up">
-                <a href="mailto:eyalas472@gmail.com" class="contact-card">
+                <a href="mailto:eyalas472@gmail.com" class="glass-card contact-card">
                     <i class="fa-solid fa-envelope"></i>
                     <h4>Email</h4>
                     <p>eyalas472@gmail.com</p>
                 </a>
-                <a href="https://linkedin.com/in/seraphin-eyala-68557b279/" target="_blank" class="contact-card">
+                <a href="https://linkedin.com/in/seraphin-eyala-68557b279/" target="_blank" class="glass-card contact-card">
                     <i class="fa-brands fa-linkedin-in"></i>
                     <h4>LinkedIn</h4>
                     <p>Séraphin Eyala</p>
                 </a>
-                <a href="https://github.com/SKGE93" target="_blank" class="contact-card">
+                <a href="https://github.com/SKGE93" target="_blank" class="glass-card contact-card">
                     <i class="fa-brands fa-github"></i>
                     <h4>GitHub</h4>
                     <p>SKGE93</p>
@@ -386,7 +451,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Séraphin Eyala — Tous droits réservés</p>
+            <p>&copy; 2025 Séraphin Eyala — Tous droits réservés</p>
         </div>
     </footer>
 
