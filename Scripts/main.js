@@ -217,33 +217,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
 
-    // --- Custom Cursor ---
-    const cursor = document.querySelector('.cursor');
-    const cursorOutline = document.querySelector('.cursor-outline');
-    if (cursor && cursorOutline && window.innerWidth > 768) {
-        let mouseX = 0, mouseY = 0;
-        let outlineX = 0, outlineY = 0;
+    // --- Dragon Cursor ---
+    const dragonSvg = document.getElementById('dragon-cursor');
+    if (dragonSvg && window.innerWidth > 768) {
+        const N = 30;
+        const segments = [];
+        const svgNS = 'http://www.w3.org/2000/svg';
+
+        for (let i = 0; i < N; i++) {
+            const g = document.createElementNS(svgNS, 'g');
+            const useEl = document.createElementNS(svgNS, 'use');
+            if (i === 0) {
+                useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#Cabeza');
+            } else if (i % 4 === 0) {
+                useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#Aletas');
+            } else {
+                useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#Espina');
+            }
+            const scale = 1 - (i / N) * 0.5;
+            useEl.setAttribute('transform', `scale(${scale})`);
+            g.appendChild(useEl);
+            dragonSvg.appendChild(g);
+            segments.push({ g, x: 400, y: 300, angle: 0 });
+        }
+
+        let mouseX = 400, mouseY = 300;
+
+        function mapToSvgCoords(clientX, clientY) {
+            const rect = dragonSvg.getBoundingClientRect();
+            const vb = dragonSvg.viewBox.baseVal;
+            return {
+                x: ((clientX - rect.left) / rect.width) * vb.width,
+                y: ((clientY - rect.top) / rect.height) * vb.height
+            };
+        }
 
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
+            const coords = mapToSvgCoords(e.clientX, e.clientY);
+            mouseX = coords.x;
+            mouseY = coords.y;
         });
 
-        function animateOutline() {
-            outlineX += (mouseX - outlineX) * 0.12;
-            outlineY += (mouseY - outlineY) * 0.12;
-            cursorOutline.style.left = outlineX + 'px';
-            cursorOutline.style.top = outlineY + 'px';
-            requestAnimationFrame(animateOutline);
+        let t = 0;
+        function animateDragon() {
+            t += 0.04;
+            segments[0].x += (mouseX - segments[0].x) * 0.18;
+            segments[0].y += (mouseY - segments[0].y) * 0.18;
+            segments[0].angle = Math.atan2(mouseY - segments[0].y, mouseX - segments[0].x);
+
+            for (let i = 1; i < N; i++) {
+                const prev = segments[i - 1];
+                const seg = segments[i];
+                const spacing = 8;
+                const wave = Math.sin(t + i * 0.4) * 6;
+                const targetX = prev.x - Math.cos(prev.angle) * spacing;
+                const targetY = prev.y - Math.sin(prev.angle) * spacing;
+                seg.x += (targetX - seg.x) * 0.35;
+                seg.y += (targetY - seg.y) * 0.35;
+                seg.x += Math.cos(prev.angle + Math.PI / 2) * wave * 0.1;
+                seg.y += Math.sin(prev.angle + Math.PI / 2) * wave * 0.1;
+                seg.angle = Math.atan2(seg.y - prev.y, seg.x - prev.x);
+            }
+
+            segments.forEach((seg) => {
+                const deg = (seg.angle * 180) / Math.PI;
+                seg.g.setAttribute('transform', `translate(${seg.x}, ${seg.y}) rotate(${deg})`);
+            });
+
+            requestAnimationFrame(animateDragon);
         }
-        animateOutline();
-
-        document.querySelectorAll('a, button, .btn, .project-card, .contact-card, .glass-card').forEach(el => {
-            el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); cursorOutline.classList.add('hover'); });
-            el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); cursorOutline.classList.remove('hover'); });
-        });
+        animateDragon();
     }
 
     // --- Expandable Timeline Cards ---
