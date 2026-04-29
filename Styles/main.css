@@ -165,15 +165,14 @@ strong { color: #fff; }
     pointer-events: none;
 }
 
-/* --- Dragon Cursor --- */
-#dragon-cursor {
+/* --- Hacker Cursor --- */
+#hacker-cursor {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
     z-index: 10001;
     pointer-events: none;
-    overflow: visible;
 }
 
 /* --- Glass Card --- */
@@ -585,7 +584,7 @@ strong { color: #fff; }
     .nav-links.active { display: flex; }
     .nav-links a { font-size: 1.1rem; }
     .nav-toggle { display: flex; }
-    #dragon-cursor { display: none; }
+    #hacker-cursor { display: none; }
     html, body { cursor: auto; }
     .btn { cursor: pointer; }
 
