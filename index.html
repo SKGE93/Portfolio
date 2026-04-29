@@ -14,8 +14,43 @@
 </head>
 <body>
 
-    <div class="cursor"></div>
-    <div class="cursor-outline"></div>
+    <!-- Dragon Cursor -->
+    <svg id="dragon-cursor" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="dragonGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#4f6ef7"/>
+            </linearGradient>
+            <linearGradient id="dragonGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7c3aed"/>
+                <stop offset="100%" stop-color="#3b82f6"/>
+            </linearGradient>
+            <linearGradient id="dragonGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+
+            <!-- Head -->
+            <g id="Cabeza">
+                <path d="M2-8 Q6-14 14-12 Q20-10 22-4 Q24 2 20 6 Q16 10 10 10 Q4 10 2 6 Q-2 2 2-8Z" fill="url(#dragonGrad1)"/>
+                <circle cx="8" cy="-2" r="2.5" fill="#fff"/>
+                <circle cx="16" cy="-2" r="2.5" fill="#fff"/>
+                <circle cx="8.5" cy="-1.5" r="1" fill="#050505"/>
+                <circle cx="16.5" cy="-1.5" r="1" fill="#050505"/>
+            </g>
+
+            <!-- Fins -->
+            <g id="Aletas">
+                <path d="M0,0 Q-14,-6 -8,-18 Q-4,-12 0,-8Z" fill="url(#dragonGrad2)" opacity="0.7"/>
+                <path d="M0,0 Q14,-6 8,-18 Q4,-12 0,-8Z" fill="url(#dragonGrad2)" opacity="0.7"/>
+            </g>
+
+            <!-- Spine segment -->
+            <g id="Espina">
+                <ellipse cx="0" cy="0" rx="6" ry="4" fill="url(#dragonGrad3)" opacity="0.85"/>
+            </g>
+        </defs>
+    </svg>
     <canvas id="particles"></canvas>
 
     <!-- Navigation -->
@@ -193,7 +228,7 @@
             <div class="projects-list">
 
                 <!-- 01 — CinéSearch -->
-                <div class="project-row fade-up">
+                <div class="project-row project-violet fade-up">
                     <div class="project-row-image">
                         <img src="IMG/CineSearch.png.png" alt="CinéSearch">
                     </div>
@@ -215,7 +250,7 @@
                 </div>
 
                 <!-- 02 — WeatherDash -->
-                <div class="project-row reverse fade-up">
+                <div class="project-row reverse project-blue fade-up">
                     <div class="project-row-image">
                         <img src="IMG/WeatherDash.png" alt="WeatherDash">
                     </div>
@@ -236,7 +271,7 @@
                 </div>
 
                 <!-- 03 — OtakuGo -->
-                <div class="project-row fade-up">
+                <div class="project-row project-teal fade-up">
                     <div class="project-row-image">
                         <img src="IMG/AnimeApp.png.png" alt="OtakuGo">
                     </div>
@@ -257,7 +292,7 @@
                 </div>
 
                 <!-- 04 — Messagerie -->
-                <div class="project-row reverse fade-up">
+                <div class="project-row reverse project-coral fade-up">
                     <div class="project-row-image">
                         <img src="IMG/message.png" alt="Messagerie Instantanée">
                     </div>
@@ -278,7 +313,7 @@
                 </div>
 
                 <!-- 05 — Basquiat -->
-                <div class="project-row fade-up">
+                <div class="project-row project-rose fade-up">
                     <div class="project-row-image">
                         <img src="IMG/expo.png" alt="Expo Basquiat & Warhol">
                     </div>
@@ -299,7 +334,7 @@
                 </div>
 
                 <!-- 06 — Shapes Java -->
-                <div class="project-row reverse fade-up">
+                <div class="project-row reverse project-gold fade-up">
                     <div class="project-row-image">
                         <img src="IMG/imgMaison.png" alt="Shapes Java">
                     </div>

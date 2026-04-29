@@ -165,28 +165,16 @@ strong { color: #fff; }
     pointer-events: none;
 }
 
-/* --- Custom Cursor --- */
-.cursor {
-    width: 10px; height: 10px;
-    background: var(--accent-1);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 10001;
-    transition: transform 0.15s ease, background 0.2s ease;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: screen;
+/* --- Dragon Cursor --- */
+#dragon-cursor {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+    pointer-events: none;
+    overflow: visible;
 }
-.cursor-outline {
-    width: 40px; height: 40px;
-    border: 1.5px solid rgba(79, 110, 247, 0.4);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 10000;
-    transition: transform 0.08s ease, width 0.3s ease, height 0.3s ease;
-    transform: translate(-50%, -50%);
-}
-.cursor.hover { transform: translate(-50%,-50%) scale(2); background: var(--accent-2); }
-.cursor-outline.hover { width: 55px; height: 55px; border-color: var(--accent-2); }
 
 /* --- Glass Card --- */
 .glass-card {
@@ -417,6 +405,37 @@ strong { color: #fff; }
     font-family: var(--mono); border: 1px solid rgba(79,110,247,0.15);
 }
 
+/* --- Per-project color theming --- */
+.project-violet .step-number { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+.project-violet .btn-primary { background: linear-gradient(135deg, #a855f7, #7c3aed); box-shadow: 0 4px 20px rgba(168,85,247,0.25); }
+.project-violet .btn-primary:hover { box-shadow: 0 8px 35px rgba(168,85,247,0.4); }
+.project-violet .project-tech span { background: rgba(168,85,247,0.08); color: #a855f7; border-color: rgba(168,85,247,0.15); }
+
+.project-blue .step-number { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+.project-blue .btn-primary { background: linear-gradient(135deg, #3b82f6, #06b6d4); box-shadow: 0 4px 20px rgba(59,130,246,0.25); }
+.project-blue .btn-primary:hover { box-shadow: 0 8px 35px rgba(59,130,246,0.4); }
+.project-blue .project-tech span { background: rgba(59,130,246,0.08); color: #3b82f6; border-color: rgba(59,130,246,0.15); }
+
+.project-teal .step-number { background: linear-gradient(135deg, #14b8a6, #22c55e); }
+.project-teal .btn-primary { background: linear-gradient(135deg, #14b8a6, #22c55e); box-shadow: 0 4px 20px rgba(20,184,166,0.25); }
+.project-teal .btn-primary:hover { box-shadow: 0 8px 35px rgba(20,184,166,0.4); }
+.project-teal .project-tech span { background: rgba(20,184,166,0.08); color: #14b8a6; border-color: rgba(20,184,166,0.15); }
+
+.project-coral .step-number { background: linear-gradient(135deg, #f97316, #ef4444); }
+.project-coral .btn-primary { background: linear-gradient(135deg, #f97316, #ef4444); box-shadow: 0 4px 20px rgba(249,115,22,0.25); }
+.project-coral .btn-primary:hover { box-shadow: 0 8px 35px rgba(249,115,22,0.4); }
+.project-coral .project-tech span { background: rgba(249,115,22,0.08); color: #f97316; border-color: rgba(249,115,22,0.15); }
+
+.project-rose .step-number { background: linear-gradient(135deg, #f43f5e, #c026d3); }
+.project-rose .btn-primary { background: linear-gradient(135deg, #f43f5e, #c026d3); box-shadow: 0 4px 20px rgba(244,63,94,0.25); }
+.project-rose .btn-primary:hover { box-shadow: 0 8px 35px rgba(244,63,94,0.4); }
+.project-rose .project-tech span { background: rgba(244,63,94,0.08); color: #f43f5e; border-color: rgba(244,63,94,0.15); }
+
+.project-gold .step-number { background: linear-gradient(135deg, #f59e0b, #84cc16); }
+.project-gold .btn-primary { background: linear-gradient(135deg, #f59e0b, #84cc16); box-shadow: 0 4px 20px rgba(245,158,11,0.25); }
+.project-gold .btn-primary:hover { box-shadow: 0 8px 35px rgba(245,158,11,0.4); }
+.project-gold .project-tech span { background: rgba(245,158,11,0.08); color: #f59e0b; border-color: rgba(245,158,11,0.15); }
+
 /* --- Methodology --- */
 .method-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .method-card { padding: 32px; }
@@ -566,7 +585,7 @@ strong { color: #fff; }
     .nav-links.active { display: flex; }
     .nav-links a { font-size: 1.1rem; }
     .nav-toggle { display: flex; }
-    .cursor, .cursor-outline { display: none; }
+    #dragon-cursor { display: none; }
     html, body { cursor: auto; }
     .btn { cursor: pointer; }
 
