@@ -217,76 +217,129 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
 
-    // --- Dragon Cursor ---
-    const dragonSvg = document.getElementById('dragon-cursor');
-    if (dragonSvg && window.innerWidth > 768) {
-        const N = 30;
-        const segments = [];
-        const svgNS = 'http://www.w3.org/2000/svg';
+    // --- Hacker Binary Cursor ---
+    const hackerCanvas = document.getElementById('hacker-cursor');
+    if (hackerCanvas && window.innerWidth > 768) {
+        const hCtx = hackerCanvas.getContext('2d');
+        let hMouseX = -100, hMouseY = -100;
+        const chars = [];
+        const hackerColors = [
+            '#a855f7', '#7c3aed', '#4f6ef7', '#3b82f6',
+            '#06b6d4', '#14b8a6', '#22c55e', '#f43f5e',
+            '#f97316', '#f59e0b', '#c026d3'
+        ];
+        const hexMsg = '6e617275746f206d65696c6c657572207175652046696e616c2046616e74617379';
+        const secretMsg = 'naruto meilleur que one piece';
+        let cycleTimer = 0;
+        let showSecret = false;
+        let secretChars = [];
+        let spawnCounter = 0;
 
-        for (let i = 0; i < N; i++) {
-            const g = document.createElementNS(svgNS, 'g');
-            const useEl = document.createElementNS(svgNS, 'use');
-            if (i === 0) {
-                useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#Cabeza');
-            } else if (i % 4 === 0) {
-                useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#Aletas');
-            } else {
-                useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#Espina');
-            }
-            const scale = 1 - (i / N) * 0.5;
-            useEl.setAttribute('transform', `scale(${scale})`);
-            g.appendChild(useEl);
-            dragonSvg.appendChild(g);
-            segments.push({ g, x: 400, y: 300, angle: 0 });
+        function resizeHacker() {
+            hackerCanvas.width = window.innerWidth;
+            hackerCanvas.height = window.innerHeight;
         }
-
-        let mouseX = 400, mouseY = 300;
-
-        function mapToSvgCoords(clientX, clientY) {
-            const rect = dragonSvg.getBoundingClientRect();
-            const vb = dragonSvg.viewBox.baseVal;
-            return {
-                x: ((clientX - rect.left) / rect.width) * vb.width,
-                y: ((clientY - rect.top) / rect.height) * vb.height
-            };
-        }
+        resizeHacker();
+        window.addEventListener('resize', resizeHacker);
 
         document.addEventListener('mousemove', (e) => {
-            const coords = mapToSvgCoords(e.clientX, e.clientY);
-            mouseX = coords.x;
-            mouseY = coords.y;
+            hMouseX = e.clientX;
+            hMouseY = e.clientY;
         });
 
-        let t = 0;
-        function animateDragon() {
-            t += 0.04;
-            segments[0].x += (mouseX - segments[0].x) * 0.18;
-            segments[0].y += (mouseY - segments[0].y) * 0.18;
-            segments[0].angle = Math.atan2(mouseY - segments[0].y, mouseX - segments[0].x);
+        function spawnBinary() {
+            const isBinary = Math.random() > 0.3;
+            const char = isBinary ? (Math.random() > 0.5 ? '1' : '0') : '0123456789abcdef'[Math.floor(Math.random() * 16)];
+            chars.push({
+                x: hMouseX + (Math.random() - 0.5) * 30,
+                y: hMouseY + (Math.random() - 0.5) * 30,
+                char: char,
+                opacity: 0.9 + Math.random() * 0.1,
+                color: hackerColors[Math.floor(Math.random() * hackerColors.length)],
+                vy: -(0.3 + Math.random() * 0.8),
+                vx: (Math.random() - 0.5) * 0.6,
+                size: 11 + Math.random() * 5,
+                decay: 0.008 + Math.random() * 0.006
+            });
+        }
 
-            for (let i = 1; i < N; i++) {
-                const prev = segments[i - 1];
-                const seg = segments[i];
-                const spacing = 8;
-                const wave = Math.sin(t + i * 0.4) * 6;
-                const targetX = prev.x - Math.cos(prev.angle) * spacing;
-                const targetY = prev.y - Math.sin(prev.angle) * spacing;
-                seg.x += (targetX - seg.x) * 0.35;
-                seg.y += (targetY - seg.y) * 0.35;
-                seg.x += Math.cos(prev.angle + Math.PI / 2) * wave * 0.1;
-                seg.y += Math.sin(prev.angle + Math.PI / 2) * wave * 0.1;
-                seg.angle = Math.atan2(seg.y - prev.y, seg.x - prev.x);
+        function triggerSecret() {
+            secretChars = [];
+            const hexChars = secretMsg.split('').map(c => c.charCodeAt(0).toString(16));
+            const startX = window.innerWidth / 2 - (hexChars.length * 14) / 2;
+            const startY = window.innerHeight / 2;
+            hexChars.forEach((hex, i) => {
+                secretChars.push({
+                    x: startX + i * 14,
+                    y: startY + (Math.random() - 0.5) * 20,
+                    char: hex,
+                    opacity: 1,
+                    color: hackerColors[i % hackerColors.length],
+                    size: 16,
+                    decay: 0.003,
+                    vy: -0.15,
+                    vx: 0,
+                    glow: true
+                });
+            });
+            showSecret = true;
+        }
+
+        function animateHacker() {
+            hCtx.clearRect(0, 0, hackerCanvas.width, hackerCanvas.height);
+
+            spawnCounter++;
+            if (spawnCounter % 2 === 0 && hMouseX > 0) {
+                spawnBinary();
+                if (spawnCounter % 4 === 0) spawnBinary();
             }
 
-            segments.forEach((seg) => {
-                const deg = (seg.angle * 180) / Math.PI;
-                seg.g.setAttribute('transform', `translate(${seg.x}, ${seg.y}) rotate(${deg})`);
-            });
+            cycleTimer++;
+            if (cycleTimer >= 600 && !showSecret) {
+                triggerSecret();
+                cycleTimer = 0;
+            }
 
-            requestAnimationFrame(animateDragon);
+            hCtx.font = '600 14px "JetBrains Mono", monospace';
+            hCtx.textAlign = 'center';
+
+            for (let i = chars.length - 1; i >= 0; i--) {
+                const c = chars[i];
+                c.x += c.vx;
+                c.y += c.vy;
+                c.opacity -= c.decay;
+                if (c.opacity <= 0) { chars.splice(i, 1); continue; }
+                hCtx.globalAlpha = c.opacity;
+                hCtx.font = `600 ${c.size}px "JetBrains Mono", monospace`;
+                hCtx.shadowColor = c.color;
+                hCtx.shadowBlur = c.opacity * 8;
+                hCtx.fillStyle = c.color;
+                hCtx.fillText(c.char, c.x, c.y);
+            }
+
+            if (showSecret) {
+                let allDone = true;
+                for (let i = secretChars.length - 1; i >= 0; i--) {
+                    const s = secretChars[i];
+                    s.y += s.vy;
+                    s.opacity -= s.decay;
+                    if (s.opacity <= 0) { secretChars.splice(i, 1); continue; }
+                    allDone = false;
+                    hCtx.globalAlpha = s.opacity;
+                    hCtx.font = `700 ${s.size}px "JetBrains Mono", monospace`;
+                    hCtx.shadowColor = s.color;
+                    hCtx.shadowBlur = s.opacity * 18;
+                    hCtx.fillStyle = s.color;
+                    hCtx.fillText(s.char, s.x, s.y);
+                }
+                if (allDone) showSecret = false;
+            }
+
+            hCtx.globalAlpha = 1;
+            hCtx.shadowBlur = 0;
+            requestAnimationFrame(animateHacker);
         }
-        animateDragon();
+        animateHacker();
     }
 
     // --- Expandable Timeline Cards ---
