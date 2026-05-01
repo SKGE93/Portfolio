@@ -248,8 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         function spawnBinary() {
-            const isBinary = Math.random() > 0.3;
-            const char = isBinary ? (Math.random() > 0.5 ? '1' : '0') : '0123456789abcdef'[Math.floor(Math.random() * 16)];
+            const char = Math.random() > 0.5 ? '1' : '0';
             chars.push({
                 x: hMouseX + (Math.random() - 0.5) * 30,
                 y: hMouseY + (Math.random() - 0.5) * 30,
