@@ -217,10 +217,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
 
-    // --- Matrix Binary Rain ---
+    // --- Crosshair FPS Cursor ---
     const hackerCanvas = document.getElementById('hacker-cursor');
     if (hackerCanvas && window.innerWidth > 768) {
         const hCtx = hackerCanvas.getContext('2d');
+        let mx = -100, my = -100;
+        let clicks = [];
+        let rotation = 0;
 
         function resizeHacker() {
             hackerCanvas.width = window.innerWidth;
@@ -229,44 +232,115 @@ document.addEventListener('DOMContentLoaded', () => {
         resizeHacker();
         window.addEventListener('resize', resizeHacker);
 
-        const fontSize = 14;
-        const columns = Math.floor(hackerCanvas.width / fontSize);
-        const drops = new Array(columns).fill(0);
+        document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
 
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -100;
-        }
+        document.addEventListener('mousedown', () => {
+            clicks.push({ x: mx, y: my, radius: 6, opacity: 1, scale: 1 });
+        });
 
-        function drawMatrix() {
-            hCtx.fillStyle = 'rgba(5, 5, 5, 0.06)';
-            hCtx.fillRect(0, 0, hackerCanvas.width, hackerCanvas.height);
+        function drawCrosshair() {
+            hCtx.clearRect(0, 0, hackerCanvas.width, hackerCanvas.height);
+            rotation += 0.008;
 
-            hCtx.font = `600 ${fontSize}px "JetBrains Mono", monospace`;
-            hCtx.textAlign = 'center';
+            const color = '#4f6ef7';
+            const glow = 'rgba(79, 110, 247, 0.6)';
 
-            for (let i = 0; i < columns; i++) {
-                const char = Math.random() > 0.5 ? '1' : '0';
-                const x = i * fontSize + fontSize / 2;
-                const y = drops[i] * fontSize;
+            hCtx.save();
+            hCtx.translate(mx, my);
 
-                const brightness = 0.3 + Math.random() * 0.7;
-                const g = Math.floor(180 + brightness * 75);
-                hCtx.fillStyle = `rgba(0, ${g}, 0, ${brightness})`;
-                hCtx.shadowColor = '#00ff00';
-                hCtx.shadowBlur = brightness * 12;
-                hCtx.fillText(char, x, y);
+            // Outer rotating ring
+            hCtx.save();
+            hCtx.rotate(rotation);
+            hCtx.strokeStyle = glow;
+            hCtx.lineWidth = 1;
+            hCtx.shadowColor = color;
+            hCtx.shadowBlur = 8;
+            hCtx.beginPath();
+            for (let i = 0; i < 4; i++) {
+                const angle = (i * Math.PI) / 2;
+                hCtx.moveTo(Math.cos(angle) * 18, Math.sin(angle) * 18);
+                hCtx.lineTo(Math.cos(angle) * 24, Math.sin(angle) * 24);
+            }
+            hCtx.stroke();
+            hCtx.restore();
 
-                hCtx.shadowBlur = 0;
+            // Inner rotating brackets (opposite direction)
+            hCtx.save();
+            hCtx.rotate(-rotation * 1.5);
+            hCtx.strokeStyle = color;
+            hCtx.lineWidth = 1.5;
+            hCtx.shadowColor = color;
+            hCtx.shadowBlur = 10;
+            hCtx.beginPath();
+            for (let i = 0; i < 4; i++) {
+                const angle = (i * Math.PI) / 2 + Math.PI / 4;
+                hCtx.moveTo(Math.cos(angle) * 12, Math.sin(angle) * 12);
+                hCtx.lineTo(Math.cos(angle) * 16, Math.sin(angle) * 16);
+            }
+            hCtx.stroke();
+            hCtx.restore();
 
-                if (y > hackerCanvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
+            // Cross lines (static)
+            hCtx.strokeStyle = color;
+            hCtx.lineWidth = 1.5;
+            hCtx.shadowColor = color;
+            hCtx.shadowBlur = 12;
+            hCtx.beginPath();
+            hCtx.moveTo(0, -10); hCtx.lineTo(0, -4);
+            hCtx.moveTo(0, 4);   hCtx.lineTo(0, 10);
+            hCtx.moveTo(-10, 0); hCtx.lineTo(-4, 0);
+            hCtx.moveTo(4, 0);   hCtx.lineTo(10, 0);
+            hCtx.stroke();
+
+            // Center dot
+            hCtx.fillStyle = '#fff';
+            hCtx.shadowColor = '#fff';
+            hCtx.shadowBlur = 6;
+            hCtx.beginPath();
+            hCtx.arc(0, 0, 1.5, 0, Math.PI * 2);
+            hCtx.fill();
+
+            hCtx.restore();
+
+            // Click pulse effects
+            hCtx.shadowBlur = 0;
+            for (let i = clicks.length - 1; i >= 0; i--) {
+                const c = clicks[i];
+                c.radius += 3;
+                c.opacity -= 0.04;
+                c.scale += 0.05;
+                if (c.opacity <= 0) { clicks.splice(i, 1); continue; }
+
+                hCtx.save();
+                hCtx.translate(c.x, c.y);
+
+                // Expanding ring
+                hCtx.strokeStyle = `rgba(79, 110, 247, ${c.opacity})`;
+                hCtx.lineWidth = 1.5;
+                hCtx.shadowColor = color;
+                hCtx.shadowBlur = c.opacity * 15;
+                hCtx.beginPath();
+                hCtx.arc(0, 0, c.radius, 0, Math.PI * 2);
+                hCtx.stroke();
+
+                // Inner flash ring
+                if (c.opacity > 0.5) {
+                    hCtx.strokeStyle = `rgba(255, 255, 255, ${(c.opacity - 0.5) * 2})`;
+                    hCtx.lineWidth = 2;
+                    hCtx.beginPath();
+                    hCtx.arc(0, 0, c.radius * 0.4, 0, Math.PI * 2);
+                    hCtx.stroke();
                 }
-                drops[i]++;
+
+                hCtx.restore();
             }
 
-            requestAnimationFrame(drawMatrix);
+            requestAnimationFrame(drawCrosshair);
         }
-        drawMatrix();
+        drawCrosshair();
+
+        document.body.style.cursor = 'none';
+        document.documentElement.style.cursor = 'none';
     }
 
     // --- Expandable Timeline Cards ---
