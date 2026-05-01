@@ -217,23 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
 
-    // --- Hacker Binary Cursor ---
+    // --- Matrix Binary Rain ---
     const hackerCanvas = document.getElementById('hacker-cursor');
     if (hackerCanvas && window.innerWidth > 768) {
         const hCtx = hackerCanvas.getContext('2d');
-        let hMouseX = -100, hMouseY = -100;
-        const chars = [];
-        const hackerColors = [
-            '#a855f7', '#7c3aed', '#4f6ef7', '#3b82f6',
-            '#06b6d4', '#14b8a6', '#22c55e', '#f43f5e',
-            '#f97316', '#f59e0b', '#c026d3'
-        ];
-        const hexMsg = '6e617275746f206d65696c6c657572207175652046696e616c2046616e74617379';
-        const secretMsg = 'naruto meilleur que one piece';
-        let cycleTimer = 0;
-        let showSecret = false;
-        let secretChars = [];
-        let spawnCounter = 0;
 
         function resizeHacker() {
             hackerCanvas.width = window.innerWidth;
@@ -242,103 +229,44 @@ document.addEventListener('DOMContentLoaded', () => {
         resizeHacker();
         window.addEventListener('resize', resizeHacker);
 
-        document.addEventListener('mousemove', (e) => {
-            hMouseX = e.clientX;
-            hMouseY = e.clientY;
-        });
+        const fontSize = 14;
+        const columns = Math.floor(hackerCanvas.width / fontSize);
+        const drops = new Array(columns).fill(0);
 
-        function spawnBinary() {
-            const char = Math.random() > 0.5 ? '1' : '0';
-            chars.push({
-                x: hMouseX + (Math.random() - 0.5) * 30,
-                y: hMouseY + (Math.random() - 0.5) * 30,
-                char: char,
-                opacity: 0.9 + Math.random() * 0.1,
-                color: hackerColors[Math.floor(Math.random() * hackerColors.length)],
-                vy: -(0.3 + Math.random() * 0.8),
-                vx: (Math.random() - 0.5) * 0.6,
-                size: 11 + Math.random() * 5,
-                decay: 0.008 + Math.random() * 0.006
-            });
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
         }
 
-        function triggerSecret() {
-            secretChars = [];
-            const hexChars = secretMsg.split('').map(c => c.charCodeAt(0).toString(16));
-            const startX = window.innerWidth / 2 - (hexChars.length * 14) / 2;
-            const startY = window.innerHeight / 2;
-            hexChars.forEach((hex, i) => {
-                secretChars.push({
-                    x: startX + i * 14,
-                    y: startY + (Math.random() - 0.5) * 20,
-                    char: hex,
-                    opacity: 1,
-                    color: hackerColors[i % hackerColors.length],
-                    size: 16,
-                    decay: 0.003,
-                    vy: -0.15,
-                    vx: 0,
-                    glow: true
-                });
-            });
-            showSecret = true;
-        }
+        function drawMatrix() {
+            hCtx.fillStyle = 'rgba(5, 5, 5, 0.06)';
+            hCtx.fillRect(0, 0, hackerCanvas.width, hackerCanvas.height);
 
-        function animateHacker() {
-            hCtx.clearRect(0, 0, hackerCanvas.width, hackerCanvas.height);
-
-            spawnCounter++;
-            if (spawnCounter % 2 === 0 && hMouseX > 0) {
-                spawnBinary();
-                if (spawnCounter % 4 === 0) spawnBinary();
-            }
-
-            cycleTimer++;
-            if (cycleTimer >= 600 && !showSecret) {
-                triggerSecret();
-                cycleTimer = 0;
-            }
-
-            hCtx.font = '600 14px "JetBrains Mono", monospace';
+            hCtx.font = `600 ${fontSize}px "JetBrains Mono", monospace`;
             hCtx.textAlign = 'center';
 
-            for (let i = chars.length - 1; i >= 0; i--) {
-                const c = chars[i];
-                c.x += c.vx;
-                c.y += c.vy;
-                c.opacity -= c.decay;
-                if (c.opacity <= 0) { chars.splice(i, 1); continue; }
-                hCtx.globalAlpha = c.opacity;
-                hCtx.font = `600 ${c.size}px "JetBrains Mono", monospace`;
-                hCtx.shadowColor = c.color;
-                hCtx.shadowBlur = c.opacity * 8;
-                hCtx.fillStyle = c.color;
-                hCtx.fillText(c.char, c.x, c.y);
-            }
+            for (let i = 0; i < columns; i++) {
+                const char = Math.random() > 0.5 ? '1' : '0';
+                const x = i * fontSize + fontSize / 2;
+                const y = drops[i] * fontSize;
 
-            if (showSecret) {
-                let allDone = true;
-                for (let i = secretChars.length - 1; i >= 0; i--) {
-                    const s = secretChars[i];
-                    s.y += s.vy;
-                    s.opacity -= s.decay;
-                    if (s.opacity <= 0) { secretChars.splice(i, 1); continue; }
-                    allDone = false;
-                    hCtx.globalAlpha = s.opacity;
-                    hCtx.font = `700 ${s.size}px "JetBrains Mono", monospace`;
-                    hCtx.shadowColor = s.color;
-                    hCtx.shadowBlur = s.opacity * 18;
-                    hCtx.fillStyle = s.color;
-                    hCtx.fillText(s.char, s.x, s.y);
+                const brightness = 0.3 + Math.random() * 0.7;
+                const g = Math.floor(180 + brightness * 75);
+                hCtx.fillStyle = `rgba(0, ${g}, 0, ${brightness})`;
+                hCtx.shadowColor = '#00ff00';
+                hCtx.shadowBlur = brightness * 12;
+                hCtx.fillText(char, x, y);
+
+                hCtx.shadowBlur = 0;
+
+                if (y > hackerCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
                 }
-                if (allDone) showSecret = false;
+                drops[i]++;
             }
 
-            hCtx.globalAlpha = 1;
-            hCtx.shadowBlur = 0;
-            requestAnimationFrame(animateHacker);
+            requestAnimationFrame(drawMatrix);
         }
-        animateHacker();
+        drawMatrix();
     }
 
     // --- Expandable Timeline Cards ---
