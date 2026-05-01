@@ -130,7 +130,7 @@
 }
 .section { position: relative; overflow: hidden; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 80px; cursor: none; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
     font-family: var(--font);
@@ -138,7 +138,6 @@ body {
     color: var(--text);
     line-height: 1.7;
     overflow-x: hidden;
-    cursor: none;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -218,7 +217,7 @@ strong { color: #fff; }
 .nav-links a:hover { color: var(--text); }
 .nav-links a:hover::after { width: 100%; }
 
-.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: none; padding: 4px; }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
 .nav-toggle span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
 .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
 .nav-toggle.active span:nth-child(2) { opacity: 0; }
@@ -297,7 +296,7 @@ strong { color: #fff; }
 .btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 13px 28px; border-radius: var(--radius-sm);
-    font-size: 0.9rem; font-weight: 600; cursor: none;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer;
     transition: all var(--transition); border: none; font-family: var(--font);
     position: relative; overflow: hidden;
 }
@@ -585,8 +584,6 @@ strong { color: #fff; }
     .nav-links a { font-size: 1.1rem; }
     .nav-toggle { display: flex; }
     #hacker-cursor { display: none; }
-    html, body { cursor: auto; }
-    .btn { cursor: pointer; }
 
     .hero { padding: 100px 20px 60px; }
     .hero-name { letter-spacing: -1px; }
