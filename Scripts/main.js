@@ -237,12 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
 
-    // --- Rotating Crosshair Cursor ---
+    // --- Crosshair Cursor ---
     const hackerCanvas = document.getElementById('hacker-cursor');
     if (hackerCanvas && window.innerWidth > 768) {
         const hCtx = hackerCanvas.getContext('2d');
         let mx = -100, my = -100;
-        let rotation = 0;
 
         function resizeHacker() {
             hackerCanvas.width = window.innerWidth;
@@ -255,13 +254,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function drawCrosshair() {
             hCtx.clearRect(0, 0, hackerCanvas.width, hackerCanvas.height);
-            rotation += 0.012;
 
             const color = '#4f6ef7';
 
             hCtx.save();
             hCtx.translate(mx, my);
-            hCtx.rotate(rotation);
             hCtx.strokeStyle = color;
             hCtx.lineWidth = 1.5;
             hCtx.shadowColor = color;
