@@ -1,72 +1,92 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Multi-colored Particles ---
-    const canvas = document.getElementById('particles');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        const colors = [
-            { r: 79, g: 110, b: 247 },
-            { r: 168, g: 85, b: 247 },
-            { r: 244, g: 63, b: 94 },
-            { r: 20, g: 184, b: 166 },
-            { r: 245, g: 158, b: 11 },
-            { r: 192, g: 132, b: 252 },
-            { r: 59, g: 130, b: 246 }
-        ];
+    // --- Matrix Binary Background ---
+    const matrixCanvas = document.getElementById('matrix-bg');
+    if (matrixCanvas) {
+        const mCtx = matrixCanvas.getContext('2d');
+        let matrixMouseX = -9999, matrixMouseY = -9999;
+        const FONT_SIZE = 14;
+        const BASE_OPACITY = 0.07;
+        const HOVER_OPACITY = 0.28;
+        const HOVER_RADIUS = 140;
 
-        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-        resize();
-        window.addEventListener('resize', resize);
-
-        for (let i = 0; i < 60; i++) {
-            const c = colors[Math.floor(Math.random() * colors.length)];
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 1.5 + 0.5,
-                speedX: (Math.random() - 0.5) * 0.3,
-                speedY: (Math.random() - 0.5) * 0.3,
-                opacity: Math.random() * 0.5 + 0.15,
-                color: c
-            });
+        function resizeMatrix() {
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+            initColumns();
         }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.x += p.speedX;
-                p.y += p.speedY;
-                if (p.x < 0) p.x = canvas.width;
-                if (p.x > canvas.width) p.x = 0;
-                if (p.y < 0) p.y = canvas.height;
-                if (p.y > canvas.height) p.y = 0;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.opacity})`;
-                ctx.fill();
-            });
-
-            particles.forEach((a, i) => {
-                particles.slice(i + 1).forEach(b => {
-                    const dx = a.x - b.x;
-                    const dy = a.y - b.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) {
-                        const avgR = (a.color.r + b.color.r) / 2;
-                        const avgG = (a.color.g + b.color.g) / 2;
-                        const avgB = (a.color.b + b.color.b) / 2;
-                        ctx.beginPath();
-                        ctx.moveTo(a.x, a.y);
-                        ctx.lineTo(b.x, b.y);
-                        ctx.strokeStyle = `rgba(${avgR}, ${avgG}, ${avgB}, ${0.06 * (1 - dist / 120)})`;
-                        ctx.stroke();
-                    }
+        let cols = [];
+        function initColumns() {
+            const count = Math.floor(matrixCanvas.width / FONT_SIZE);
+            cols = [];
+            for (let i = 0; i < count; i++) {
+                cols.push({
+                    x: i * FONT_SIZE + FONT_SIZE / 2,
+                    y: Math.random() * -matrixCanvas.height,
+                    speed: 0.5 + Math.random() * 2,
+                    chars: []
                 });
-            });
-            requestAnimationFrame(animate);
+                const len = 8 + Math.floor(Math.random() * 20);
+                for (let j = 0; j < len; j++) {
+                    cols[i].chars.push(Math.random() > 0.5 ? '1' : '0');
+                }
+            }
         }
-        animate();
+
+        resizeMatrix();
+        window.addEventListener('resize', resizeMatrix);
+        document.addEventListener('mousemove', (e) => { matrixMouseX = e.clientX; matrixMouseY = e.clientY; });
+
+        function drawMatrixBg() {
+            mCtx.clearRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+            mCtx.font = `500 ${FONT_SIZE}px "JetBrains Mono", monospace`;
+            mCtx.textAlign = 'center';
+
+            for (let i = 0; i < cols.length; i++) {
+                const col = cols[i];
+                col.y += col.speed;
+
+                for (let j = 0; j < col.chars.length; j++) {
+                    const cy = col.y + j * FONT_SIZE;
+                    if (cy < -FONT_SIZE || cy > matrixCanvas.height + FONT_SIZE) continue;
+
+                    if (Math.random() < 0.01) col.chars[j] = Math.random() > 0.5 ? '1' : '0';
+
+                    const dx = col.x - matrixMouseX;
+                    const dy = cy - matrixMouseY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    let opacity = BASE_OPACITY;
+                    if (dist < HOVER_RADIUS) {
+                        const factor = 1 - dist / HOVER_RADIUS;
+                        opacity = BASE_OPACITY + (HOVER_OPACITY - BASE_OPACITY) * factor * factor;
+                    }
+
+                    const headFade = j === 0 ? 1 : (j < 3 ? 0.7 : 0.4 + Math.random() * 0.2);
+                    opacity *= headFade;
+
+                    const g = Math.floor(100 + (155 * opacity / HOVER_OPACITY));
+                    mCtx.fillStyle = `rgba(0, ${g}, 0, ${opacity})`;
+                    mCtx.fillText(col.chars[j], col.x, cy);
+                }
+
+                const lastCharY = col.y + col.chars.length * FONT_SIZE;
+                if (lastCharY < -FONT_SIZE) {
+                    col.y = matrixCanvas.height + Math.random() * 200;
+                    col.speed = 0.5 + Math.random() * 2;
+                    const len = 8 + Math.floor(Math.random() * 20);
+                    col.chars = [];
+                    for (let j = 0; j < len; j++) col.chars.push(Math.random() > 0.5 ? '1' : '0');
+                }
+                if (col.y > matrixCanvas.height + 300) {
+                    col.y = -col.chars.length * FONT_SIZE - Math.random() * 400;
+                    col.speed = 0.5 + Math.random() * 2;
+                }
+            }
+
+            requestAnimationFrame(drawMatrixBg);
+        }
+        drawMatrixBg();
     }
 
     // --- Navbar scroll ---
@@ -217,12 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
 
-    // --- Crosshair FPS Cursor ---
+    // --- Rotating Crosshair Cursor ---
     const hackerCanvas = document.getElementById('hacker-cursor');
     if (hackerCanvas && window.innerWidth > 768) {
         const hCtx = hackerCanvas.getContext('2d');
         let mx = -100, my = -100;
-        let clicks = [];
         let rotation = 0;
 
         function resizeHacker() {
@@ -234,106 +253,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
 
-        document.addEventListener('mousedown', () => {
-            clicks.push({ x: mx, y: my, radius: 6, opacity: 1, scale: 1 });
-        });
-
         function drawCrosshair() {
             hCtx.clearRect(0, 0, hackerCanvas.width, hackerCanvas.height);
-            rotation += 0.008;
+            rotation += 0.012;
 
             const color = '#4f6ef7';
-            const glow = 'rgba(79, 110, 247, 0.6)';
 
             hCtx.save();
             hCtx.translate(mx, my);
-
-            // Outer rotating ring
-            hCtx.save();
             hCtx.rotate(rotation);
-            hCtx.strokeStyle = glow;
-            hCtx.lineWidth = 1;
-            hCtx.shadowColor = color;
-            hCtx.shadowBlur = 8;
-            hCtx.beginPath();
-            for (let i = 0; i < 4; i++) {
-                const angle = (i * Math.PI) / 2;
-                hCtx.moveTo(Math.cos(angle) * 18, Math.sin(angle) * 18);
-                hCtx.lineTo(Math.cos(angle) * 24, Math.sin(angle) * 24);
-            }
-            hCtx.stroke();
-            hCtx.restore();
-
-            // Inner rotating brackets (opposite direction)
-            hCtx.save();
-            hCtx.rotate(-rotation * 1.5);
             hCtx.strokeStyle = color;
             hCtx.lineWidth = 1.5;
             hCtx.shadowColor = color;
             hCtx.shadowBlur = 10;
             hCtx.beginPath();
             for (let i = 0; i < 4; i++) {
-                const angle = (i * Math.PI) / 2 + Math.PI / 4;
-                hCtx.moveTo(Math.cos(angle) * 12, Math.sin(angle) * 12);
-                hCtx.lineTo(Math.cos(angle) * 16, Math.sin(angle) * 16);
+                const angle = (i * Math.PI) / 2;
+                hCtx.moveTo(Math.cos(angle) * 14, Math.sin(angle) * 14);
+                hCtx.lineTo(Math.cos(angle) * 20, Math.sin(angle) * 20);
             }
             hCtx.stroke();
             hCtx.restore();
-
-            // Cross lines (static)
-            hCtx.strokeStyle = color;
-            hCtx.lineWidth = 1.5;
-            hCtx.shadowColor = color;
-            hCtx.shadowBlur = 12;
-            hCtx.beginPath();
-            hCtx.moveTo(0, -10); hCtx.lineTo(0, -4);
-            hCtx.moveTo(0, 4);   hCtx.lineTo(0, 10);
-            hCtx.moveTo(-10, 0); hCtx.lineTo(-4, 0);
-            hCtx.moveTo(4, 0);   hCtx.lineTo(10, 0);
-            hCtx.stroke();
-
-            // Center dot
-            hCtx.fillStyle = '#fff';
-            hCtx.shadowColor = '#fff';
-            hCtx.shadowBlur = 6;
-            hCtx.beginPath();
-            hCtx.arc(0, 0, 1.5, 0, Math.PI * 2);
-            hCtx.fill();
-
-            hCtx.restore();
-
-            // Click pulse effects
-            hCtx.shadowBlur = 0;
-            for (let i = clicks.length - 1; i >= 0; i--) {
-                const c = clicks[i];
-                c.radius += 3;
-                c.opacity -= 0.04;
-                c.scale += 0.05;
-                if (c.opacity <= 0) { clicks.splice(i, 1); continue; }
-
-                hCtx.save();
-                hCtx.translate(c.x, c.y);
-
-                // Expanding ring
-                hCtx.strokeStyle = `rgba(79, 110, 247, ${c.opacity})`;
-                hCtx.lineWidth = 1.5;
-                hCtx.shadowColor = color;
-                hCtx.shadowBlur = c.opacity * 15;
-                hCtx.beginPath();
-                hCtx.arc(0, 0, c.radius, 0, Math.PI * 2);
-                hCtx.stroke();
-
-                // Inner flash ring
-                if (c.opacity > 0.5) {
-                    hCtx.strokeStyle = `rgba(255, 255, 255, ${(c.opacity - 0.5) * 2})`;
-                    hCtx.lineWidth = 2;
-                    hCtx.beginPath();
-                    hCtx.arc(0, 0, c.radius * 0.4, 0, Math.PI * 2);
-                    hCtx.stroke();
-                }
-
-                hCtx.restore();
-            }
 
             requestAnimationFrame(drawCrosshair);
         }
