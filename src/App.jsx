@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import TargetCursor from './components/TargetCursor';
 import LogoLoop from './components/LogoLoop';
 import ASCIIText from './components/ASCIIText';
@@ -7,7 +7,9 @@ import ElectricBorder from './components/ElectricBorder';
 import {
   SiReact, SiAngular, SiTypescript, SiJavascript, SiPhp,
   SiFlutter, SiDart, SiHtml5, SiCss, SiGit,
-  SiMysql, SiTailwindcss, SiFigma, SiNodedotjs
+  SiPostgresql, SiMongodb, SiRedis, SiSupabase,
+  SiDocker, SiLinux, SiNodedotjs, SiWordpress,
+  SiGoogleappsscript, SiAirtable, SiVite, SiCockroachlabs
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 import './App.css';
@@ -19,79 +21,136 @@ const techLogos = [
   { node: <SiJavascript />, title: 'JavaScript' },
   { node: <SiPhp />, title: 'PHP' },
   { node: <FaJava />, title: 'Java' },
+  { node: <SiNodedotjs />, title: 'Node.js' },
   { node: <SiFlutter />, title: 'Flutter' },
   { node: <SiDart />, title: 'Dart' },
   { node: <SiHtml5 />, title: 'HTML5' },
-  { node: <SiCss />, title: 'CSS3' },
+  { node: <SiCss />, title: 'CSS' },
+  { node: <SiVite />, title: 'Vite' },
   { node: <SiGit />, title: 'Git' },
-  { node: <SiMysql />, title: 'MySQL' },
-  { node: <SiTailwindcss />, title: 'Tailwind' },
-  { node: <SiFigma />, title: 'Figma' },
-  { node: <SiNodedotjs />, title: 'Node.js' },
+  { node: <SiDocker />, title: 'Docker' },
+  { node: <SiLinux />, title: 'Linux' },
+  { node: <SiPostgresql />, title: 'PostgreSQL' },
+  { node: <SiMongodb />, title: 'MongoDB' },
+  { node: <SiRedis />, title: 'Redis' },
+  { node: <SiCockroachlabs />, title: 'CockroachDB' },
+  { node: <SiSupabase />, title: 'Supabase' },
+  { node: <SiWordpress />, title: 'WordPress' },
+  { node: <SiGoogleappsscript />, title: 'Apps Script' },
+  { node: <SiAirtable />, title: 'Airtable' },
 ];
 
 const projects = [
   {
     title: 'CinéSearch',
-    desc: 'Application web de recherche et exploration de films construite avec React et l\'API TMDB. Recherche dynamique, fiches détaillées, navigation SPA.',
-    tech: ['React', 'Vite', 'React Router', 'Axios', 'TMDB API'],
-    img: '/IMG/CineSearch.png.png',
+    desc: 'Application de recherche de films consommant l\'API REST TMDB, avec page de détail et interface en français. SPA React avec hooks personnalisés, recherche avec debounce, routing client-side via React Router, requêtes HTTP Axios. Affichage des films populaires, synopsis, note, date de sortie.',
+    tech: ['React', 'Vite', 'React Router', 'Axios', 'TMDB API', 'Hooks'],
+    img: './IMG/CineSearch.png.png',
     link: 'https://github.com/SKGE93/cine-search',
     color: '#00ff41'
   },
   {
     title: 'WeatherDash',
-    desc: 'Application météo interactive avec graphiques de température sur 24h. Autocomplétion, données en temps réel via OpenWeatherMap.',
-    tech: ['Angular 19', 'TypeScript', 'Chart.js', 'HttpClient'],
-    img: '/IMG/WeatherDash.png',
+    desc: 'Dashboard météo temps réel affichant des données atmosphériques avec navigation multi-vues. Architecture orientée services Angular, Observables RxJS, dependency injection, lifecycle hooks, graphiques interactifs Chart.js. Autocomplétion de villes, prévisions sur 24h.',
+    tech: ['Angular 19', 'TypeScript', 'Chart.js', 'RxJS', 'OpenWeatherMap API'],
+    img: './IMG/WeatherDash.png',
     link: 'https://github.com/SKGE93/weather-dash',
     color: '#00f3ff'
   },
   {
     title: 'OtakuGo',
-    desc: 'Application mobile cross-platform de recommandation d\'animés. Moteur de suggestion basé sur les préférences utilisateur.',
-    tech: ['Flutter', 'Dart', 'JSON'],
-    img: '/IMG/AnimeApp.png.png',
+    desc: 'Application mobile cross-platform suggérant des contenus selon les préférences utilisateur. Sélection des genres, moteur de recommandation, fiches détaillées par animé avec synopsis, note et épisodes. Persistance des données en JSON local. Réalisé en équipe de 5 développeurs.',
+    tech: ['Flutter', 'Dart', 'JSON', 'Cross-platform'],
+    img: './IMG/AnimeApp.png.png',
     link: 'https://github.com/SKGE93/Application-mobile-de-recommendations-anime',
     color: '#ff00ff'
   },
   {
     title: 'Messagerie Instantanée',
-    desc: 'Application de chat temps réel avec système d\'annotations obligatoires des messages. Architecture MVC, WebSocket.',
+    desc: 'Application de messagerie temps réel avec une particularité — chaque utilisateur doit annoter les messages pour continuer à échanger. Échanges via WebSocket (Ratchet), back-end PHP avec architecture MVC, interface responsive conçue en équipe. Projet SAE en groupe.',
     tech: ['PHP', 'WebSocket', 'Ratchet', 'JavaScript', 'MVC'],
-    img: '/IMG/message.png',
+    img: './IMG/message.png',
     link: 'https://github.com/Cheick6/SAE_S4',
     color: '#00ff41'
   },
   {
     title: 'Basquiat & Warhol',
-    desc: 'Site web d\'exposition fictive présentant les collaborations de Basquiat et Warhol. Traduction dynamique, vidéo immersive.',
+    desc: 'Site web fictif présentant une exposition imaginée autour des oeuvres collaboratives de Basquiat et Warhol. Présentation des artistes, traduction anglaise dynamique via JavaScript, intégration vidéo immersive. Maquettes UI/UX réalisées sur Figma avant intégration.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Figma'],
-    img: '/IMG/expo.png',
+    img: './IMG/expo.png',
     link: 'https://github.com/SKGE93/Expo_Basquiat',
     color: '#00f3ff'
   },
   {
     title: 'Shapes — Dessin Java',
-    desc: 'Application graphique de dessin de formes géométriques. Modélisation UML, composition de scènes complexes.',
-    tech: ['Java', 'UML', 'OOP'],
-    img: '/IMG/imgMaison.png',
+    desc: 'Application graphique Java pour dessiner des formes géométriques — maisons, montagnes, paysages. Modélisation UML des classes de formes, composition de scènes complexes, gestion des exceptions avec try-catch. Premier contact avec les bibliothèques externes et la POO.',
+    tech: ['Java', 'UML', 'OOP', 'Bibliothèque graphique'],
+    img: './IMG/imgMaison.png',
     link: null,
     color: '#ff00ff'
   },
 ];
 
 const experiences = [
-  { date: 'Avr. — Juin 2026', title: 'Stage Développeur — IFFP', desc: 'Développement d\'outils internes, maintenance d\'applications web. React, PHP, bases de données.', current: true },
-  { date: '2023 — 2026', title: 'BUT Informatique — Paris', desc: 'Formation développement full-stack, bases de données, algorithmique, gestion de projet Agile.' },
-  { date: '2024', title: 'Agent de sécurité — Événementiel', desc: 'Gestion de la sécurité lors d\'événements. Développement de soft skills — communication, gestion du stress.' },
-  { date: '2023', title: 'Stage — Association JLF', desc: 'Développement web pour une association. Premiers projets concrets en HTML/CSS/JS.' },
-  { date: '2023', title: 'Baccalauréat — Mention Bien', desc: 'Spécialités NSI et Mathématiques.' },
+  {
+    date: 'Mars — Mai 2026',
+    title: 'Stagiaire IT — IFFP',
+    desc: 'Institut Français de Formation Professionnelle — Nanterre',
+    current: true,
+    details: [
+      'Automatisation de processus métiers via Google Apps Script — scripts liés à Google Sheets pour la visualisation et le reporting interne',
+      'Conception et optimisation de solutions web sous WordPress / Elementor',
+      'Modernisation réseau — segmentation VLAN, renforcement sécurité, administration Google Workspace',
+      'Montée en compétences rapide sur de nouveaux environnements techniques'
+    ]
+  },
+  {
+    date: '2023 — 2026',
+    title: 'BUT Informatique — IUT de Villetaneuse',
+    desc: 'Développement d\'applications — USPN, Île-de-France',
+    details: [
+      'Développement full-stack — React, Angular, PHP, Java',
+      'Bases de données — PostgreSQL, MongoDB, Redis',
+      'Algorithmique, structures de données, tests unitaires',
+      'Gestion de projet Agile / Scrum, diagramme de Gantt',
+      'Droit numérique, travail en équipe produit'
+    ]
+  },
+  {
+    date: 'Fév. — Mars 2025',
+    title: 'Stagiaire Informatique & Web — Association JLF',
+    desc: 'Association Jean Luc François — Pantin',
+    details: [
+      'Refonte et maintenance du site WordPress — optimisation thèmes / extensions, performances améliorées',
+      'Mise en place de workflows No-Code (Airtable, Zapier) — réduction des tâches manuelles répétitives',
+      'Force de proposition technique, adaptabilité'
+    ]
+  },
+  {
+    date: '2024',
+    title: 'Agent de sécurité — Événementiel',
+    desc: 'Gestion de la sécurité lors d\'événements',
+    details: [
+      'Communication avec le public et les équipes',
+      'Gestion du stress en situation imprévue',
+      'Rigueur, ponctualité, sens des responsabilités'
+    ]
+  },
+  {
+    date: '2021 — 2022',
+    title: 'BAC STI2D — Lycée Le Corbusier',
+    desc: 'Aubervilliers',
+    details: [
+      'Spécialité Sciences et Technologies de l\'Industrie et du Développement Durable',
+      'Découverte de la programmation et des systèmes informatiques'
+    ]
+  },
 ];
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [expandedExp, setExpandedExp] = useState(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -134,10 +193,10 @@ export default function App() {
             <p className="hero-label">&gt; system.init()</p>
             <h1 className="hero-name">Séraphin <span className="text-cyan">Eyala</span></h1>
             <p className="hero-subtitle">
-              <span className="typing-cursor">Développeur Full-Stack</span>
+              <span className="typing-cursor">Développeur Full-Stack — Orientation Data & IA</span>
             </p>
             <p className="hero-status">
-              <span className="pulse-dot" /> En stage — IFFP (Avr.–Juin 2026)
+              <span className="pulse-dot" /> En stage — IFFP (Mars–Mai 2026)
             </p>
             <div className="hero-cta">
               <a href="#projects" className="btn btn-primary cursor-target">&gt; voir_projets()</a>
@@ -149,7 +208,7 @@ export default function App() {
 
       {/* CurvedLoop separator */}
       <CurvedLoop
-        marqueeText="Developer  ✦  Fan d'anime  ✦  Naruto > One Piece  ✦  Code addict  ✦  Gamer  ✦  "
+        marqueeText="Developer  ✦  Fan d'anime  ✦  Naruto > One Piece  ✦  Code addict  ✦  Gamer  ✦  Gym  ✦  Veille tech  ✦  Hacker News  ✦  Autodidacte  ✦  "
         speed={1.5}
         curveAmount={300}
         direction="left"
@@ -159,19 +218,22 @@ export default function App() {
       {/* About */}
       <section id="about" className="section">
         <div className="container">
-          <p className="section-label">whoami</p>
+          <p className="section-label">who_i_am</p>
           <h2 className="section-title">À propos</h2>
           <div className="about-grid">
-            <div className="glass-card">
+            <div className="glass-card cursor-target">
               <p>
-                Étudiant en 3ème année de <strong>BUT Informatique</strong> à Paris, passionné
-                par le développement web et mobile. Actuellement en stage à l'<strong>IFFP</strong> où
-                je développe des outils internes.
+                Étudiant en 3ème année de <strong>BUT Informatique</strong> à l'IUT de
+                Villetaneuse (USPN), passionné par le développement web et mobile.
+                Actuellement en stage à l'<strong>IFFP</strong> à Nanterre où j'automatise
+                des processus métiers et je conçois des solutions web.
               </p>
               <p style={{ marginTop: 16 }}>
-                Curieux et autodidacte, j'aime explorer de nouvelles technologies
-                en dehors des cours — React, Angular, Flutter. Mon objectif est de
-                créer des applications performantes et bien conçues.
+                Curieux et autodidacte, j'apprends en dehors des cours — React, Angular,
+                Flutter. Mon objectif est d'intégrer le <strong>MSc Data Engineering à
+                Aivancity</strong>, une école spécialisée en IA et data. Je fais de la
+                veille active sur Hacker News, Reddit et Dev.to autour de l'IA
+                générative et des LLMs.
               </p>
             </div>
             <div className="about-stats">
@@ -184,12 +246,12 @@ export default function App() {
                 <span className="stat-label">Années de formation</span>
               </div>
               <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">10+</span>
+                <span className="stat-num">20+</span>
                 <span className="stat-label">Technologies maîtrisées</span>
               </div>
               <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">2026</span>
-                <span className="stat-label">Disponible en juin</span>
+                <span className="stat-num">Juin</span>
+                <span className="stat-label">Disponible 2026</span>
               </div>
             </div>
           </div>
@@ -205,12 +267,10 @@ export default function App() {
         <div className="logoloop-wrapper">
           <LogoLoop
             logos={techLogos}
-            speed={100}
+            speed={80}
             direction="left"
             logoHeight={40}
             gap={48}
-            hoverSpeed={30}
-            scaleOnHover
             fadeOut
             fadeOutColor="#0a0a0f"
           />
@@ -218,10 +278,12 @@ export default function App() {
         <div className="container" style={{ marginTop: 48 }}>
           <div className="skills-grid">
             {[
-              { title: 'Frontend', items: 'React, Angular, TypeScript, HTML/CSS, Tailwind' },
-              { title: 'Backend', items: 'PHP, Node.js, Java, SQL, REST API' },
-              { title: 'Mobile', items: 'Flutter, Dart, JSON, Cross-platform' },
-              { title: 'Outils', items: 'Git, Figma, VS Code, Agile/Scrum, MCP' },
+              { title: 'Front-end', items: 'React, Angular 19, TypeScript, JavaScript, HTML/CSS, Vite, Chart.js, React Router, Axios' },
+              { title: 'Back-end & API', items: 'PHP (MVC), Java (JSP/Servlet), Node.js, REST API, WebSocket, Google Apps Script' },
+              { title: 'Bases de données', items: 'PostgreSQL, MongoDB, Redis, CockroachDB, Supabase, SQL' },
+              { title: 'Mobile', items: 'Flutter, Dart, JSON, applications cross-platform' },
+              { title: 'Outils & DevOps', items: 'Git, GitHub, Docker, Linux, VS Code, IntelliJ, WordPress / Elementor' },
+              { title: 'Méthodes & No-Code', items: 'Agile / Scrum, tests unitaires, Airtable, Zapier, Diagramme de Gantt' },
             ].map(cat => (
               <div key={cat.title} className="glass-card skill-cat cursor-target">
                 <h3>{`> ${cat.title}`}</h3>
@@ -268,10 +330,25 @@ export default function App() {
           <h2 className="section-title">Parcours</h2>
           <div className="timeline">
             {experiences.map((exp, i) => (
-              <div key={i} className={`timeline-item ${exp.current ? 'current' : ''}`}>
-                <span className="timeline-date">{exp.date} {exp.current && '// en cours'}</span>
-                <h3 className="timeline-title">{exp.title}</h3>
-                <p className="timeline-desc">{exp.desc}</p>
+              <div
+                key={i}
+                className={`timeline-item cursor-target ${exp.current ? 'current' : ''} ${expandedExp === i ? 'expanded' : ''}`}
+                onClick={() => setExpandedExp(expandedExp === i ? null : i)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="timeline-header">
+                  <div>
+                    <span className="timeline-date">{exp.date} {exp.current && '// en cours'}</span>
+                    <h3 className="timeline-title">{exp.title}</h3>
+                    <p className="timeline-desc">{exp.desc}</p>
+                  </div>
+                  <span className="timeline-toggle">{expandedExp === i ? '−' : '+'}</span>
+                </div>
+                {expandedExp === i && exp.details && (
+                  <ul className="timeline-details">
+                    {exp.details.map((d, j) => <li key={j}>{d}</li>)}
+                  </ul>
+                )}
               </div>
             ))}
           </div>
@@ -281,13 +358,13 @@ export default function App() {
       {/* Contact */}
       <section id="contact" className="section">
         <div className="container" style={{ textAlign: 'center' }}>
-          <p className="section-label">ssh contact@seraphin.dev</p>
+          <p className="section-label">ping contact</p>
           <h2 className="section-title">Contact</h2>
           <p className="contact-text">
             Un projet, une opportunité ou juste envie de discuter tech ?
           </p>
           <div className="contact-links">
-            <a href="mailto:seraphineyala@gmail.com" className="btn btn-primary cursor-target">
+            <a href="mailto:eyalas472@gmail.com" className="btn btn-primary cursor-target">
               &gt; send_mail()
             </a>
             <a href="https://github.com/SKGE93" target="_blank" rel="noreferrer" className="btn btn-cyan cursor-target">
@@ -298,7 +375,7 @@ export default function App() {
             </a>
           </div>
           <p className="footer-text">
-            &copy; 2026 Séraphin Eyala — Built with React + coffee
+            &copy; 2026 Séraphin Eyala
           </p>
         </div>
       </section>

@@ -124,7 +124,7 @@
 }
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 .skill-cat h3 {
@@ -151,6 +151,51 @@
 }
 
 /* ========== EXPERIENCE ========== */
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.timeline-toggle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: all var(--transition);
+}
+.timeline-item:hover .timeline-toggle {
+  border-color: var(--green);
+  box-shadow: 0 0 8px var(--glow-green);
+}
+.timeline-details {
+  list-style: none;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.timeline-details li {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  padding: 4px 0 4px 16px;
+  position: relative;
+}
+.timeline-details li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
 .timeline-item.current {
   border-color: var(--green);
   box-shadow: 0 0 15px rgba(0, 255, 65, 0.08);
@@ -186,7 +231,7 @@
 @media (max-width: 768px) {
   .about-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: 1fr 1fr; }
-  .skills-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
   .hero-name { font-size: 2.5rem; }
   .contact-links { flex-direction: column; align-items: center; }
