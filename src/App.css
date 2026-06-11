@@ -204,6 +204,45 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
+/* ========== CERTIFICATIONS ========== */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.cert-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+}
+.cert-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+}
+.cert-icon {
+  font-size: 2rem;
+  color: var(--cyan);
+  flex-shrink: 0;
+}
+.cert-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+.cert-issuer {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+.cert-year {
+  font-size: 0.72rem;
+  color: var(--cyan);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
 /* ========== CONTACT ========== */
 .contact-text {
   font-size: 1rem;
@@ -235,4 +274,5 @@
   .projects-grid { grid-template-columns: 1fr; }
   .hero-name { font-size: 2.5rem; }
   .contact-links { flex-direction: column; align-items: center; }
+  .certifications-grid { grid-template-columns: 1fr; }
 }

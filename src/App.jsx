@@ -9,9 +9,10 @@ import {
   SiFlutter, SiDart, SiHtml5, SiCss, SiGit,
   SiPostgresql, SiMongodb, SiRedis, SiSupabase,
   SiDocker, SiLinux, SiNodedotjs, SiWordpress,
-  SiGoogleappsscript, SiAirtable, SiVite, SiCockroachlabs
+  SiGoogleappsscript, SiAirtable, SiVite, SiCockroachlabs,
+  SiPython, SiFastapi, SiGooglecloud, SiLatex, SiJsonwebtokens
 } from 'react-icons/si';
-import { FaJava } from 'react-icons/fa';
+import { FaJava, FaCertificate } from 'react-icons/fa';
 import './App.css';
 
 const techLogos = [
@@ -38,6 +39,11 @@ const techLogos = [
   { node: <SiWordpress />, title: 'WordPress' },
   { node: <SiGoogleappsscript />, title: 'Apps Script' },
   { node: <SiAirtable />, title: 'Airtable' },
+  { node: <SiPython />, title: 'Python' },
+  { node: <SiFastapi />, title: 'FastAPI' },
+  { node: <SiGooglecloud />, title: 'GCP' },
+  { node: <SiLatex />, title: 'LaTeX' },
+  { node: <SiJsonwebtokens />, title: 'OAuth / JWT' },
 ];
 
 const projects = [
@@ -82,6 +88,14 @@ const projects = [
     color: '#00f3ff'
   },
   {
+    title: 'Gestion Utilisateurs — FastAPI',
+    desc: 'Backend de gestion d\'utilisateurs avec architecture en couches (routers, services, modèles). ORM SQLAlchemy pour mapper des modèles Python sur une base SQL, gestion de sessions et requêtes propres sans SQL brut. Pratique du TDD — écriture des tests avant le code, séparation des responsabilités, nommage clair et documentation.',
+    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'TDD', 'REST API'],
+    img: './IMG/fastapi.png',
+    link: null,
+    color: '#00ff41'
+  },
+  {
     title: 'Shapes — Dessin Java',
     desc: 'Application graphique Java pour dessiner des formes géométriques — maisons, montagnes, paysages. Modélisation UML des classes de formes, composition de scènes complexes, gestion des exceptions avec try-catch. Premier contact avec les bibliothèques externes et la POO.',
     tech: ['Java', 'UML', 'OOP', 'Bibliothèque graphique'],
@@ -93,15 +107,19 @@ const projects = [
 
 const experiences = [
   {
-    date: 'Mars — Mai 2026',
+    date: 'Mars — Juin 2026',
     title: 'Stagiaire IT — IFFP',
     desc: 'Institut Français de Formation Professionnelle — Nanterre',
-    current: true,
     details: [
-      'Automatisation de processus métiers via Google Apps Script — scripts liés à Google Sheets pour la visualisation et le reporting interne',
-      'Conception et optimisation de solutions web sous WordPress / Elementor',
-      'Modernisation réseau — segmentation VLAN, renforcement sécurité, administration Google Workspace',
-      'Montée en compétences rapide sur de nouveaux environnements techniques'
+      'KioskSign — Borne d\'accueil interactive développée en Apps Script + HTML/CSS, affichant des informations dynamiques via Google Sheets',
+      'Signatures Gmail — Script clasp/Apps Script de déploiement automatique de signatures HTML personnalisées pour tout le domaine Google Workspace',
+      'Workspace Cleaner — Outil Apps Script de nettoyage automatique des fichiers orphelins et doublons dans Google Drive partagé',
+      'Radar Drive — Script Apps Script analysant les permissions Drive et générant un rapport de conformité sur Google Sheets',
+      'Dashboard MDP — Tableau de bord Apps Script + Google Sheets pour le suivi des changements de mots de passe utilisateurs',
+      'Onboarding Professeurs — Automatisation Apps Script du processus d\'intégration des nouveaux professeurs (comptes, accès, documents)',
+      'Modernisation réseau — Segmentation VLAN, renforcement sécurité, administration Google Workspace',
+      'Refonte WordPress — Conception et optimisation du site vitrine sous WordPress / Elementor',
+      'Rédaction de documentation technique complète pour chaque projet'
     ]
   },
   {
@@ -158,7 +176,7 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const navLinks = ['about', 'skills', 'projects', 'experience', 'contact'];
+  const navLinks = ['about', 'skills', 'projects', 'experience', 'certifications', 'contact'];
 
   return (
     <>
@@ -196,7 +214,7 @@ export default function App() {
               <span className="typing-cursor">Développeur Full-Stack — Orientation Data & IA</span>
             </p>
             <p className="hero-status">
-              <span className="pulse-dot" /> En stage — IFFP (Mars–Mai 2026)
+              <span className="pulse-dot" /> Recherche un stage de 6 semaines à 2 mois — Disponible juin 2026
             </p>
             <div className="hero-cta">
               <a href="#projects" className="btn btn-primary cursor-target">&gt; voir_projets()</a>
@@ -208,7 +226,7 @@ export default function App() {
 
       {/* CurvedLoop separator */}
       <CurvedLoop
-        marqueeText="Developer  ✦  Fan d'anime  ✦  Naruto > One Piece  ✦  Code addict  ✦  Gamer  ✦  Gym  ✦  Veille tech  ✦  Hacker News  ✦  Autodidacte  ✦  "
+        marqueeText="Developer  ✦  Fan d'anime  ✦  Naruto > One Piece  ✦  Fairy Tail  ✦  SNK  ✦  Code addict  ✦  Gamer  ✦  Gym  ✦  Veille tech  ✦  Hacker News  ✦  Autodidacte  ✦  "
         speed={1.5}
         curveAmount={300}
         direction="left"
@@ -225,12 +243,13 @@ export default function App() {
               <p>
                 Étudiant en 3ème année de <strong>BUT Informatique</strong> à l'IUT de
                 Villetaneuse (USPN), passionné par le développement web et mobile.
-                Actuellement en stage à l'<strong>IFFP</strong> à Nanterre où j'automatise
-                des processus métiers et je conçois des solutions web.
+                Récemment en stage à l'<strong>IFFP</strong> à Nanterre où j'ai automatisé
+                des processus métiers (Apps Script, clasp) et conçu des solutions web.
+                Actuellement <strong>à la recherche d'un stage</strong> de 6 semaines à 2 mois.
               </p>
               <p style={{ marginTop: 16 }}>
                 Curieux et autodidacte, j'apprends en dehors des cours — React, Angular,
-                Flutter. Mon objectif est d'intégrer le <strong>MSc Data Engineering à
+                Flutter, FastAPI. Mon objectif est d'intégrer le <strong>MSc Data Engineering à
                 Aivancity</strong>, une école spécialisée en IA et data. Je fais de la
                 veille active sur Hacker News, Reddit et Dev.to autour de l'IA
                 générative et des LLMs.
@@ -238,7 +257,7 @@ export default function App() {
             </div>
             <div className="about-stats">
               <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">6</span>
+                <span className="stat-num">7</span>
                 <span className="stat-label">Projets réalisés</span>
               </div>
               <div className="stat-card glass-card cursor-target">
@@ -246,12 +265,12 @@ export default function App() {
                 <span className="stat-label">Années de formation</span>
               </div>
               <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">20+</span>
+                <span className="stat-num">25+</span>
                 <span className="stat-label">Technologies maîtrisées</span>
               </div>
               <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">Juin</span>
-                <span className="stat-label">Disponible 2026</span>
+                <span className="stat-num">2</span>
+                <span className="stat-label">Certifications</span>
               </div>
             </div>
           </div>
@@ -279,11 +298,11 @@ export default function App() {
           <div className="skills-grid">
             {[
               { title: 'Front-end', items: 'React, Angular 19, TypeScript, JavaScript, HTML/CSS, Vite, Chart.js, React Router, Axios' },
-              { title: 'Back-end & API', items: 'PHP (MVC), Java (JSP/Servlet), Node.js, REST API, WebSocket, Google Apps Script' },
-              { title: 'Bases de données', items: 'PostgreSQL, MongoDB, Redis, CockroachDB, Supabase, SQL' },
+              { title: 'Back-end & API', items: 'Python, FastAPI, SQLAlchemy, PHP (MVC), Java, Node.js, REST API, WebSocket, OAuth/JWT' },
+              { title: 'Bases de données', items: 'PostgreSQL, MongoDB, Redis, CockroachDB, Supabase, SQL, ORM' },
               { title: 'Mobile', items: 'Flutter, Dart, JSON, applications cross-platform' },
-              { title: 'Outils & DevOps', items: 'Git, GitHub, Docker, Linux, VS Code, IntelliJ, WordPress / Elementor' },
-              { title: 'Méthodes & No-Code', items: 'Agile / Scrum, tests unitaires, Airtable, Zapier, Diagramme de Gantt' },
+              { title: 'Outils & DevOps', items: 'Git, GitHub, Docker, Linux, GCP, Google Workspace, clasp, LaTeX, VS Code, IntelliJ' },
+              { title: 'Méthodes & Autres', items: 'Agile / Scrum, TDD, Apps Script, WordPress / Elementor, Airtable, Zapier, Aivancity' },
             ].map(cat => (
               <div key={cat.title} className="glass-card skill-cat cursor-target">
                 <h3>{`> ${cat.title}`}</h3>
@@ -338,7 +357,7 @@ export default function App() {
               >
                 <div className="timeline-header">
                   <div>
-                    <span className="timeline-date">{exp.date} {exp.current && '// en cours'}</span>
+                    <span className="timeline-date">{exp.date}</span>
                     <h3 className="timeline-title">{exp.title}</h3>
                     <p className="timeline-desc">{exp.desc}</p>
                   </div>
@@ -351,6 +370,42 @@ export default function App() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications */}
+      <section id="certifications" className="section">
+        <div className="container">
+          <p className="section-label">cat certifications.json</p>
+          <h2 className="section-title">Certifications</h2>
+          <div className="certifications-grid">
+            <a
+              href="https://www.credly.com/badges/b901991c-8e28-4cdc-be20-88fada58bb4e/public_url"
+              target="_blank"
+              rel="noreferrer"
+              className="glass-card cert-card cursor-target"
+            >
+              <FaCertificate className="cert-icon" />
+              <div>
+                <h3 className="cert-title">AI Literacy</h3>
+                <p className="cert-issuer">IBM SkillsBuild</p>
+                <span className="cert-year">2026</span>
+              </div>
+            </a>
+            <a
+              href="https://verify.skilljar.com/c/oxt2ce3aw22r"
+              target="_blank"
+              rel="noreferrer"
+              className="glass-card cert-card cursor-target"
+            >
+              <FaCertificate className="cert-icon" />
+              <div>
+                <h3 className="cert-title">Claude 101</h3>
+                <p className="cert-issuer">Anthropic</p>
+                <span className="cert-year">2026</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
