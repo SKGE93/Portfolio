@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import TargetCursor from './components/TargetCursor';
 import LogoLoop from './components/LogoLoop';
-import ASCIIText from './components/ASCIIText';
+import AsciiStatic from './components/AsciiStatic';
 import CurvedLoop from './components/CurvedLoop';
 import ElectricBorder from './components/ElectricBorder';
 import {
@@ -53,7 +53,7 @@ const projects = [
     tech: ['React', 'Vite', 'React Router', 'Axios', 'TMDB API', 'Hooks'],
     img: './IMG/CineSearch.png.png',
     link: 'https://github.com/SKGE93/cine-search',
-    color: '#00ff41'
+    color: '#2ee878'
   },
   {
     title: 'WeatherDash',
@@ -61,7 +61,7 @@ const projects = [
     tech: ['Angular 19', 'TypeScript', 'Chart.js', 'RxJS', 'OpenWeatherMap API'],
     img: './IMG/WeatherDash.png',
     link: 'https://github.com/SKGE93/weather-dash',
-    color: '#00f3ff'
+    color: '#3ad6e8'
   },
   {
     title: 'OtakuGo',
@@ -69,7 +69,7 @@ const projects = [
     tech: ['Flutter', 'Dart', 'JSON', 'Cross-platform'],
     img: './IMG/AnimeApp.png.png',
     link: 'https://github.com/SKGE93/Application-mobile-de-recommendations-anime',
-    color: '#ff00ff'
+    color: '#b46cf0'
   },
   {
     title: 'Messagerie Instantanée',
@@ -77,7 +77,7 @@ const projects = [
     tech: ['PHP', 'WebSocket', 'Ratchet', 'JavaScript', 'MVC'],
     img: './IMG/message.png',
     link: 'https://github.com/Cheick6/SAE_S4',
-    color: '#00ff41'
+    color: '#2ee878'
   },
   {
     title: 'Basquiat & Warhol',
@@ -85,7 +85,7 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript', 'Figma'],
     img: './IMG/expo.png',
     link: 'https://github.com/SKGE93/Expo_Basquiat',
-    color: '#00f3ff'
+    color: '#3ad6e8'
   },
   {
     title: 'Gestion Utilisateurs — FastAPI',
@@ -93,7 +93,7 @@ const projects = [
     tech: ['Python', 'FastAPI', 'SQLAlchemy', 'TDD', 'REST API'],
     img: './IMG/fastapi.png',
     link: null,
-    color: '#00ff41'
+    color: '#2ee878'
   },
   {
     title: 'Shapes — Dessin Java',
@@ -101,7 +101,7 @@ const projects = [
     tech: ['Java', 'UML', 'OOP', 'Bibliothèque graphique'],
     img: './IMG/imgMaison.png',
     link: null,
-    color: '#ff00ff'
+    color: '#b46cf0'
   },
 ];
 
@@ -203,8 +203,12 @@ export default function App() {
 
       {/* Hero */}
       <section id="hero" className="hero-section">
-        <div className="hero-ascii-bg">
-          <ASCIIText text="SERAPHIN" enableWaves={true} asciiFontSize={8} textColor="#00ff41" />
+        <div className="hero-bg">
+          <div className="soft-gradient">
+            <div className="blob blob-a" />
+            <div className="blob blob-b" />
+          </div>
+          <AsciiStatic text="SERAPHIN" opacity={0.45} />
         </div>
         <div className="hero-overlay">
           <div className="container hero-content">

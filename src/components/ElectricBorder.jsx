@@ -3,7 +3,7 @@ import './ElectricBorder.css';
 
 const ElectricBorder = ({
   children,
-  color = '#00ff41',
+  color = '#2ee878',
   speed = 1,
   chaos = 0.12,
   borderRadius = 8,
@@ -82,12 +82,14 @@ const ElectricBorder = ({
       canvas.height = h * dpr;
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
-      ctx.scale(dpr, dpr);
       return { width: w, height: h };
     };
     let { width, height } = updateSize();
 
+    let running = false;
+
     const draw = ts => {
+      if (!running) return;
       const dt = (ts - lastFrameTimeRef.current) / 1000;
       timeRef.current += dt * speed;
       lastFrameTimeRef.current = ts;
@@ -103,14 +105,14 @@ const ElectricBorder = ({
       const bw = width - 2 * borderOffset, bh = height - 2 * borderOffset;
       const r = Math.min(borderRadius, Math.min(bw, bh) / 2);
       const perim = 2 * (bw + bh) + 2 * Math.PI * r;
-      const samples = Math.floor(perim / 2);
+      const samples = Math.floor(perim / 3);
 
       ctx.beginPath();
       for (let i = 0; i <= samples; i++) {
         const p = i / samples;
         const pt = getRoundedRectPoint(p, borderOffset, borderOffset, bw, bh, r);
-        const xn = octavedNoise(p * 8, 10, 1.6, 0.7, chaos, 10, timeRef.current, 0, 0);
-        const yn = octavedNoise(p * 8, 10, 1.6, 0.7, chaos, 10, timeRef.current, 1, 0);
+        const xn = octavedNoise(p * 8, 6, 1.6, 0.7, chaos, 10, timeRef.current, 0, 0);
+        const yn = octavedNoise(p * 8, 6, 1.6, 0.7, chaos, 10, timeRef.current, 1, 0);
         const dx = pt.x + xn * 60, dy = pt.y + yn * 60;
         if (i === 0) ctx.moveTo(dx, dy); else ctx.lineTo(dx, dy);
       }
@@ -119,16 +121,32 @@ const ElectricBorder = ({
       animationRef.current = requestAnimationFrame(draw);
     };
 
+    const start = () => {
+      if (running) return;
+      running = true;
+      lastFrameTimeRef.current = performance.now();
+      animationRef.current = requestAnimationFrame(draw);
+    };
+    const stop = () => {
+      running = false;
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+
+    const io = new IntersectionObserver(entries => {
+      entries[0].isIntersecting ? start() : stop();
+    }, { rootMargin: '100px' });
+    io.observe(container);
+
     const ro = new ResizeObserver(() => {
       const s = updateSize();
       width = s.width;
       height = s.height;
     });
     ro.observe(container);
-    animationRef.current = requestAnimationFrame(draw);
 
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      stop();
+      io.disconnect();
       ro.disconnect();
     };
   }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint]);

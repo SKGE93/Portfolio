@@ -7,12 +7,50 @@
   justify-content: center;
   overflow: hidden;
 }
-.hero-ascii-bg {
+.hero-bg {
   position: absolute;
   inset: 0;
-  opacity: 0.4;
   z-index: 0;
 }
+
+/* Dégradé doux animé — transform uniquement (GPU, zéro layout) */
+.soft-gradient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.soft-gradient .blob {
+  position: absolute;
+  width: 65vmax;
+  height: 65vmax;
+  border-radius: 50%;
+  will-change: transform;
+}
+.soft-gradient .blob-a {
+  top: -25%;
+  left: -15%;
+  background: radial-gradient(closest-side, rgba(46, 232, 120, 0.11), transparent 72%);
+  animation: blob-drift-a 28s ease-in-out infinite alternate;
+}
+.soft-gradient .blob-b {
+  bottom: -30%;
+  right: -18%;
+  background: radial-gradient(closest-side, rgba(58, 214, 232, 0.09), transparent 72%);
+  animation: blob-drift-b 34s ease-in-out infinite alternate;
+}
+@keyframes blob-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(12vw, 8vh, 0) scale(1.15); }
+}
+@keyframes blob-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1.1); }
+  to   { transform: translate3d(-10vw, -9vh, 0) scale(0.95); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .soft-gradient .blob { animation: none; }
+}
+
 .hero-overlay {
   position: relative;
   z-index: 1;
@@ -56,9 +94,9 @@
   color: var(--cyan);
   margin-bottom: 32px;
   padding: 6px 16px;
-  border: 1px solid rgba(0, 243, 255, 0.2);
+  border: 1px solid rgba(58, 214, 232, 0.2);
   border-radius: 4px;
-  background: rgba(0, 243, 255, 0.05);
+  background: rgba(58, 214, 232, 0.05);
 }
 .pulse-dot {
   width: 8px;
@@ -198,7 +236,7 @@
 }
 .timeline-item.current {
   border-color: var(--green);
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.08);
+  box-shadow: 0 0 15px rgba(46, 232, 120, 0.08);
 }
 .timeline-item.current::before {
   animation: pulse 2s ease-in-out infinite;
@@ -219,7 +257,7 @@
 }
 .cert-card:hover {
   border-color: var(--cyan);
-  box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+  box-shadow: 0 0 20px rgba(58, 214, 232, 0.1);
 }
 .cert-icon {
   font-size: 2rem;
