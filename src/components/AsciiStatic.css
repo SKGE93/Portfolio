@@ -1,0 +1,19 @@
+.ascii-static {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  margin: 0;
+  font-family: var(--font);
+  font-size: 10px;
+  line-height: 1em;
+  white-space: pre;
+  user-select: none;
+  pointer-events: none;
+  background-image: linear-gradient(135deg, var(--green) 0%, var(--cyan) 55%, var(--magenta) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, black 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, black 35%, transparent 100%);
+}
