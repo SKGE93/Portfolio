@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import LogoLoop from './components/LogoLoop';
 import {
-  SiReact, SiAngular, SiTypescript, SiJavascript, SiPhp,
+  SiReact, SiNextdotjs, SiTailwindcss, SiTrpc, SiAngular, SiTypescript, SiJavascript, SiPhp,
   SiFlutter, SiDart, SiHtml5, SiCss, SiGit,
-  SiPostgresql, SiMongodb, SiRedis, SiSupabase,
+  SiPostgresql, SiMysql, SiMongodb, SiRedis, SiSupabase,
   SiDocker, SiLinux, SiNodedotjs, SiWordpress,
   SiGoogleappsscript, SiAirtable, SiVite, SiCockroachlabs,
   SiPython, SiFastapi, SiGooglecloud, SiLatex, SiJsonwebtokens
@@ -14,6 +14,9 @@ import './App.css';
 
 const techLogos = [
   { node: <SiReact />, title: 'React' },
+  { node: <SiNextdotjs />, title: 'Next.js' },
+  { node: <SiTailwindcss />, title: 'Tailwind' },
+  { node: <SiTrpc />, title: 'tRPC' },
   { node: <SiAngular />, title: 'Angular' },
   { node: <SiTypescript />, title: 'TypeScript' },
   { node: <SiJavascript />, title: 'JavaScript' },
@@ -28,6 +31,7 @@ const techLogos = [
   { node: <SiGit />, title: 'Git' },
   { node: <SiDocker />, title: 'Docker' },
   { node: <SiLinux />, title: 'Linux' },
+  { node: <SiMysql />, title: 'MySQL' },
   { node: <SiPostgresql />, title: 'PostgreSQL' },
   { node: <SiMongodb />, title: 'MongoDB' },
   { node: <SiRedis />, title: 'Redis' },
@@ -104,10 +108,34 @@ const projects = [
 
 const experiences = [
   {
+    date: 'À partir de nov. 2026',
+    title: 'MSc Data Engineering & Cloud Computing — aivancity',
+    desc: 'Grande École de l\'IA et de la Data · en alternance · RNCP 37763',
+    details: [
+      'Titres visés : Data Engineer, Cloud Engineer et Data Platform Engineer',
+      'Formation en alternance, dans la continuité de ma double casquette dev full-stack et data / IA',
+    ],
+  },
+  {
+    date: 'Juin — Août 2026',
+    title: 'Stagiaire Développeur Full-Stack — Twini',
+    desc: 'Marketplace B2B de valorisation des déchets industriels · Station F',
+    current: true,
+    details: [
+      'Développement de features sur l\'app en production — front Next.js 16 (App Router), React 19, Tailwind 4, back tRPC 11 + Drizzle ORM sur MySQL 8 (TiDB Cloud)',
+      'Auth multi-niveaux (RBAC) via Better-Auth, validation à 3 couches (Zod côté client et serveur, contraintes en base) et emails transactionnels (React Email + Resend)',
+      'POC d\'extraction IA de documents (livrable principal) — factures et registres extraits par LLM en JSON, qui pré-remplit les formulaires ; l\'utilisateur n\'a plus qu\'à valider',
+      'Benchmark de plusieurs modèles (Mistral, Claude, Gemini, ChatGPT, Qwen) sur de vrais documents, puis stratégie deux tiers — Mistral-Small via OVH AI Endpoints pour les factures (~0,0003 €/doc), modèle plus capable pour les registres complexes',
+      'Architecture agnostique (composant DocumentExtractor, provider swappable par variable d\'environnement) et prompt engineering orienté concepts métier',
+      'Validation déterministe des extractions (SIRET, code postal, codes CED, cohérence TVA, somme des lignes) — l\'IA extrait, le code prouve',
+      'Conclusion : sans fine-tuning ni GPU, un bon prompt, de bons contrôles et le bon modèle rendent l\'extraction rentable dès le premier client',
+      'Workflow Git avancé — rebase sur dev, PR, résolution de conflits, push --force-with-lease',
+    ],
+  },
+  {
     date: 'Mars — Juin 2026',
     title: 'Stagiaire IT — IFFP',
     desc: 'Institut Français de Formation Professionnelle · Nanterre',
-    current: true,
     details: [
       'KioskSign — borne d\'accueil interactive en Apps Script + HTML/CSS, alimentée par Google Sheets',
       'Signatures Gmail — déploiement automatique de signatures HTML sur tout le domaine Google Workspace (clasp)',
@@ -160,12 +188,12 @@ const experiences = [
 ];
 
 const skillCats = [
-  { title: 'Front-end', items: 'React, Angular 19, TypeScript, JavaScript, HTML/CSS, Vite, Chart.js, React Router, Axios' },
-  { title: 'Back-end & API', items: 'Python, FastAPI, SQLAlchemy, PHP (MVC), Java, Node.js, REST API, WebSocket, OAuth/JWT' },
-  { title: 'Bases de données', items: 'PostgreSQL, MongoDB, Redis, CockroachDB, Supabase, SQL, ORM' },
+  { title: 'Front-end', items: 'React 19, Next.js 16, Angular 19, TypeScript, Tailwind CSS, React Hook Form, Zod, Vite, JavaScript' },
+  { title: 'Back-end & API', items: 'tRPC, Drizzle ORM, Node.js, PHP (MVC), Java, FastAPI, Better-Auth, REST API, WebSocket' },
+  { title: 'IA & Data', items: 'OVH AI Endpoints, Mistral, prompt engineering, extraction de documents, validation déterministe, benchmark de modèles' },
+  { title: 'Bases de données', items: 'MySQL 8, TiDB Cloud, PostgreSQL, MongoDB, Redis, Supabase, SQL' },
   { title: 'Mobile', items: 'Flutter, Dart, JSON, applications cross-platform' },
-  { title: 'Outils & DevOps', items: 'Git, GitHub, Docker, Linux, GCP, Google Workspace, clasp, LaTeX' },
-  { title: 'Méthodes', items: 'Agile / Scrum, TDD, Apps Script, WordPress / Elementor, Airtable, Zapier' },
+  { title: 'Outils & DevOps', items: 'Git (rebase workflow), GitHub, Docker, pnpm, Linux, GCP, React Email + Resend' },
 ];
 
 const navLinks = [
@@ -235,7 +263,7 @@ export default function App() {
         <div className="container hero-content">
           <motion.span className="hero-badge"
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="pulse-dot" /> Disponible pour un stage — juin 2026
+            <span className="pulse-dot" /> En recherche d’alternance · MSc Data Engineering, rentrée nov. 2026
           </motion.span>
           <motion.h1 className="hero-name"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}>
@@ -243,8 +271,8 @@ export default function App() {
           </motion.h1>
           <motion.p className="hero-subtitle"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}>
-            Développeur Full-Stack, orientation Data &amp; IA. Je construis des applications web et
-            mobiles propres, du front à l’API.
+            Développeur Full-Stack qui se spécialise en Data &amp; IA. Je construis des applications
+            web propres, du front à l’API, et j’aime rendre l’IA fiable et utile en production.
           </motion.p>
           <motion.div className="hero-cta"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.7 }}>
@@ -265,16 +293,17 @@ export default function App() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="about-text">
-                  Étudiant en 3ᵉ année de <strong>BUT Informatique</strong> à l’IUT de Villetaneuse,
-                  je suis passionné par le développement web et mobile. En stage à l’<strong>IFFP</strong>,
-                  j’ai automatisé des processus métiers (Apps Script, clasp) et conçu des solutions web.
+                  Développeur <strong>full-stack</strong> issu du BUT Informatique de Villetaneuse,
+                  avec un vrai intérêt pour la <strong>data et l’IA</strong>. En stage chez
+                  <strong> Twini</strong> (marketplace B2B passée par Station F), j’ai développé sur une
+                  app en production et conçu un POC d’extraction de documents par IA.
                 </p>
               </Reveal>
               <Reveal delay={0.15}>
                 <p className="about-text">
-                  Curieux et autodidacte, j’apprends en dehors des cours (React, Angular, Flutter, FastAPI).
-                  Mon objectif est d’intégrer le <strong>MSc Data Engineering à Aivancity</strong>. Je fais
-                  de la veille active sur l’IA générative et les LLMs.
+                  Je cherche une <strong>alternance</strong> pour mon <strong>MSc Data Engineering &amp;
+                  Cloud Computing à aivancity</strong> (rentrée novembre 2026). Curieux et autodidacte,
+                  j’apprends en continu et je garde un œil critique sur l’IA : l’IA extrait, le code prouve.
                 </p>
               </Reveal>
               <Reveal delay={0.2}>
