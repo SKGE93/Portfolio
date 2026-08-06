@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
-import TargetCursor from './components/TargetCursor';
+import { motion, useScroll, useSpring } from 'motion/react';
 import LogoLoop from './components/LogoLoop';
-import AsciiStatic from './components/AsciiStatic';
-import CurvedLoop from './components/CurvedLoop';
-import ElectricBorder from './components/ElectricBorder';
 import {
-  SiReact, SiAngular, SiTypescript, SiJavascript, SiPhp,
+  SiReact, SiNextdotjs, SiTailwindcss, SiTrpc, SiAngular, SiTypescript, SiJavascript, SiPhp,
   SiFlutter, SiDart, SiHtml5, SiCss, SiGit,
-  SiPostgresql, SiMongodb, SiRedis, SiSupabase,
+  SiPostgresql, SiMysql, SiMongodb, SiRedis, SiSupabase,
   SiDocker, SiLinux, SiNodedotjs, SiWordpress,
   SiGoogleappsscript, SiAirtable, SiVite, SiCockroachlabs,
   SiPython, SiFastapi, SiGooglecloud, SiLatex, SiJsonwebtokens
 } from 'react-icons/si';
-import { FaJava, FaCertificate } from 'react-icons/fa';
+import { FaJava, FaCertificate, FaGithub, FaLinkedin, FaEnvelope, FaArrowRight } from 'react-icons/fa';
 import './App.css';
 
 const techLogos = [
   { node: <SiReact />, title: 'React' },
+  { node: <SiNextdotjs />, title: 'Next.js' },
+  { node: <SiTailwindcss />, title: 'Tailwind' },
+  { node: <SiTrpc />, title: 'tRPC' },
   { node: <SiAngular />, title: 'Angular' },
   { node: <SiTypescript />, title: 'TypeScript' },
   { node: <SiJavascript />, title: 'JavaScript' },
@@ -31,6 +31,7 @@ const techLogos = [
   { node: <SiGit />, title: 'Git' },
   { node: <SiDocker />, title: 'Docker' },
   { node: <SiLinux />, title: 'Linux' },
+  { node: <SiMysql />, title: 'MySQL' },
   { node: <SiPostgresql />, title: 'PostgreSQL' },
   { node: <SiMongodb />, title: 'MongoDB' },
   { node: <SiRedis />, title: 'Redis' },
@@ -49,269 +50,296 @@ const techLogos = [
 const projects = [
   {
     title: 'CinéSearch',
-    desc: 'Application de recherche de films consommant l\'API REST TMDB, avec page de détail et interface en français. SPA React avec hooks personnalisés, recherche avec debounce, routing client-side via React Router, requêtes HTTP Axios. Affichage des films populaires, synopsis, note, date de sortie.',
-    tech: ['React', 'Vite', 'React Router', 'Axios', 'TMDB API', 'Hooks'],
+    desc: 'Application de recherche de films consommant l\'API REST TMDB, avec page de détail et interface en français. SPA React avec hooks personnalisés, recherche avec debounce, routing client-side et requêtes HTTP Axios.',
+    tech: ['React', 'Vite', 'React Router', 'Axios', 'TMDB API'],
     img: './IMG/CineSearch.png.png',
     link: 'https://github.com/SKGE93/cine-search',
-    color: '#2ee878'
+    color: '#6c4cff',
   },
   {
     title: 'WeatherDash',
-    desc: 'Dashboard météo temps réel affichant des données atmosphériques avec navigation multi-vues. Architecture orientée services Angular, Observables RxJS, dependency injection, lifecycle hooks, graphiques interactifs Chart.js. Autocomplétion de villes, prévisions sur 24h.',
-    tech: ['Angular 19', 'TypeScript', 'Chart.js', 'RxJS', 'OpenWeatherMap API'],
+    desc: 'Dashboard météo temps réel avec navigation multi-vues. Architecture orientée services Angular, Observables RxJS, dependency injection et graphiques interactifs Chart.js. Autocomplétion de villes et prévisions sur 24h.',
+    tech: ['Angular 19', 'TypeScript', 'Chart.js', 'RxJS', 'OpenWeatherMap'],
     img: './IMG/WeatherDash.png',
     link: 'https://github.com/SKGE93/weather-dash',
-    color: '#3ad6e8'
+    color: '#4fc3ff',
   },
   {
     title: 'OtakuGo',
-    desc: 'Application mobile cross-platform suggérant des contenus selon les préférences utilisateur. Sélection des genres, moteur de recommandation, fiches détaillées par animé avec synopsis, note et épisodes. Persistance des données en JSON local. Réalisé en équipe de 5 développeurs.',
+    desc: 'Application mobile cross-platform suggérant des contenus selon les préférences utilisateur. Moteur de recommandation, fiches détaillées, persistance JSON locale. Réalisé en équipe de 5.',
     tech: ['Flutter', 'Dart', 'JSON', 'Cross-platform'],
     img: './IMG/AnimeApp.png.png',
     link: 'https://github.com/SKGE93/Application-mobile-de-recommendations-anime',
-    color: '#b46cf0'
-  },
-  {
-    title: 'Messagerie Instantanée',
-    desc: 'Application de messagerie temps réel avec une particularité — chaque utilisateur doit annoter les messages pour continuer à échanger. Échanges via WebSocket (Ratchet), back-end PHP avec architecture MVC, interface responsive conçue en équipe. Projet SAE en groupe.',
-    tech: ['PHP', 'WebSocket', 'Ratchet', 'JavaScript', 'MVC'],
-    img: './IMG/message.png',
-    link: 'https://github.com/Cheick6/SAE_S4',
-    color: '#2ee878'
-  },
-  {
-    title: 'Basquiat & Warhol',
-    desc: 'Site web fictif présentant une exposition imaginée autour des oeuvres collaboratives de Basquiat et Warhol. Présentation des artistes, traduction anglaise dynamique via JavaScript, intégration vidéo immersive. Maquettes UI/UX réalisées sur Figma avant intégration.',
-    tech: ['HTML', 'CSS', 'JavaScript', 'Figma'],
-    img: './IMG/expo.png',
-    link: 'https://github.com/SKGE93/Expo_Basquiat',
-    color: '#3ad6e8'
+    color: '#ff7ac6',
   },
   {
     title: 'Gestion Utilisateurs — FastAPI',
-    desc: 'Backend de gestion d\'utilisateurs avec architecture en couches (routers, services, modèles). ORM SQLAlchemy pour mapper des modèles Python sur une base SQL, gestion de sessions et requêtes propres sans SQL brut. Pratique du TDD — écriture des tests avant le code, séparation des responsabilités, nommage clair et documentation.',
-    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'TDD', 'REST API'],
-    img: './IMG/fastapi.png',
+    desc: 'Backend de gestion d\'utilisateurs en architecture par couches (routers, services, modèles). ORM SQLAlchemy, gestion de sessions et pratique du TDD, avec séparation des responsabilités et documentation.',
+    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'TDD', 'REST'],
+    img: null,
     link: null,
-    color: '#2ee878'
+    color: '#6c4cff',
+  },
+  {
+    title: 'Messagerie instantanée',
+    desc: 'Messagerie temps réel où chaque utilisateur doit annoter les messages pour continuer à échanger. Échanges via WebSocket (Ratchet), back-end PHP en architecture MVC, interface responsive conçue en équipe.',
+    tech: ['PHP', 'WebSocket', 'Ratchet', 'MVC', 'Figma'],
+    img: './IMG/message.png',
+    link: 'https://github.com/Cheick6/SAE_S4',
+    color: '#34e0b0',
+  },
+  {
+    title: 'Basquiat & Warhol',
+    desc: 'Site d\'exposition fictive autour des œuvres collaboratives de Basquiat et Warhol. Traduction anglaise dynamique en JavaScript, intégration vidéo immersive. Maquettes UI/UX réalisées sur Figma.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Figma'],
+    img: './IMG/expo.png',
+    link: 'https://github.com/SKGE93/Expo_Basquiat',
+    color: '#ffb14e',
   },
   {
     title: 'Shapes — Dessin Java',
-    desc: 'Application graphique Java pour dessiner des formes géométriques — maisons, montagnes, paysages. Modélisation UML des classes de formes, composition de scènes complexes, gestion des exceptions avec try-catch. Premier contact avec les bibliothèques externes et la POO.',
-    tech: ['Java', 'UML', 'OOP', 'Bibliothèque graphique'],
+    desc: 'Application graphique Java pour dessiner des formes géométriques (maisons, montagnes, paysages). Modélisation UML des classes, composition de scènes, gestion des exceptions. Premier contact avec la POO.',
+    tech: ['Java', 'UML', 'POO'],
     img: './IMG/imgMaison.png',
     link: null,
-    color: '#b46cf0'
+    color: '#ff5d57',
   },
 ];
 
 const experiences = [
   {
+    date: 'À partir de nov. 2026',
+    title: 'MSc Data Engineering & Cloud Computing — aivancity',
+    desc: 'Grande École de l\'IA et de la Data · en alternance · RNCP 37763',
+    details: [
+      'Titres visés : Data Engineer, Cloud Engineer et Data Platform Engineer',
+      'Formation en alternance, dans la continuité de ma double casquette dev full-stack et data / IA',
+    ],
+  },
+  {
+    date: 'Juin — Août 2026',
+    title: 'Stagiaire Développeur Full-Stack — Twini',
+    desc: 'Marketplace B2B de valorisation des déchets industriels · Station F',
+    current: true,
+    details: [
+      'Développement de features sur l\'app en production — front Next.js 16 (App Router), React 19, Tailwind 4, back tRPC 11 + Drizzle ORM sur MySQL 8 (TiDB Cloud)',
+      'Auth multi-niveaux (RBAC) via Better-Auth, validation à 3 couches (Zod côté client et serveur, contraintes en base) et emails transactionnels (React Email + Resend)',
+      'POC d\'extraction IA de documents (livrable principal) — factures et registres extraits par LLM en JSON, qui pré-remplit les formulaires ; l\'utilisateur n\'a plus qu\'à valider',
+      'Benchmark de plusieurs modèles (Mistral, Claude, Gemini, ChatGPT, Qwen) sur de vrais documents, puis stratégie deux tiers — Mistral-Small via OVH AI Endpoints pour les factures (~0,0003 €/doc), modèle plus capable pour les registres complexes',
+      'Architecture agnostique (composant DocumentExtractor, provider swappable par variable d\'environnement) et prompt engineering orienté concepts métier',
+      'Validation déterministe des extractions (SIRET, code postal, codes CED, cohérence TVA, somme des lignes) — l\'IA extrait, le code prouve',
+      'Conclusion : sans fine-tuning ni GPU, un bon prompt, de bons contrôles et le bon modèle rendent l\'extraction rentable dès le premier client',
+      'Workflow Git avancé — rebase sur dev, PR, résolution de conflits, push --force-with-lease',
+    ],
+  },
+  {
     date: 'Mars — Juin 2026',
     title: 'Stagiaire IT — IFFP',
-    desc: 'Institut Français de Formation Professionnelle — Nanterre',
+    desc: 'Institut Français de Formation Professionnelle · Nanterre',
     details: [
-      'KioskSign — Borne d\'accueil interactive développée en Apps Script + HTML/CSS, affichant des informations dynamiques via Google Sheets',
-      'Signatures Gmail — Script clasp/Apps Script de déploiement automatique de signatures HTML personnalisées pour tout le domaine Google Workspace',
-      'Workspace Cleaner — Outil Apps Script de nettoyage automatique des fichiers orphelins et doublons dans Google Drive partagé',
-      'Radar Drive — Script Apps Script analysant les permissions Drive et générant un rapport de conformité sur Google Sheets',
-      'Dashboard MDP — Tableau de bord Apps Script + Google Sheets pour le suivi des changements de mots de passe utilisateurs',
-      'Onboarding Professeurs — Automatisation Apps Script du processus d\'intégration des nouveaux professeurs (comptes, accès, documents)',
-      'Modernisation réseau — Segmentation VLAN, renforcement sécurité, administration Google Workspace',
-      'Refonte WordPress — Conception et optimisation du site vitrine sous WordPress / Elementor',
-      'Rédaction de documentation technique complète pour chaque projet'
-    ]
+      'KioskSign — borne d\'accueil interactive en Apps Script + HTML/CSS, alimentée par Google Sheets',
+      'Signatures Gmail — déploiement automatique de signatures HTML sur tout le domaine Google Workspace (clasp)',
+      'Workspace Cleaner & Radar Drive — nettoyage des fichiers orphelins et rapport de conformité des permissions Drive',
+      'Dashboard MDP & Onboarding Professeurs — tableaux de bord et automatisation de l\'intégration',
+      'Modernisation réseau — segmentation VLAN, sécurité, administration Google Workspace',
+      'Refonte du site vitrine sous WordPress / Elementor + documentation technique',
+    ],
   },
   {
     date: '2023 — 2026',
     title: 'BUT Informatique — IUT de Villetaneuse',
-    desc: 'Développement d\'applications — USPN, Île-de-France',
+    desc: 'Développement d\'applications · USPN',
     details: [
       'Développement full-stack — React, Angular, PHP, Java',
       'Bases de données — PostgreSQL, MongoDB, Redis',
       'Algorithmique, structures de données, tests unitaires',
-      'Gestion de projet Agile / Scrum, diagramme de Gantt',
-      'Droit numérique, travail en équipe produit'
-    ]
+      'Gestion de projet Agile / Scrum, travail en équipe produit',
+    ],
   },
   {
     date: 'Fév. — Mars 2025',
-    title: 'Stagiaire Informatique & Web — Association JLF',
-    desc: 'Association Jean Luc François — Pantin',
+    title: 'Stagiaire Informatique & Web — Asso Jean Luc François',
+    desc: 'Pantin',
     details: [
-      'Refonte et maintenance du site WordPress — optimisation thèmes / extensions, performances améliorées',
-      'Mise en place de workflows No-Code (Airtable, Zapier) — réduction des tâches manuelles répétitives',
-      'Force de proposition technique, adaptabilité'
-    ]
+      'Refonte et maintenance du site WordPress — thèmes, extensions, performances',
+      'Workflows No-Code (Airtable, Zapier) pour réduire les tâches répétitives',
+      'Force de proposition technique, adaptabilité',
+    ],
   },
   {
-    date: '2024',
-    title: 'Agent de sécurité — Événementiel',
-    desc: 'Gestion de la sécurité lors d\'événements',
+    date: 'Juin — Août 2024',
+    title: 'Agent SSIAP1 — Jeux Olympiques',
+    desc: 'BSL Sécurité · Grand Palais, Paris',
     details: [
-      'Communication avec le public et les équipes',
-      'Gestion du stress en situation imprévue',
-      'Rigueur, ponctualité, sens des responsabilités'
-    ]
+      'Gestion du public et communication avec les touristes',
+      'Travail en équipe et direction d\'une équipe d\'agents',
+      'Gestion du stress, rigueur et sens des responsabilités',
+    ],
   },
   {
     date: '2021 — 2022',
     title: 'BAC STI2D — Lycée Le Corbusier',
     desc: 'Aubervilliers',
     details: [
-      'Spécialité Sciences et Technologies de l\'Industrie et du Développement Durable',
-      'Découverte de la programmation et des systèmes informatiques'
-    ]
+      'Spécialité Systèmes d\'Information et Numérique',
+      'Découverte de la programmation et des systèmes informatiques',
+    ],
   },
 ];
+
+const skillCats = [
+  { title: 'Front-end', items: 'React 19, Next.js 16, Angular 19, TypeScript, Tailwind CSS, React Hook Form, Zod, Vite, JavaScript' },
+  { title: 'Back-end & API', items: 'tRPC, Drizzle ORM, Node.js, PHP (MVC), Java, FastAPI, Better-Auth, REST API, WebSocket' },
+  { title: 'IA & Data', items: 'OVH AI Endpoints, Mistral, prompt engineering, extraction de documents, validation déterministe, benchmark de modèles' },
+  { title: 'Bases de données', items: 'MySQL 8, TiDB Cloud, PostgreSQL, MongoDB, Redis, Supabase, SQL' },
+  { title: 'Mobile', items: 'Flutter, Dart, JSON, applications cross-platform' },
+  { title: 'Outils & DevOps', items: 'Git (rebase workflow), GitHub, Docker, pnpm, Linux, GCP, React Email + Resend' },
+];
+
+const navLinks = [
+  { id: 'about', label: 'À propos' },
+  { id: 'skills', label: 'Compétences' },
+  { id: 'projects', label: 'Projets' },
+  { id: 'experience', label: 'Parcours' },
+  { id: 'certifications', label: 'Certifs' },
+  { id: 'contact', label: 'Contact' },
+];
+
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
+  return <motion.div className="scroll-progress" style={{ scaleX }} />;
+}
+
+function Reveal({ children, delay = 0, y = 24, className }) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-70px' }}
+      transition={{ delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [expandedExp, setExpandedExp] = useState(null);
+  const [expandedExp, setExpandedExp] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const navLinks = ['about', 'skills', 'projects', 'experience', 'certifications', 'contact'];
-
   return (
     <>
-      <TargetCursor spinDuration={3} hideDefaultCursor={true} parallaxOn={true} />
+      <ScrollProgress />
 
       {/* Navbar */}
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="nav-container">
-          <a href="#hero" className="nav-logo">[S.E]</a>
-          <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-            {navLinks.map(id => (
-              <li key={id}>
-                <a href={`#${id}`} onClick={() => setMenuOpen(false)}>
-                  {'>'} {id}
-                </a>
-              </li>
+      <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="container nav-container">
+          <a href="#hero" className="nav-logo">SÉ<span>.</span></a>
+          <nav className={`nav-links ${menuOpen ? 'active' : ''}`}>
+            {navLinks.map(l => (
+              <a key={l.id} href={`#${l.id}`} onClick={() => setMenuOpen(false)}>{l.label}</a>
             ))}
-          </ul>
-          <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+            <a href="#contact" className="nav-cta" onClick={() => setMenuOpen(false)}>Me contacter</a>
+          </nav>
+          <button className="nav-toggle" aria-label="Menu" onClick={() => setMenuOpen(!menuOpen)}>
             <span /><span /><span />
           </button>
         </div>
-      </nav>
+      </header>
 
       {/* Hero */}
-      <section id="hero" className="hero-section">
-        <div className="hero-bg">
-          <div className="soft-gradient">
-            <div className="blob blob-a" />
-            <div className="blob blob-b" />
-          </div>
-          <AsciiStatic text="SERAPHIN" opacity={0.45} />
-        </div>
-        <div className="hero-overlay">
-          <div className="container hero-content">
-            <p className="hero-label">&gt; system.init()</p>
-            <h1 className="hero-name">Séraphin <span className="text-cyan">Eyala</span></h1>
-            <p className="hero-subtitle">
-              <span className="typing-cursor">Développeur Full-Stack — Orientation Data & IA</span>
-            </p>
-            <p className="hero-status">
-              <span className="pulse-dot" /> Recherche un stage de 6 semaines à 2 mois — Disponible juin 2026
-            </p>
-            <div className="hero-cta">
-              <a href="#projects" className="btn btn-primary cursor-target">&gt; voir_projets()</a>
-              <a href="#contact" className="btn btn-cyan cursor-target">&gt; contact()</a>
-            </div>
-          </div>
+      <section id="hero" className="hero">
+        <div className="blob blob-a" />
+        <div className="blob blob-b" />
+        <div className="container hero-content">
+          <motion.span className="hero-badge"
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <span className="pulse-dot" /> En recherche d’alternance · MSc Data Engineering, rentrée nov. 2026
+          </motion.span>
+          <motion.h1 className="hero-name"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}>
+            Séraphin <span className="accent">Eyala</span>
+          </motion.h1>
+          <motion.p className="hero-subtitle"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}>
+            Développeur Full-Stack qui se spécialise en Data &amp; IA. Je construis des applications
+            web propres, du front à l’API, et j’aime rendre l’IA fiable et utile en production.
+          </motion.p>
+          <motion.div className="hero-cta"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.7 }}>
+            <a href="#projects" className="btn btn-primary">Voir mes projets <FaArrowRight /></a>
+            <a href="#contact" className="btn btn-ghost">Me contacter</a>
+          </motion.div>
         </div>
       </section>
-
-      {/* CurvedLoop separator */}
-      <CurvedLoop
-        marqueeText="Developer  ✦  Fan d'anime  ✦  Naruto > One Piece  ✦  Fairy Tail  ✦  SNK  ✦  Code addict  ✦  Gamer  ✦  Gym  ✦  Veille tech  ✦  Hacker News  ✦  Autodidacte  ✦  "
-        speed={1.5}
-        curveAmount={300}
-        direction="left"
-        interactive={true}
-      />
 
       {/* About */}
       <section id="about" className="section">
         <div className="container">
-          <p className="section-label">who_i_am</p>
-          <h2 className="section-title">À propos</h2>
+          <Reveal><p className="eyebrow">01 · À propos</p></Reveal>
           <div className="about-grid">
-            <div className="glass-card cursor-target">
-              <p>
-                Étudiant en 3ème année de <strong>BUT Informatique</strong> à l'IUT de
-                Villetaneuse (USPN), passionné par le développement web et mobile.
-                Récemment en stage à l'<strong>IFFP</strong> à Nanterre où j'ai automatisé
-                des processus métiers (Apps Script, clasp) et conçu des solutions web.
-                Actuellement <strong>à la recherche d'un stage</strong> de 6 semaines à 2 mois.
-              </p>
-              <p style={{ marginTop: 16 }}>
-                Curieux et autodidacte, j'apprends en dehors des cours — React, Angular,
-                Flutter, FastAPI. Mon objectif est d'intégrer le <strong>MSc Data Engineering à
-                Aivancity</strong>, une école spécialisée en IA et data. Je fais de la
-                veille active sur Hacker News, Reddit et Dev.to autour de l'IA
-                générative et des LLMs.
-              </p>
+            <div>
+              <Reveal delay={0.05}>
+                <h2 className="section-title">Qui je suis</h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="about-text">
+                  Développeur <strong>full-stack</strong> issu du BUT Informatique de Villetaneuse,
+                  avec un vrai intérêt pour la <strong>data et l’IA</strong>. En stage chez
+                  <strong> Twini</strong> (marketplace B2B passée par Station F), j’ai développé sur une
+                  app en production et conçu un POC d’extraction de documents par IA.
+                </p>
+              </Reveal>
+              <Reveal delay={0.15}>
+                <p className="about-text">
+                  Je cherche une <strong>alternance</strong> pour mon <strong>MSc Data Engineering &amp;
+                  Cloud Computing à aivancity</strong> (rentrée novembre 2026). Curieux et autodidacte,
+                  j’apprends en continu et je garde un œil critique sur l’IA : l’IA extrait, le code prouve.
+                </p>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="about-hobbies">En dehors du code · anime, jeux vidéo, sport, veille tech</p>
+              </Reveal>
             </div>
-            <div className="about-stats">
-              <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">7</span>
-                <span className="stat-label">Projets réalisés</span>
-              </div>
-              <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">3</span>
-                <span className="stat-label">Années de formation</span>
-              </div>
-              <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">25+</span>
-                <span className="stat-label">Technologies maîtrisées</span>
-              </div>
-              <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">2</span>
-                <span className="stat-label">Certifications</span>
-              </div>
-            </div>
+            <Reveal delay={0.15} className="about-stats">
+              {[['7', 'Projets réalisés'], ['3', 'Années de formation'], ['25+', 'Technologies'], ['2', 'Certifications']].map(([k, v]) => (
+                <div className="stat-card" key={v}>
+                  <span className="stat-num">{k}</span>
+                  <span className="stat-label">{v}</span>
+                </div>
+              ))}
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Skills / LogoLoop */}
-      <section id="skills" className="section">
+      {/* Skills */}
+      <section id="skills" className="section section-alt">
         <div className="container">
-          <p className="section-label">cat skills.json</p>
-          <h2 className="section-title">Technologies</h2>
+          <Reveal><p className="eyebrow">02 · Stack technique</p></Reveal>
+          <Reveal delay={0.05}><h2 className="section-title">Ce que je maîtrise</h2></Reveal>
         </div>
         <div className="logoloop-wrapper">
-          <LogoLoop
-            logos={techLogos}
-            speed={80}
-            direction="left"
-            logoHeight={40}
-            gap={48}
-            fadeOut
-            fadeOutColor="#0a0a0f"
-          />
+          <LogoLoop logos={techLogos} speed={70} direction="left" logoHeight={38} gap={52} fadeOut fadeOutColor="#f3ecdf" />
         </div>
-        <div className="container" style={{ marginTop: 48 }}>
+        <div className="container">
           <div className="skills-grid">
-            {[
-              { title: 'Front-end', items: 'React, Angular 19, TypeScript, JavaScript, HTML/CSS, Vite, Chart.js, React Router, Axios' },
-              { title: 'Back-end & API', items: 'Python, FastAPI, SQLAlchemy, PHP (MVC), Java, Node.js, REST API, WebSocket, OAuth/JWT' },
-              { title: 'Bases de données', items: 'PostgreSQL, MongoDB, Redis, CockroachDB, Supabase, SQL, ORM' },
-              { title: 'Mobile', items: 'Flutter, Dart, JSON, applications cross-platform' },
-              { title: 'Outils & DevOps', items: 'Git, GitHub, Docker, Linux, GCP, Google Workspace, clasp, LaTeX, VS Code, IntelliJ' },
-              { title: 'Méthodes & Autres', items: 'Agile / Scrum, TDD, Apps Script, WordPress / Elementor, Airtable, Zapier, Aivancity' },
-            ].map(cat => (
-              <div key={cat.title} className="glass-card skill-cat cursor-target">
-                <h3>{`> ${cat.title}`}</h3>
-                <p>{cat.items}</p>
-              </div>
+            {skillCats.map((cat, i) => (
+              <Reveal delay={(i % 3) * 0.06} key={cat.title}>
+                <div className="skill-card">
+                  <h3>{cat.title}</h3>
+                  <p>{cat.items}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -320,59 +348,60 @@ export default function App() {
       {/* Projects */}
       <section id="projects" className="section">
         <div className="container">
-          <p className="section-label">ls ~/projects</p>
-          <h2 className="section-title">Projets</h2>
+          <Reveal><p className="eyebrow">03 · Réalisations</p></Reveal>
+          <Reveal delay={0.05}><h2 className="section-title">Projets</h2></Reveal>
           <div className="projects-grid">
             {projects.map((p, i) => (
-              <ElectricBorder key={i} color={p.color} speed={0.8} chaos={0.08} borderRadius={8}>
-                <div className="project-card cursor-target">
-                  <img src={p.img} alt={p.title} />
-                  <div className="project-card-body">
-                    <h3 className="project-card-title" style={{ color: p.color }}>{p.title}</h3>
-                    <p className="project-card-desc">{p.desc}</p>
-                    <div className="project-tech">
-                      {p.tech.map(t => <span key={t}>{t}</span>)}
-                    </div>
-                    {p.link && (
-                      <a href={p.link} target="_blank" rel="noreferrer" className="btn btn-primary btn-sm">
-                        &gt; voir_code()
-                      </a>
-                    )}
-                  </div>
+              <motion.article key={p.title} className="project-card" style={{ '--pc': p.color }}
+                initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ delay: (i % 3) * 0.07, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}>
+                <div className="project-media">
+                  {p.img
+                    ? <img src={p.img} alt={p.title} loading="lazy" />
+                    : <div className="project-media-ph"><span>{p.title.charAt(0)}</span></div>}
                 </div>
-              </ElectricBorder>
+                <div className="project-body">
+                  <h3 className="project-title">{p.title}</h3>
+                  <p className="project-desc">{p.desc}</p>
+                  <div className="project-tech">
+                    {p.tech.map(t => <span key={t}>{t}</span>)}
+                  </div>
+                  {p.link
+                    ? <a href={p.link} target="_blank" rel="noreferrer" className="project-link">Voir le code <FaArrowRight /></a>
+                    : <span className="project-link project-link--off">Projet d’école</span>}
+                </div>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
       {/* Experience */}
-      <section id="experience" className="section">
+      <section id="experience" className="section section-alt">
         <div className="container">
-          <p className="section-label">git log --oneline</p>
-          <h2 className="section-title">Parcours</h2>
+          <Reveal><p className="eyebrow">04 · Parcours</p></Reveal>
+          <Reveal delay={0.05}><h2 className="section-title">Expériences &amp; formation</h2></Reveal>
           <div className="timeline">
             {experiences.map((exp, i) => (
-              <div
-                key={i}
-                className={`timeline-item cursor-target ${exp.current ? 'current' : ''} ${expandedExp === i ? 'expanded' : ''}`}
-                onClick={() => setExpandedExp(expandedExp === i ? null : i)}
-                style={{ cursor: 'pointer' }}
-              >
-                <div className="timeline-header">
-                  <div>
-                    <span className="timeline-date">{exp.date}</span>
-                    <h3 className="timeline-title">{exp.title}</h3>
-                    <p className="timeline-desc">{exp.desc}</p>
+              <Reveal delay={(i % 4) * 0.05} key={i}>
+                <div className={`timeline-item ${expandedExp === i ? 'expanded' : ''} ${exp.current ? 'current' : ''}`}
+                  onClick={() => setExpandedExp(expandedExp === i ? null : i)}>
+                  <div className="timeline-head">
+                    <div>
+                      <span className="timeline-date">{exp.date}</span>
+                      <h3 className="timeline-title">{exp.title}</h3>
+                      <p className="timeline-desc">{exp.desc}</p>
+                    </div>
+                    <span className="timeline-toggle">{expandedExp === i ? '−' : '+'}</span>
                   </div>
-                  <span className="timeline-toggle">{expandedExp === i ? '−' : '+'}</span>
+                  {expandedExp === i && exp.details && (
+                    <ul className="timeline-details">
+                      {exp.details.map((d, j) => <li key={j}>{d}</li>)}
+                    </ul>
+                  )}
                 </div>
-                {expandedExp === i && exp.details && (
-                  <ul className="timeline-details">
-                    {exp.details.map((d, j) => <li key={j}>{d}</li>)}
-                  </ul>
-                )}
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -381,62 +410,50 @@ export default function App() {
       {/* Certifications */}
       <section id="certifications" className="section">
         <div className="container">
-          <p className="section-label">cat certifications.json</p>
-          <h2 className="section-title">Certifications</h2>
-          <div className="certifications-grid">
-            <a
-              href="https://www.credly.com/badges/b901991c-8e28-4cdc-be20-88fada58bb4e/public_url"
-              target="_blank"
-              rel="noreferrer"
-              className="glass-card cert-card cursor-target"
-            >
-              <FaCertificate className="cert-icon" />
-              <div>
-                <h3 className="cert-title">AI Literacy</h3>
-                <p className="cert-issuer">IBM SkillsBuild</p>
-                <span className="cert-year">2026</span>
-              </div>
-            </a>
-            <a
-              href="https://verify.skilljar.com/c/oxt2ce3aw22r"
-              target="_blank"
-              rel="noreferrer"
-              className="glass-card cert-card cursor-target"
-            >
-              <FaCertificate className="cert-icon" />
-              <div>
-                <h3 className="cert-title">Claude 101</h3>
-                <p className="cert-issuer">Anthropic</p>
-                <span className="cert-year">2026</span>
-              </div>
-            </a>
+          <Reveal><p className="eyebrow">05 · Certifications</p></Reveal>
+          <Reveal delay={0.05}><h2 className="section-title">Certifications</h2></Reveal>
+          <div className="certs-grid">
+            {[
+              { title: 'AI Literacy', issuer: 'IBM SkillsBuild', year: '2026', href: 'https://www.credly.com/badges/b901991c-8e28-4cdc-be20-88fada58bb4e/public_url' },
+              { title: 'Claude 101', issuer: 'Anthropic', year: '2026', href: 'https://verify.skilljar.com/c/oxt2ce3aw22r' },
+            ].map((c, i) => (
+              <Reveal delay={i * 0.06} key={c.title}>
+                <a href={c.href} target="_blank" rel="noreferrer" className="cert-card">
+                  <FaCertificate className="cert-icon" />
+                  <div>
+                    <h3 className="cert-title">{c.title}</h3>
+                    <p className="cert-issuer">{c.issuer}</p>
+                  </div>
+                  <span className="cert-year">{c.year}</span>
+                </a>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Contact */}
-      <section id="contact" className="section">
-        <div className="container" style={{ textAlign: 'center' }}>
-          <p className="section-label">ping contact</p>
-          <h2 className="section-title">Contact</h2>
-          <p className="contact-text">
-            Un projet, une opportunité ou juste envie de discuter tech ?
-          </p>
-          <div className="contact-links">
-            <a href="mailto:eyalas472@gmail.com" className="btn btn-primary cursor-target">
-              &gt; send_mail()
-            </a>
-            <a href="https://github.com/SKGE93" target="_blank" rel="noreferrer" className="btn btn-cyan cursor-target">
-              &gt; github()
-            </a>
-            <a href="https://linkedin.com/in/seraphin-eyala" target="_blank" rel="noreferrer" className="btn btn-cyan cursor-target">
-              &gt; linkedin()
-            </a>
-          </div>
-          <p className="footer-text">
-            &copy; 2026 Séraphin Eyala
-          </p>
+      <section id="contact" className="section section-alt contact">
+        <div className="container contact-inner">
+          <Reveal><p className="eyebrow">06 · Contact</p></Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="section-title contact-title">Travaillons ensemble</h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="contact-text">Un projet, une opportunité de stage ou juste envie d’échanger sur la tech ?</p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <a className="contact-mail" href="mailto:eyalas472@gmail.com">eyalas472@gmail.com</a>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="contact-links">
+              <a href="mailto:eyalas472@gmail.com" className="btn btn-primary"><FaEnvelope /> Email</a>
+              <a href="https://github.com/SKGE93" target="_blank" rel="noreferrer" className="btn btn-ghost"><FaGithub /> GitHub</a>
+              <a href="https://www.linkedin.com/in/seraphin-eyala-68557b279/" target="_blank" rel="noreferrer" className="btn btn-ghost"><FaLinkedin /> LinkedIn</a>
+            </div>
+          </Reveal>
         </div>
+        <p className="footer-text">© {new Date().getFullYear()} Séraphin Eyala · Développeur Full-Stack</p>
       </section>
     </>
   );
