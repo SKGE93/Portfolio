@@ -265,10 +265,21 @@ export default function App() {
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="pulse-dot" /> En recherche d’alternance · MSc Data Engineering, rentrée nov. 2026
           </motion.span>
-          <motion.h1 className="hero-name"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}>
-            Séraphin <span className="accent">Eyala</span>
-          </motion.h1>
+          <h1 className="hero-name">
+            {['Séraphin', 'Eyala'].map((word, i) => (
+              <span className="reveal-line" key={word}>
+                <motion.span
+                  className="reveal-word"
+                  initial={{ y: '115%' }}
+                  animate={{ y: '0%' }}
+                  transition={{ delay: 0.15 + i * 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  style={i === 1 ? { color: 'var(--accent)' } : undefined}
+                >
+                  {word}
+                </motion.span>
+              </span>
+            ))}
+          </h1>
           <motion.p className="hero-subtitle"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}>
             Développeur Full-Stack qui se spécialise en Data &amp; IA. Je construis des applications

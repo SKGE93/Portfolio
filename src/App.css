@@ -46,6 +46,8 @@
   margin: 24px 0 0;
 }
 .hero-name .accent { color: var(--accent); }
+.reveal-line { display: block; overflow: hidden; padding-bottom: 0.06em; }
+.reveal-word { display: inline-block; }
 .hero-subtitle { max-width: 54ch; margin-top: 22px; font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--muted); }
 .hero-cta { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
 
