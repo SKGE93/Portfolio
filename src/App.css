@@ -4,7 +4,7 @@
   padding: 18px 0; transition: padding 0.3s, background 0.3s, box-shadow 0.3s;
 }
 .navbar.scrolled {
-  padding: 11px 0; background: rgba(255, 255, 255, 0.82);
+  padding: 11px 0; background: rgba(251, 247, 240, 0.82);
   backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line);
 }
 .nav-container { display: flex; align-items: center; justify-content: space-between; }
@@ -92,6 +92,11 @@
 .skill-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; }
 .skill-card h3::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 9px; vertical-align: middle; }
 .skill-card p { color: var(--muted); font-size: 0.92rem; }
+.skills-grid > *:nth-child(2) .skill-card h3::before { background: var(--coral); }
+.skills-grid > *:nth-child(3) .skill-card h3::before { background: var(--amber); }
+.skills-grid > *:nth-child(4) .skill-card h3::before { background: var(--mint); }
+.skills-grid > *:nth-child(5) .skill-card h3::before { background: var(--sky); }
+.skills-grid > *:nth-child(6) .skill-card h3::before { background: var(--pink); }
 
 /* ===================== PROJECTS ===================== */
 .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }

@@ -1,15 +1,20 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #ffffff;
-  --bg-alt: #f4f3ef;
-  --ink: #17151d;
-  --muted: #6a6576;
-  --line: rgba(23, 21, 29, 0.10);
+  --bg: #fbf7f0;
+  --bg-alt: #f3ecdf;
+  --ink: #16131f;
+  --muted: #6b6478;
+  --line: rgba(22, 19, 31, 0.12);
   --card: #ffffff;
   --accent: #6c4cff;
   --accent-ink: #4a2fd6;
   --accent-soft: rgba(108, 76, 255, 0.08);
+  --coral: #ff5d57;
+  --amber: #ffb14e;
+  --mint: #34e0b0;
+  --sky: #4fc3ff;
+  --pink: #ff7ac6;
 
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
@@ -35,6 +40,12 @@ a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 strong { color: var(--ink); font-weight: 600; }
 ::selection { background: var(--accent); color: #fff; }
+
+/* Grain texture subtile (comme le portfolio académique) */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg-alt); }

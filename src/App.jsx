@@ -69,6 +69,14 @@ const projects = [
     color: '#ff7ac6',
   },
   {
+    title: 'Gestion Utilisateurs — FastAPI',
+    desc: 'Backend de gestion d\'utilisateurs en architecture par couches (routers, services, modèles). ORM SQLAlchemy, gestion de sessions et pratique du TDD, avec séparation des responsabilités et documentation.',
+    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'TDD', 'REST'],
+    img: null,
+    link: null,
+    color: '#6c4cff',
+  },
+  {
     title: 'Messagerie instantanée',
     desc: 'Messagerie temps réel où chaque utilisateur doit annoter les messages pour continuer à échanger. Échanges via WebSocket (Ratchet), back-end PHP en architecture MVC, interface responsive conçue en équipe.',
     tech: ['PHP', 'WebSocket', 'Ratchet', 'MVC', 'Figma'],
@@ -83,14 +91,6 @@ const projects = [
     img: './IMG/expo.png',
     link: 'https://github.com/SKGE93/Expo_Basquiat',
     color: '#ffb14e',
-  },
-  {
-    title: 'Gestion Utilisateurs — FastAPI',
-    desc: 'Backend de gestion d\'utilisateurs en architecture par couches (routers, services, modèles). ORM SQLAlchemy, gestion de sessions et pratique du TDD, avec séparation des responsabilités et documentation.',
-    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'TDD', 'REST'],
-    img: null,
-    link: null,
-    color: '#6c4cff',
   },
   {
     title: 'Shapes — Dessin Java',
@@ -300,7 +300,7 @@ export default function App() {
           <Reveal delay={0.05}><h2 className="section-title">Ce que je maîtrise</h2></Reveal>
         </div>
         <div className="logoloop-wrapper">
-          <LogoLoop logos={techLogos} speed={70} direction="left" logoHeight={38} gap={52} fadeOut fadeOutColor="#f4f3ef" />
+          <LogoLoop logos={techLogos} speed={70} direction="left" logoHeight={38} gap={52} fadeOut fadeOutColor="#f3ecdf" />
         </div>
         <div className="container">
           <div className="skills-grid">
