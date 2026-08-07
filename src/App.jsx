@@ -49,6 +49,15 @@ const techLogos = [
 
 const projects = [
   {
+    title: 'Extraction IA de documents',
+    desc: 'POC réalisé chez Twini : les factures et registres de déchets sont extraits par LLM en JSON structuré, qui pré-remplit les formulaires de la plateforme. Benchmark de plusieurs modèles, Mistral via OVH AI Endpoints (~0,0003 €/doc) et validation déterministe (SIRET, codes CED, cohérence TVA). L\'IA extrait, le code prouve.',
+    tech: ['Mistral', 'OVH AI', 'Prompt engineering', 'Next.js', 'tRPC', 'Zod'],
+    img: './IMG/poc-extraction.svg',
+    link: null,
+    label: 'Réalisé chez Twini',
+    color: '#6c4cff',
+  },
+  {
     title: 'CinéSearch',
     desc: 'Application de recherche de films consommant l\'API REST TMDB, avec page de détail et interface en français. SPA React avec hooks personnalisés, recherche avec debounce, routing client-side et requêtes HTTP Axios.',
     tech: ['React', 'Vite', 'React Router', 'Axios', 'TMDB API'],
@@ -322,7 +331,7 @@ export default function App() {
               </Reveal>
             </div>
             <Reveal delay={0.15} className="about-stats">
-              {[['7', 'Projets réalisés'], ['3', 'Années de formation'], ['25+', 'Technologies'], ['2', 'Certifications']].map(([k, v]) => (
+              {[['8', 'Projets réalisés'], ['3', 'Années de formation'], ['25+', 'Technologies'], ['2', 'Certifications']].map(([k, v]) => (
                 <div className="stat-card" key={v}>
                   <span className="stat-num">{k}</span>
                   <span className="stat-label">{v}</span>
@@ -380,7 +389,7 @@ export default function App() {
                   </div>
                   {p.link
                     ? <a href={p.link} target="_blank" rel="noreferrer" className="project-link">Voir le code <FaArrowRight /></a>
-                    : <span className="project-link project-link--off">Projet d’école</span>}
+                    : <span className="project-link project-link--off">{p.label || 'Projet d’école'}</span>}
                 </div>
               </motion.article>
             ))}
