@@ -45,9 +45,9 @@ const steps = [
       'Rangement partitionné par couche, année et département. Le même code fonctionnerait sur AWS S3 en changeant uniquement l’endpoint.',
     ],
     visual: {
-      src: './IMG/dvf/data-lake-bucket.png',
+      src: './IMG/dvf/data-lake-bucket.webp',
       alt: 'Bucket du data lake avec les dossiers bronze et silver',
-      caption: 'Le bucket du data lake : couche bronze (CSV brut) et couche silver (Parquet).',
+      caption: 'Le bucket du data lake : couche bronze (CSV brut) et couche silver (Parquet), 6 objets pour 3 années.',
     },
   },
   {
@@ -73,9 +73,9 @@ const steps = [
       'Schéma en étoile : fait_ventes (une ligne = la vente d’un logement), dim_commune et dim_date, une dimension de dates complète générée avec generate_series. Une macro garde des noms de schémas propres.',
     ],
     visual: {
-      src: './IMG/dvf/dbt-lineage.png',
+      src: './IMG/dvf/dbt-lineage.webp',
       alt: 'Graphe de lignage dbt de la source jusqu’aux tables gold',
-      caption: 'Graphe de lignage dbt : de la source brute jusqu’au schéma en étoile.',
+      caption: 'Lignage dbt : de la source raw.ventes à la table de faits, puis au test singulier sur les bornes du prix au m².',
     },
   },
   {
@@ -92,9 +92,9 @@ const steps = [
       'Chaque script renvoie un code de sortie en erreur si une partie échoue, pour qu’Airflow marque la tâche en échec au lieu de la croire réussie.',
     ],
     visual: {
-      src: './IMG/dvf/airflow-dag.png',
-      alt: 'DAG Airflow avec les 4 tâches en succès',
-      caption: 'Le DAG Airflow : les 4 tâches exécutées avec succès.',
+      src: './IMG/dvf/airflow-dag.webp',
+      alt: 'DAG Airflow avec les 4 tâches en succès et les journaux de la tâche ingestion',
+      caption: 'Le DAG Airflow : les 4 tâches en succès. Les journaux de l’ingestion montrent l’incrémental : les 3 fichiers déjà présents sont ignorés.',
     },
   },
   {
@@ -192,7 +192,9 @@ function Visual({ src, alt, caption }) {
           <span className="dvf-visual-path">{src.replace('./', '/')}</span>
         </div>
       ) : (
-        <img src={src} alt={alt} loading="lazy" onError={() => setMissing(true)} />
+        <a href={src} target="_blank" rel="noreferrer" title="Ouvrir en taille réelle">
+          <img src={src} alt={alt} loading="lazy" onError={() => setMissing(true)} />
+        </a>
       )}
       <figcaption>{caption}</figcaption>
     </figure>
