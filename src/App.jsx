@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import LogoLoop from './components/LogoLoop';
-import DvfProject from './pages/DvfProject';
+import CaseStudy from './pages/CaseStudy';
+import { caseStudies } from './data/caseStudies';
 import {
   SiReact, SiNextdotjs, SiTailwindcss, SiTrpc, SiAngular, SiTypescript, SiJavascript, SiPhp,
   SiFlutter, SiDart, SiHtml5, SiCss, SiGit,
@@ -54,7 +55,8 @@ const techLogos = [
   { node: <SiJsonwebtokens />, title: 'OAuth / JWT' },
 ];
 
-const DVF_ROUTE = '#/projets/dvf';
+const CASE_PREFIX = '#/projets/';
+const DVF_ROUTE = `${CASE_PREFIX}dvf`;
 
 const projects = [
   {
@@ -77,17 +79,19 @@ const projects = [
   },
   {
     title: 'CinéSearch',
-    desc: 'Application de recherche de films consommant l\'API REST TMDB, avec page de détail et interface en français. SPA React avec hooks personnalisés, recherche avec debounce, routing client-side et requêtes HTTP Axios.',
+    desc: 'Application React pour parcourir les films populaires, chercher un titre pendant la saisie et consulter sa fiche, à partir de l\'API TMDB. Recherche avec debounce de 500 ms, client Axios partagé, une URL par film avec React Router.',
     tech: ['React', 'Vite', 'React Router', 'Axios', 'TMDB API'],
     img: './IMG/CineSearch.png.png',
+    page: '#/projets/cinesearch',
     link: 'https://github.com/SKGE93/cine-search',
     color: '#6c4cff',
   },
   {
     title: 'WeatherDash',
-    desc: 'Dashboard météo temps réel avec navigation multi-vues. Architecture orientée services Angular, Observables RxJS, dependency injection et graphiques interactifs Chart.js. Autocomplétion de villes et prévisions sur 24h.',
-    tech: ['Angular 19', 'TypeScript', 'Chart.js', 'RxJS', 'OpenWeatherMap'],
+    desc: 'Dashboard météo en Angular : météo actuelle d\'une ville et courbe des températures sur 24 h. Service injecté pour les appels à l\'API, état géré avec les signals, graphique Chart.js reconstruit à chaque recherche.',
+    tech: ['Angular 21', 'TypeScript', 'Signals', 'Chart.js', 'OpenWeatherMap'],
     img: './IMG/WeatherDash.png',
+    page: '#/projets/weatherdash',
     link: 'https://github.com/SKGE93/weather-dash',
     color: '#4fc3ff',
   },
@@ -225,7 +229,7 @@ const experiences = [
 
 const skillCats = [
   { title: 'Data Engineering', items: 'Python, SQL, Pandas, Parquet, dbt, Apache Airflow, PostgreSQL, data lake S3 (boto3), schéma en étoile, pytest, GitHub Actions' },
-  { title: 'Front-end', items: 'React 19, Next.js 16, Angular 19, TypeScript, Tailwind CSS, React Hook Form, Zod, Vite, JavaScript' },
+  { title: 'Front-end', items: 'React 19, Next.js 16, Angular, TypeScript, Tailwind CSS, React Hook Form, Zod, Vite, JavaScript' },
   { title: 'Back-end & API', items: 'tRPC, Drizzle ORM, Node.js, FastAPI, Pydantic, SQLAlchemy, Clean Architecture, Better-Auth, REST API, PHP (MVC), Java' },
   { title: 'IA & Data', items: 'OVH AI Endpoints, Mistral, prompt engineering, extraction de documents, validation déterministe, benchmark de modèles' },
   { title: 'Bases de données', items: 'MySQL 8, TiDB Cloud, PostgreSQL, Supabase (RLS, RPC, triggers), migrations SQL, MongoDB, Redis' },
@@ -267,7 +271,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedExp, setExpandedExp] = useState(0);
   const [hash, setHash] = useState(() => window.location.hash);
-  const isDvf = hash.startsWith(DVF_ROUTE);
+  const study = hash.startsWith(CASE_PREFIX) ? caseStudies[hash.slice(CASE_PREFIX.length)] : null;
 
   useEffect(() => {
     const onHash = () => setHash(window.location.hash);
@@ -277,9 +281,9 @@ export default function App() {
 
   // Anchors don't exist while the project page is shown, so scroll once the home sections are back.
   useEffect(() => {
-    if (isDvf || hash.length < 2) return;
+    if (study || hash.length < 2) return;
     document.getElementById(hash.slice(1))?.scrollIntoView();
-  }, [isDvf, hash]);
+  }, [study, hash]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -307,7 +311,7 @@ export default function App() {
         </div>
       </header>
 
-      {isDvf ? <DvfProject /> : (<>
+      {study ? <CaseStudy key={study.slug} study={study} /> : (<>
       {/* Hero */}
       <section id="hero" className="hero">
         <div className="blob blob-a" />

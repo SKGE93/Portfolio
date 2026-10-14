@@ -88,12 +88,12 @@ Développeur full stack (Python, TypeScript, SQL) orienté data et IA. J'aime co
    - Backend Supabase / PostgreSQL : Row-Level Security, fonctions RPC, triggers, migrations SQL versionnées, CI GitHub Actions, tests
    - Tech : PostgreSQL, Supabase, SQL, Flutter, GitHub Actions
 
-1. **CinéSearch** — Application de recherche de films (API REST TMDB), page de détail, interface française. SPA React avec hooks personnalisés, recherche avec debounce, routing client-side via React Router, requêtes HTTP Axios. Affichage films populaires, synopsis, note, date de sortie.
+1. **CinéSearch** — Application de recherche de films (API REST TMDB), page de détail, interface française. SPA React, recherche avec debounce de 500 ms, routing client-side via React Router, requêtes HTTP Axios. Affichage films populaires, synopsis, note, date de sortie.
    - Tech : React, Vite, React Router, Axios, TMDB API, Hooks
    - github.com/SKGE93/cine-search
 
 2. **WeatherDash** — Dashboard météo temps réel, navigation multi-vues. Architecture orientée services Angular, Observables RxJS, dependency injection, lifecycle hooks, graphiques Chart.js. Autocomplétion de villes, prévisions 24h.
-   - Tech : Angular 19, TypeScript, Chart.js, RxJS, OpenWeatherMap API
+   - Tech : Angular 21, TypeScript, Signals, Chart.js, RxJS, OpenWeatherMap API
    - github.com/SKGE93/weather-dash
 
 3. **OtakuGo** — Application mobile cross-platform de recommandation de contenus selon préférences utilisateur. Sélection de genres, moteur de recommandation, fiches détaillées (synopsis, note, épisodes), persistance JSON locale. Réalisé en équipe de 5.
@@ -158,7 +158,7 @@ Pandas, PyArrow, Parquet, dbt, Apache Airflow, data lake S3 (boto3), architectur
 LLM multimodaux, extraction et structuration de données, validation automatique des sorties, assistants IA en IDE, prompt engineering
 
 ### Front-end
-React 19, Next.js, Angular 19, TypeScript, JavaScript, HTML5, CSS, Vite, Chart.js, React Router, Axios, Figma (maquettage UI/UX)
+React 19, Next.js, Angular, TypeScript, JavaScript, HTML5, CSS, Vite, Chart.js, React Router, Axios, Figma (maquettage UI/UX)
 
 ### Back-end & API
 Python, FastAPI, Pydantic, SQLAlchemy et Drizzle (ORM), Node.js, tRPC, REST API, architecture en couches, Clean Architecture, PHP (MVC), Java, WebSocket (Ratchet), Google Apps Script, OAuth/JWT
