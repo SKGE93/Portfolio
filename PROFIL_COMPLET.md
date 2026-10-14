@@ -1,22 +1,33 @@
 # Profil complet — Séraphin Eyala
 
 ## Identité
-- Étudiant en 3ème année de BUT Informatique à l'IUT de Villetaneuse (USPN), Île-de-France
+- Séraphin Eyala, 21 ans, Île-de-France
+- Titulaire d'un BUT Informatique (développement d'applications, IUT de Villetaneuse — USPN)
+- En MSc Data Engineering & Cloud Computing à aivancity (2026 — 2028, rentrée en novembre 2026)
+- Recherche : alternance en Data Engineering
+- Orientation : Développeur Full-Stack (Python, TypeScript, SQL) orienté data et IA
 - Email : eyalas472@gmail.com
 - GitHub : github.com/SKGE93
 - LinkedIn : linkedin.com/in/seraphin-eyala
-- Objectif : intégrer le MSc Data Engineering à Aivancity (école spécialisée IA et data)
-- Orientation : Développeur Full-Stack — Data & IA
-- Actuellement à la recherche d'un stage de 6 semaines à 2 mois (disponible juin 2026)
+- Portfolio : https://skge93.github.io/Portfolio/
 
 ## Qui suis-je
-Intérêt précoce pour l'informatique, j'ai décidé d'en faire mon métier. Mon parcours académique m'a permis d'acquérir des compétences solides en développement web, programmation et gestion de bases de données. Intérêt particulier pour le développement web et mobile, avec une orientation actuelle vers la data et l'IA (veille active sur Hacker News, Reddit, Dev.to autour de l'IA générative et des LLMs).
+Développeur full stack (Python, TypeScript, SQL) orienté data et IA. J'aime construire des solutions de bout en bout, appliquer des standards de qualité (tests, code review) et intégrer les outils d'IA dans ma pratique. Veille active sur Hacker News, Reddit et Dev.to (écosystème data, IA générative, LLMs).
 
 ---
 
 ## Parcours / Timeline
 
-- **Mars — Juin 2026 : Stagiaire IT — IFFP** (Institut Français de Formation Professionnelle, Nanterre)
+- **Novembre 2026 — 2028 : MSc Data Engineering & Cloud Computing — aivancity** (La Grande École de l'Intelligence Artificielle et de la Data, Île-de-France)
+
+- **Juin — Août 2026 : Stage Développeur Full Stack — Twini** (marketplace B2B de valorisation des déchets industriels, Station F, Paris)
+  - Pipeline d'extraction et de structuration de données documentaires par LLM : 3 schémas métier dont un registre réglementaire à 23 champs, 6 contrôles automatiques dont 2 contre des référentiels officiels, architecture à fournisseur LLM interchangeable
+  - Développement de fonctionnalités sur la marketplace en production : front React / Next.js, back TypeScript, base MySQL
+  - Gestion des environnements test / pré-prod / prod, code review, versionning Git avec branches, PR et rebase
+
+- **Mars — Mai 2026 : Stage IT — IFFP** (Institut Français de Formation Professionnelle, Nanterre)
+  - Synthèse CV : automatisation de flux de traitement via Google Apps Script (scripts liés à Google Sheets pour le reporting et la réduction des tâches manuelles) ; optimisation de solutions web sous WordPress et Elementor ; administration Google Workspace
+  - Détail des projets :
   - KioskSign — Borne d'accueil interactive (Apps Script + HTML/CSS), informations dynamiques via Google Sheets
   - Signatures Gmail — Script clasp/Apps Script de déploiement automatique de signatures HTML personnalisées pour tout le domaine Google Workspace
   - Workspace Cleaner — Outil Apps Script de nettoyage automatique des fichiers orphelins et doublons dans Google Drive partagé
@@ -27,7 +38,7 @@ Intérêt précoce pour l'informatique, j'ai décidé d'en faire mon métier. Mo
   - Refonte WordPress — Conception/optimisation du site vitrine sous WordPress / Elementor
   - Rédaction de documentation technique complète pour chaque projet
 
-- **2023 — 2026 : BUT Informatique — IUT de Villetaneuse** (Développement d'applications — USPN)
+- **2023 — 2026 : BUT Informatique (diplômé) — IUT de Villetaneuse** (Développement d'applications — USPN)
   - Développement full-stack : React, Angular, PHP, Java
   - Bases de données : PostgreSQL, MongoDB, Redis
   - Algorithmique, structures de données, tests unitaires
@@ -62,6 +73,21 @@ Intérêt précoce pour l'informatique, j'ai décidé d'en faire mon métier. Mo
 
 ## Projets réalisés
 
+0a. **Pipeline ELT — Données immobilières DVF** (projet personnel, octobre 2026, autoformation, exécuté en local avec Docker, non déployé sur le cloud)
+   - Problème : les données DVF de l'État sont brutes (vente sur plusieurs lignes, prix répété, appartements/caves/parkings mélangés, surfaces absurdes) → impossible d'obtenir directement le prix médian au m² par commune
+   - Architecture : data.gouv.fr → ingestion Python → data lake bronze (CSV) → transformation Pandas → silver (Parquet) → PostgreSQL schéma raw → dbt staging (vues) → gold (schéma en étoile : fait_ventes, dim_commune, dim_date). Orchestré par Airflow 3 (DAG mensuel de 4 tâches), Docker Compose (3 services), CI GitHub Actions
+   - Points clés : ingestion incrémentale en streaming ; stockage S3-compatible (Silo, fork de MinIO) via boto3 ; chargement idempotent (delete + insert par fichier en transaction) ; 16 tests dbt + 10 tests pytest ; Ruff ; environnement Python isolé dans l'image Airflow
+   - Défis résolus : arrêt des images MinIO, localhost dans un conteneur, scripts en échec silencieux (codes de sortie), modèles dbt dans le mauvais schéma, dédoublonnage par parcelle
+   - Résultat : pipeline complet en ~1 min 20 ; ex. prix médian au m² 2024 en Seine-Saint-Denis : Les Lilas 6 682 €, Saint-Ouen 6 279 €, Pré-Saint-Gervais 6 166 €, Montreuil 5 870 €, Pantin 5 800 €
+   - Périmètre : 1 département, 3 années, extensible par configuration
+   - Tech : Python, SQL, Pandas, PyArrow, Parquet, Requests, boto3, Silo, PostgreSQL 16, SQLAlchemy, psycopg, dbt, Airflow 3, Docker, pytest, Ruff, GitHub Actions
+   - github.com/SKGE93/dvf-pipeline — page détaillée : https://skge93.github.io/Portfolio/#/projets/dvf
+
+0b. **Application communautaire d'animés** (projet perso, en équipe, 2026)
+   - Conception du backend de données : modèle relationnel, sécurisation des accès, circulation de la donnée entre profils, publications et abonnements
+   - Backend Supabase / PostgreSQL : Row-Level Security, fonctions RPC, triggers, migrations SQL versionnées, CI GitHub Actions, tests
+   - Tech : PostgreSQL, Supabase, SQL, Flutter, GitHub Actions
+
 1. **CinéSearch** — Application de recherche de films (API REST TMDB), page de détail, interface française. SPA React avec hooks personnalisés, recherche avec debounce, routing client-side via React Router, requêtes HTTP Axios. Affichage films populaires, synopsis, note, date de sortie.
    - Tech : React, Vite, React Router, Axios, TMDB API, Hooks
    - github.com/SKGE93/cine-search
@@ -89,8 +115,8 @@ Intérêt précoce pour l'informatique, j'ai décidé d'en faire mon métier. Mo
 7. **Shapes — Dessin Java (formes géométriques)** — Application graphique Java pour dessiner formes géométriques (maisons, montagnes, paysages). Modélisation UML des classes de formes, composition de scènes complexes, gestion d'exceptions try-catch. Premier contact avec bibliothèques externes et POO.
    - Tech : Java, UML, OOP, Bibliothèque graphique, Exceptions (try-catch)
 
-8. **Gestion Utilisateurs — FastAPI** (récent, projet d'école) — Backend de gestion d'utilisateurs, architecture en couches (routers, services, modèles). ORM SQLAlchemy pour mapper modèles Python sur base SQL, gestion de sessions et requêtes sans SQL brut. Pratique du TDD (tests avant le code). Séparation des responsabilités, nommage clair, évitement de duplication, documentation du code.
-   - Tech : Python, FastAPI, SQLAlchemy, TDD, REST API, OAuth/JWT
+8. **API REST FastAPI** (TP BUT 3, 2026) — API de gestion d'utilisateurs en Python, structurée en couches : expose les données via des endpoints REST et les persiste en base par un ORM. Clean Architecture, mapping modèles / SQL avec SQLAlchemy, validation Pydantic, injection de dépendances, endpoints CRUD. Pratique du TDD.
+   - Tech : Python, FastAPI, SQLAlchemy, Pydantic, SQL
 
 ---
 
@@ -122,21 +148,30 @@ Intérêt précoce pour l'informatique, j'ai décidé d'en faire mon métier. Mo
 
 ## Compétences techniques
 
+### Langages
+Python, SQL, TypeScript, JavaScript, Java, Bash (aussi PHP, Dart)
+
+### Data Engineering
+Pandas, PyArrow, Parquet, dbt, Apache Airflow, data lake S3 (boto3), architecture médaillon, modélisation dimensionnelle (schéma en étoile), tests de données, idempotence
+
+### IA
+LLM multimodaux, extraction et structuration de données, validation automatique des sorties, assistants IA en IDE, prompt engineering
+
 ### Front-end
-React, Angular 19, TypeScript, JavaScript, HTML5, CSS, Vite, Chart.js, React Router, Axios, Figma (maquettage UI/UX)
+React 19, Next.js, Angular 19, TypeScript, JavaScript, HTML5, CSS, Vite, Chart.js, React Router, Axios, Figma (maquettage UI/UX)
 
 ### Back-end & API
-Python, FastAPI, SQLAlchemy (ORM), PHP (MVC), Java, Node.js, REST API, WebSocket (Ratchet), Google Apps Script, OAuth/JWT
+Python, FastAPI, Pydantic, SQLAlchemy et Drizzle (ORM), Node.js, tRPC, REST API, architecture en couches, Clean Architecture, PHP (MVC), Java, WebSocket (Ratchet), Google Apps Script, OAuth/JWT
 - Pratiques de qualité de code : séparation des responsabilités, nommage clair, évitement de duplication, documentation, TDD (tests avant code)
 
 ### Bases de données
-PostgreSQL, MySQL/MariaDB, MongoDB, Redis, CockroachDB, Supabase, SQL, modélisation relationnelle (normalisation jusqu'à BCNF), conception et optimisation de requêtes
+PostgreSQL, MySQL/MariaDB, MongoDB, Redis, CockroachDB, Supabase (RLS, RPC, triggers, migrations versionnées), SQL, modélisation relationnelle (normalisation jusqu'à BCNF), conception et optimisation de requêtes
 
 ### Mobile
 Flutter, Dart, JSON, applications cross-platform
 
 ### Outils & DevOps
-Git, GitHub, Docker, Linux (ligne de commande, déploiement Unix), GCP, Google Workspace (admin), clasp, LaTeX, VS Code, IntelliJ, WordPress / Elementor, Marionnet (simulation réseau, VLAN)
+Git, GitHub, GitLab, GitHub Actions (CI/CD), Docker, Docker Compose, Linux (ligne de commande, déploiement Unix), GCP, cloud (en formation à aivancity), Google Workspace (admin), clasp, LaTeX, VS Code, IntelliJ, WordPress / Elementor, Marionnet (simulation réseau, VLAN)
 
 ### Méthodes & autres
 Agile/Scrum, Jira, diagramme de Gantt, TDD, No-code (Airtable, Zapier), réseaux (segmentation VLAN, sécurité)
@@ -144,6 +179,7 @@ Agile/Scrum, Jira, diagramme de Gantt, TDD, No-code (Airtable, Zapier), réseaux
 ---
 
 ## Soft skills
+- Formulation CV : esprit analytique, rigueur, autonomie, bon relationnel, dialogue métier / technique
 - **Créativité** — apportée dans la conception d'interfaces et l'imagination de contenus, projets techniques et artistiques
 - **Ambition** — recherche constante d'évolution et de nouvelles compétences
 - **Esprit d'équipe** — intégration facile, valorisation de la coopération

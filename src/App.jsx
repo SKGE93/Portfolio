@@ -12,7 +12,8 @@ import {
   SiDocker, SiLinux, SiNodedotjs, SiWordpress,
   SiGoogleappsscript, SiAirtable, SiVite, SiCockroachlabs,
   SiPython, SiFastapi, SiGooglecloud, SiLatex, SiJsonwebtokens,
-  SiApacheairflow, SiDbt, SiPandas, SiApacheparquet, SiGithubactions
+  SiApacheairflow, SiDbt, SiPandas, SiApacheparquet, SiGithubactions,
+  SiNextdotjs, SiMysql, SiTrpc, SiGitlab
 } from 'react-icons/si';
 import { FaJava, FaCertificate } from 'react-icons/fa';
 import './App.css';
@@ -47,6 +48,10 @@ const techLogos = [
   { node: <SiApacheairflow />, title: 'Airflow' },
   { node: <SiApacheparquet />, title: 'Parquet' },
   { node: <SiGithubactions />, title: 'GitHub Actions' },
+  { node: <SiNextdotjs />, title: 'Next.js' },
+  { node: <SiMysql />, title: 'MySQL' },
+  { node: <SiTrpc />, title: 'tRPC' },
+  { node: <SiGitlab />, title: 'GitLab' },
   { node: <SiFastapi />, title: 'FastAPI' },
   { node: <SiGooglecloud />, title: 'GCP' },
   { node: <SiLatex />, title: 'LaTeX' },
@@ -106,9 +111,17 @@ const projects = [
     color: '#3ad6e8'
   },
   {
-    title: 'Gestion Utilisateurs — FastAPI',
-    desc: 'Backend de gestion d\'utilisateurs avec architecture en couches (routers, services, modèles). ORM SQLAlchemy pour mapper des modèles Python sur une base SQL, gestion de sessions et requêtes propres sans SQL brut. Pratique du TDD — écriture des tests avant le code, séparation des responsabilités, nommage clair et documentation.',
-    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'TDD', 'REST API'],
+    title: 'Application communautaire d\'animés',
+    desc: 'Application sociale réalisée en équipe, dont j\'ai conçu le backend de données : modèle relationnel, sécurisation des accès et circulation de la donnée entre profils, publications et abonnements. Backend Supabase / PostgreSQL avec Row-Level Security, fonctions RPC, triggers, migrations SQL versionnées et CI GitHub Actions.',
+    tech: ['PostgreSQL', 'Supabase', 'SQL', 'RLS', 'Flutter', 'GitHub Actions'],
+    banner: ['profils', 'publications', 'abonnements'],
+    link: null,
+    color: '#b46cf0'
+  },
+  {
+    title: 'API REST — FastAPI',
+    desc: 'API de gestion d\'utilisateurs en Python (TP BUT 3), structurée en couches : elle expose les données via des endpoints REST et les persiste en base avec un ORM. Clean Architecture, mapping modèles / SQL avec SQLAlchemy, validation Pydantic, injection de dépendances, endpoints CRUD.',
+    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'Pydantic', 'SQL'],
     img: './IMG/fastapi.png',
     link: null,
     color: '#2ee878'
@@ -125,27 +138,31 @@ const projects = [
 
 const experiences = [
   {
-    date: '2026 — aujourd\'hui',
+    date: 'Nov. 2026 — 2028',
     title: 'MSc Data Engineering & Cloud Computing — aivancity',
-    desc: 'École spécialisée en intelligence artificielle et data',
+    desc: 'La Grande École de l\'Intelligence Artificielle et de la Data — Île-de-France',
     current: true,
     details: [
+      'Rentrée en novembre 2026',
       'Spécialisation Data Engineering et Cloud Computing',
       'En recherche d\'alternance en Data Engineering'
     ]
   },
   {
-    date: '2026',
-    title: 'Développeur Full-Stack (stage) — Twini',
-    desc: 'Extraction de données de documents par IA',
+    date: 'Juin — Août 2026',
+    title: 'Stage Développeur Full-Stack — Twini',
+    desc: 'Marketplace B2B de valorisation des déchets industriels — Station F, Paris',
     details: [
-      'Extraction de données à partir de documents avec des LLM multimodaux',
-      'Validation déterministe des données extraites par le modèle'
+      'Pipeline d\'extraction et de structuration de données documentaires par LLM multimodaux : 3 schémas métier, dont un registre réglementaire à 23 champs',
+      '6 contrôles automatiques de validation, dont 2 contre des référentiels officiels',
+      'Architecture à fournisseur LLM interchangeable',
+      'Fonctionnalités de la marketplace en production : front React / Next.js, back TypeScript, base MySQL',
+      'Environnements test / pré-prod / prod, code review, Git (branches, PR, rebase)'
     ]
   },
   {
-    date: 'Mars — Juin 2026',
-    title: 'Développeur (stage) — IFFP',
+    date: 'Mars — Mai 2026',
+    title: 'Stage IT — IFFP',
     desc: 'Institut Français de Formation Professionnelle — Nanterre',
     details: [
       'KioskSign — Borne d\'accueil interactive développée en Apps Script + HTML/CSS, affichant des informations dynamiques via Google Sheets',
@@ -303,10 +320,11 @@ export default function App() {
                 <strong> alternance en Data Engineering</strong>.
               </p>
               <p style={{ marginTop: 16 }}>
-                Deux stages en 2026. À l'<strong>IFFP</strong>, j'ai automatisé des processus
-                internes en Google Apps Script, utilisés en production. Chez
-                <strong> Twini</strong>, j'ai travaillé sur l'extraction de données de documents
-                par des LLM multimodaux, avec une validation déterministe des résultats.
+                Deux stages en 2026. À l'<strong>IFFP</strong>, j'ai automatisé des flux de
+                traitement en Google Apps Script. Chez <strong>Twini</strong> (Station F), j'ai
+                construit un pipeline d'extraction de données documentaires par LLM, avec
+                6 contrôles automatiques de validation, et développé des fonctionnalités de
+                la marketplace en production.
               </p>
               <p style={{ marginTop: 16 }}>
                 En dehors de la formation, j'apprends en construisant : mon dernier projet est
@@ -317,7 +335,7 @@ export default function App() {
             </div>
             <div className="about-stats">
               <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">8</span>
+                <span className="stat-num">9</span>
                 <span className="stat-label">Projets réalisés</span>
               </div>
               <div className="stat-card glass-card cursor-target">
@@ -358,11 +376,12 @@ export default function App() {
           <div className="skills-grid">
             {[
               { title: 'Data Engineering', items: 'Python, SQL, Pandas, Parquet, dbt, Apache Airflow, PostgreSQL, data lake S3 (boto3), modélisation en étoile, pytest, GitHub Actions' },
-              { title: 'Front-end', items: 'React, Angular 19, TypeScript, JavaScript, HTML/CSS, Vite, Chart.js, React Router, Axios' },
-              { title: 'Back-end & API', items: 'Python, FastAPI, SQLAlchemy, PHP (MVC), Java, Node.js, REST API, WebSocket, OAuth/JWT' },
-              { title: 'Bases de données', items: 'PostgreSQL, MongoDB, Redis, CockroachDB, Supabase, SQL, ORM' },
+              { title: 'IA', items: 'LLM multimodaux, extraction et structuration de données, validation automatique des sorties, assistants IA en IDE, prompt engineering' },
+              { title: 'Front-end', items: 'React, Next.js, Angular 19, TypeScript, JavaScript, HTML/CSS, Vite, Chart.js' },
+              { title: 'Back-end & API', items: 'Python, FastAPI, Pydantic, SQLAlchemy, Drizzle, TypeScript, Node.js, tRPC, REST API, Clean Architecture, Java, PHP' },
+              { title: 'Bases de données', items: 'PostgreSQL, MySQL, MongoDB, Redis, Supabase (RLS, RPC, triggers), migrations SQL, modélisation' },
               { title: 'Mobile', items: 'Flutter, Dart, JSON, applications cross-platform' },
-              { title: 'Outils & DevOps', items: 'Git, GitHub, Docker, Linux, GCP, Google Workspace, clasp, LaTeX, VS Code, IntelliJ' },
+              { title: 'Outils & DevOps', items: 'Git, GitHub, GitLab, GitHub Actions, Docker, Linux, Bash, GCP, Google Workspace, clasp, LaTeX' },
               { title: 'Méthodes & Autres', items: 'Agile / Scrum, TDD, Apps Script, WordPress / Elementor, Airtable, Zapier' },
             ].map(cat => (
               <div key={cat.title} className="glass-card skill-cat cursor-target">
