@@ -1,0 +1,34 @@
+<svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" font-family="'Space Grotesk','Inter',sans-serif">
+  <rect width="640" height="400" fill="#16131f"/>
+  <text x="48" y="70" font-size="13" fill="#8b849c" letter-spacing="2">DVF · DATA.GOUV.FR → POSTGRESQL</text>
+  <!-- Medallion layers -->
+  <g font-weight="600" font-size="16" text-anchor="middle">
+    <rect x="48" y="104" width="148" height="92" rx="12" fill="#2a2233" stroke="#d99a5b" stroke-width="2"/>
+    <text x="122" y="146" fill="#d99a5b">bronze</text>
+    <text x="122" y="170" font-size="12" font-weight="400" fill="#8b849c">CSV brut</text>
+
+    <path d="M206 150 h34" stroke="#6c4cff" stroke-width="3"/>
+    <path d="M246 150 l-12 -7 v14 z" fill="#6c4cff"/>
+
+    <rect x="250" y="104" width="148" height="92" rx="12" fill="#23232b" stroke="#c9d3dc" stroke-width="2"/>
+    <text x="324" y="146" fill="#c9d3dc">silver</text>
+    <text x="324" y="170" font-size="12" font-weight="400" fill="#8b849c">Parquet</text>
+
+    <path d="M408 150 h34" stroke="#6c4cff" stroke-width="3"/>
+    <path d="M448 150 l-12 -7 v14 z" fill="#6c4cff"/>
+
+    <rect x="452" y="104" width="140" height="92" rx="12" fill="#2b2618" stroke="#e6c35a" stroke-width="2"/>
+    <text x="522" y="146" fill="#e6c35a">gold</text>
+    <text x="522" y="170" font-size="12" font-weight="400" fill="#8b849c">schéma en étoile</text>
+  </g>
+  <!-- Orchestration bar -->
+  <rect x="48" y="226" width="544" height="40" rx="20" fill="#6c4cff"/>
+  <text x="320" y="252" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Airflow · 4 tâches · mensuel</text>
+  <!-- Result -->
+  <g font-family="'SF Mono','Menlo','Consolas',monospace" font-size="14">
+    <text x="48" y="312" fill="#8b849c">prix médian / m² · 2024 · 93</text>
+    <text x="48" y="342"><tspan fill="#e6edf3">Les Lilas    </tspan><tspan fill="#34e0b0">6 682 €</tspan></text>
+    <text x="330" y="342"><tspan fill="#e6edf3">Montreuil    </tspan><tspan fill="#34e0b0">5 870 €</tspan></text>
+    <text x="48" y="366"><tspan fill="#34e0b0">✓</tspan><tspan fill="#8b849c"> 16 tests dbt · 10 tests pytest</tspan></text>
+  </g>
+</svg>

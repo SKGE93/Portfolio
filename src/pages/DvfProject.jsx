@@ -202,7 +202,7 @@ function Visual({ src, alt, caption }) {
 function SectionHead({ label, title }) {
   return (
     <>
-      <p className="section-label">{label}</p>
+      <p className="eyebrow">{label}</p>
       <h2 className="dvf-h2">{title}</h2>
     </>
   );
@@ -219,10 +219,10 @@ export default function DvfProject() {
   return (
     <main className="dvf-page">
       <div className="container dvf-container">
-        <a href="#projects" className="dvf-back cursor-target">&lt; retour aux projets</a>
+        <a href="#projects" className="dvf-back">← Retour aux projets</a>
 
         <header className="dvf-header">
-          <p className="section-label">cat projects/dvf-pipeline.md</p>
+          <p className="eyebrow">Étude de cas · Data Engineering</p>
           <h1 className="dvf-title">Pipeline ELT — Données immobilières DVF</h1>
           <p className="dvf-hook">
             Transformer les ventes immobilières brutes publiées par l’État en prix au m² fiables,
@@ -235,15 +235,15 @@ export default function DvfProject() {
             <li>Exécuté en local avec Docker</li>
           </ul>
           <div className="dvf-cta">
-            <a href={REPO} target="_blank" rel="noreferrer" className="btn btn-primary cursor-target">&gt; voir_code()</a>
+            <a href={REPO} target="_blank" rel="noreferrer" className="btn btn-primary">Voir le code</a>
           </div>
         </header>
 
         <section className="dvf-section">
-          <SectionHead label="tl;dr" title="En bref" />
+          <SectionHead label="01 · En bref" title="L’essentiel en 30 secondes" />
           <div className="dvf-facts">
             {keyFacts.map(f => (
-              <div key={f.label} className="glass-card dvf-fact">
+              <div key={f.label} className="dvf-card dvf-fact">
                 <span className="dvf-fact-num">{f.num}</span>
                 <span className="dvf-fact-label">{f.label}</span>
               </div>
@@ -252,7 +252,7 @@ export default function DvfProject() {
         </section>
 
         <section className="dvf-section">
-          <SectionHead label="problem" title="Le problème" />
+          <SectionHead label="02 · Contexte" title="Le problème" />
           <div className="dvf-prose">
             <p>
               Les données DVF (Demandes de Valeurs Foncières) recensent les ventes immobilières en France.
@@ -274,7 +274,7 @@ export default function DvfProject() {
         </section>
 
         <section className="dvf-section">
-          <SectionHead label="architecture" title="La solution en un schéma" />
+          <SectionHead label="03 · Architecture" title="La solution en un schéma" />
           <ol className="dvf-flow" aria-label="Flux de données du pipeline">
             {flow.map(n => (
               <li key={n.name} className={`dvf-node dvf-node--${n.tone}`}>
@@ -290,7 +290,7 @@ export default function DvfProject() {
         </section>
 
         <section className="dvf-section">
-          <SectionHead label="stack" title="Stack" />
+          <SectionHead label="04 · Stack" title="Outils utilisés" />
           <div className="dvf-stack">
             {stack.map(s => (
               <div key={s.cat} className="dvf-stack-row">
@@ -304,7 +304,7 @@ export default function DvfProject() {
         </section>
 
         <section className="dvf-section">
-          <SectionHead label="steps" title="Étapes clés" />
+          <SectionHead label="05 · Étapes" title="Étapes clés" />
           <ol className="dvf-steps">
             {steps.map((s, i) => (
               <li key={s.title} className="dvf-step">
@@ -320,10 +320,10 @@ export default function DvfProject() {
         </section>
 
         <section className="dvf-section">
-          <SectionHead label="debug.log" title="Défis résolus" />
+          <SectionHead label="06 · Défis" title="Défis résolus" />
           <div className="dvf-challenges">
             {challenges.map(c => (
-              <div key={c.problem} className="glass-card dvf-challenge">
+              <div key={c.problem} className="dvf-card dvf-challenge">
                 <p className="dvf-challenge-problem"><span>problème</span>{c.problem}</p>
                 <p className="dvf-challenge-solution"><span>solution</span>{c.solution}</p>
               </div>
@@ -332,7 +332,7 @@ export default function DvfProject() {
         </section>
 
         <section className="dvf-section">
-          <SectionHead label="output" title="Résultat" />
+          <SectionHead label="07 · Résultat" title="Ce que ça donne" />
           <div className="dvf-prose">
             <p>
               Le pipeline complet s’exécute en <strong>environ 1 min 20</strong>, entièrement vert dans Airflow.
@@ -362,10 +362,10 @@ export default function DvfProject() {
         </section>
 
         <section className="dvf-section">
-          <SectionHead label="learnings" title="Ce que j’ai appris" />
+          <SectionHead label="08 · Apprentissages" title="Ce que j’ai appris" />
           <div className="dvf-learnings">
             {learnings.map(l => (
-              <div key={l.concept} className="glass-card dvf-learning">
+              <div key={l.concept} className="dvf-card dvf-learning">
                 <h3>{l.concept}</h3>
                 <p>{l.text}</p>
               </div>
@@ -374,7 +374,7 @@ export default function DvfProject() {
         </section>
 
         <section className="dvf-section">
-          <SectionHead label="todo" title="Limites et suite" />
+          <SectionHead label="09 · Limites" title="Limites et suite" />
           <div className="dvf-two-col">
             <div>
               <h3 className="dvf-h3">Limites connues</h3>
@@ -396,10 +396,10 @@ export default function DvfProject() {
         </section>
 
         <section className="dvf-section dvf-links">
-          <SectionHead label="links" title="Liens" />
+          <SectionHead label="10 · Liens" title="Aller plus loin" />
           <div className="dvf-cta">
-            <a href={REPO} target="_blank" rel="noreferrer" className="btn btn-primary cursor-target">&gt; code_source()</a>
-            <a href="#projects" className="btn btn-cyan cursor-target">&gt; autres_projets()</a>
+            <a href={REPO} target="_blank" rel="noreferrer" className="btn btn-primary">Code source sur GitHub</a>
+            <a href="#projects" className="btn btn-ghost">Autres projets</a>
           </div>
         </section>
       </div>

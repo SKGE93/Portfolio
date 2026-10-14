@@ -1,0 +1,35 @@
+<svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" font-family="'Space Grotesk','Inter',sans-serif">
+  <rect width="640" height="400" fill="#16131f"/>
+  <!-- Document source -->
+  <g>
+    <rect x="48" y="96" width="180" height="220" rx="12" fill="#fbf7f0"/>
+    <rect x="48" y="96" width="180" height="34" rx="12" fill="#ff5d57"/>
+    <rect x="48" y="118" width="180" height="12" fill="#ff5d57"/>
+    <text x="66" y="119" font-size="14" font-weight="600" fill="#fff">facture.pdf</text>
+    <rect x="70" y="156" width="120" height="9" rx="4" fill="#d9d2c6"/>
+    <rect x="70" y="176" width="136" height="9" rx="4" fill="#d9d2c6"/>
+    <rect x="70" y="196" width="90" height="9" rx="4" fill="#d9d2c6"/>
+    <rect x="70" y="232" width="136" height="9" rx="4" fill="#d9d2c6"/>
+    <rect x="70" y="252" width="110" height="9" rx="4" fill="#d9d2c6"/>
+    <rect x="70" y="284" width="70" height="9" rx="4" fill="#6c4cff"/>
+  </g>
+  <!-- Arrow + LLM -->
+  <g>
+    <line x1="248" y1="206" x2="372" y2="206" stroke="#6c4cff" stroke-width="3"/>
+    <path d="M372 206 l-14 -8 v16 z" fill="#6c4cff"/>
+    <rect x="272" y="176" width="76" height="30" rx="15" fill="#6c4cff"/>
+    <text x="310" y="196" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">LLM</text>
+    <text x="310" y="232" font-size="12" fill="#8b849c" text-anchor="middle">extraction</text>
+  </g>
+  <!-- JSON output -->
+  <g font-family="'SF Mono','Menlo','Consolas',monospace" font-size="15">
+    <rect x="392" y="96" width="200" height="220" rx="12" fill="#0d0b14" stroke="rgba(255,255,255,0.1)"/>
+    <text x="410" y="132" fill="#e6edf3">{</text>
+    <text x="426" y="158"><tspan fill="#b46cf0">"siret"</tspan><tspan fill="#e6edf3">: </tspan><tspan fill="#34e0b0">"552…"</tspan></text>
+    <text x="426" y="184"><tspan fill="#b46cf0">"montant"</tspan><tspan fill="#e6edf3">: </tspan><tspan fill="#4fc3ff">1240</tspan></text>
+    <text x="426" y="210"><tspan fill="#b46cf0">"tva"</tspan><tspan fill="#e6edf3">: </tspan><tspan fill="#4fc3ff">248</tspan></text>
+    <text x="426" y="236"><tspan fill="#b46cf0">"lignes"</tspan><tspan fill="#e6edf3">: [ … ]</tspan></text>
+    <text x="410" y="262" fill="#e6edf3">}</text>
+    <text x="426" y="296"><tspan fill="#34e0b0">✓</tspan><tspan fill="#8b849c"> validé (SIRET, TVA)</tspan></text>
+  </g>
+</svg>
