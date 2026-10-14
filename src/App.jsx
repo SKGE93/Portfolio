@@ -11,7 +11,8 @@ import {
   SiPostgresql, SiMongodb, SiRedis, SiSupabase,
   SiDocker, SiLinux, SiNodedotjs, SiWordpress,
   SiGoogleappsscript, SiAirtable, SiVite, SiCockroachlabs,
-  SiPython, SiFastapi, SiGooglecloud, SiLatex, SiJsonwebtokens
+  SiPython, SiFastapi, SiGooglecloud, SiLatex, SiJsonwebtokens,
+  SiApacheairflow, SiDbt, SiPandas, SiApacheparquet, SiGithubactions
 } from 'react-icons/si';
 import { FaJava, FaCertificate } from 'react-icons/fa';
 import './App.css';
@@ -41,6 +42,11 @@ const techLogos = [
   { node: <SiGoogleappsscript />, title: 'Apps Script' },
   { node: <SiAirtable />, title: 'Airtable' },
   { node: <SiPython />, title: 'Python' },
+  { node: <SiPandas />, title: 'Pandas' },
+  { node: <SiDbt />, title: 'dbt' },
+  { node: <SiApacheairflow />, title: 'Airflow' },
+  { node: <SiApacheparquet />, title: 'Parquet' },
+  { node: <SiGithubactions />, title: 'GitHub Actions' },
   { node: <SiFastapi />, title: 'FastAPI' },
   { node: <SiGooglecloud />, title: 'GCP' },
   { node: <SiLatex />, title: 'LaTeX' },
@@ -119,8 +125,27 @@ const projects = [
 
 const experiences = [
   {
+    date: '2026 — aujourd\'hui',
+    title: 'MSc Data Engineering & Cloud Computing — aivancity',
+    desc: 'École spécialisée en intelligence artificielle et data',
+    current: true,
+    details: [
+      'Spécialisation Data Engineering et Cloud Computing',
+      'En recherche d\'alternance en Data Engineering'
+    ]
+  },
+  {
+    date: '2026',
+    title: 'Développeur Full-Stack (stage) — Twini',
+    desc: 'Extraction de données de documents par IA',
+    details: [
+      'Extraction de données à partir de documents avec des LLM multimodaux',
+      'Validation déterministe des données extraites par le modèle'
+    ]
+  },
+  {
     date: 'Mars — Juin 2026',
-    title: 'Stagiaire IT — IFFP',
+    title: 'Développeur (stage) — IFFP',
     desc: 'Institut Français de Formation Professionnelle — Nanterre',
     details: [
       'KioskSign — Borne d\'accueil interactive développée en Apps Script + HTML/CSS, affichant des informations dynamiques via Google Sheets',
@@ -136,8 +161,8 @@ const experiences = [
   },
   {
     date: '2023 — 2026',
-    title: 'BUT Informatique — IUT de Villetaneuse',
-    desc: 'Développement d\'applications — USPN, Île-de-France',
+    title: 'BUT Informatique (diplômé) — IUT de Villetaneuse',
+    desc: 'Parcours développement d\'applications — USPN, Île-de-France',
     details: [
       'Développement full-stack — React, Angular, PHP, Java',
       'Bases de données — PostgreSQL, MongoDB, Redis',
@@ -242,10 +267,10 @@ export default function App() {
             <p className="hero-label">&gt; system.init()</p>
             <h1 className="hero-name">Séraphin <span className="text-cyan">Eyala</span></h1>
             <p className="hero-subtitle">
-              <span className="typing-cursor">Développeur Full-Stack — Orientation Data & IA</span>
+              <span className="typing-cursor">Data Engineer en formation — MSc aivancity</span>
             </p>
             <p className="hero-status">
-              <span className="pulse-dot" /> Recherche un stage de 6 semaines à 2 mois — Disponible juin 2026
+              <span className="pulse-dot" /> Recherche une alternance en Data Engineering
             </p>
             <div className="hero-cta">
               <a href="#projects" className="btn btn-primary cursor-target">&gt; voir_projets()</a>
@@ -272,18 +297,22 @@ export default function App() {
           <div className="about-grid">
             <div className="glass-card cursor-target">
               <p>
-                Étudiant en 3ème année de <strong>BUT Informatique</strong> à l'IUT de
-                Villetaneuse (USPN), passionné par le développement web et mobile.
-                Récemment en stage à l'<strong>IFFP</strong> à Nanterre où j'ai automatisé
-                des processus métiers (Apps Script, clasp) et conçu des solutions web.
-                Actuellement <strong>à la recherche d'un stage</strong> de 6 semaines à 2 mois.
+                21 ans, titulaire d'un <strong>BUT Informatique</strong> (développement
+                d'applications, IUT de Villetaneuse), aujourd'hui en <strong>MSc Data
+                Engineering & Cloud Computing à aivancity</strong>. Je cherche une
+                <strong> alternance en Data Engineering</strong>.
               </p>
               <p style={{ marginTop: 16 }}>
-                Curieux et autodidacte, j'apprends en dehors des cours — React, Angular,
-                Flutter, FastAPI. Mon objectif est d'intégrer le <strong>MSc Data Engineering à
-                Aivancity</strong>, une école spécialisée en IA et data. Je fais de la
-                veille active sur Hacker News, Reddit et Dev.to autour de l'IA
-                générative et des LLMs.
+                Deux stages en 2026. À l'<strong>IFFP</strong>, j'ai automatisé des processus
+                internes en Google Apps Script, utilisés en production. Chez
+                <strong> Twini</strong>, j'ai travaillé sur l'extraction de données de documents
+                par des LLM multimodaux, avec une validation déterministe des résultats.
+              </p>
+              <p style={{ marginTop: 16 }}>
+                En dehors de la formation, j'apprends en construisant : mon dernier projet est
+                un <a href="#/projets/dvf">pipeline ELT de données immobilières</a> avec
+                dbt, Airflow et PostgreSQL. Je suis l'actualité data et IA sur Hacker News,
+                Reddit et Dev.to.
               </p>
             </div>
             <div className="about-stats">
@@ -293,7 +322,7 @@ export default function App() {
               </div>
               <div className="stat-card glass-card cursor-target">
                 <span className="stat-num">3</span>
-                <span className="stat-label">Années de formation</span>
+                <span className="stat-label">Stages en entreprise</span>
               </div>
               <div className="stat-card glass-card cursor-target">
                 <span className="stat-num">25+</span>
@@ -328,12 +357,13 @@ export default function App() {
         <div className="container" style={{ marginTop: 48 }}>
           <div className="skills-grid">
             {[
+              { title: 'Data Engineering', items: 'Python, SQL, Pandas, Parquet, dbt, Apache Airflow, PostgreSQL, data lake S3 (boto3), modélisation en étoile, pytest, GitHub Actions' },
               { title: 'Front-end', items: 'React, Angular 19, TypeScript, JavaScript, HTML/CSS, Vite, Chart.js, React Router, Axios' },
               { title: 'Back-end & API', items: 'Python, FastAPI, SQLAlchemy, PHP (MVC), Java, Node.js, REST API, WebSocket, OAuth/JWT' },
               { title: 'Bases de données', items: 'PostgreSQL, MongoDB, Redis, CockroachDB, Supabase, SQL, ORM' },
               { title: 'Mobile', items: 'Flutter, Dart, JSON, applications cross-platform' },
               { title: 'Outils & DevOps', items: 'Git, GitHub, Docker, Linux, GCP, Google Workspace, clasp, LaTeX, VS Code, IntelliJ' },
-              { title: 'Méthodes & Autres', items: 'Agile / Scrum, TDD, Apps Script, WordPress / Elementor, Airtable, Zapier, Aivancity' },
+              { title: 'Méthodes & Autres', items: 'Agile / Scrum, TDD, Apps Script, WordPress / Elementor, Airtable, Zapier' },
             ].map(cat => (
               <div key={cat.title} className="glass-card skill-cat cursor-target">
                 <h3>{`> ${cat.title}`}</h3>
