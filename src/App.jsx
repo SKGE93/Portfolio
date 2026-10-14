@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import LogoLoop from './components/LogoLoop';
+import DvfProject from './pages/DvfProject';
 import {
   SiReact, SiNextdotjs, SiTailwindcss, SiTrpc, SiAngular, SiTypescript, SiJavascript, SiPhp,
   SiFlutter, SiDart, SiHtml5, SiCss, SiGit,
   SiPostgresql, SiMysql, SiMongodb, SiRedis, SiSupabase,
   SiDocker, SiLinux, SiNodedotjs, SiWordpress,
   SiGoogleappsscript, SiAirtable, SiVite, SiCockroachlabs,
-  SiPython, SiFastapi, SiGooglecloud, SiLatex, SiJsonwebtokens
+  SiPython, SiFastapi, SiGooglecloud, SiLatex, SiJsonwebtokens,
+  SiApacheairflow, SiDbt, SiPandas, SiApacheparquet, SiGithubactions
 } from 'react-icons/si';
 import { FaJava, FaCertificate, FaGithub, FaLinkedin, FaEnvelope, FaArrowRight } from 'react-icons/fa';
 import './App.css';
@@ -41,13 +43,29 @@ const techLogos = [
   { node: <SiGoogleappsscript />, title: 'Apps Script' },
   { node: <SiAirtable />, title: 'Airtable' },
   { node: <SiPython />, title: 'Python' },
+  { node: <SiPandas />, title: 'Pandas' },
+  { node: <SiDbt />, title: 'dbt' },
+  { node: <SiApacheairflow />, title: 'Airflow' },
+  { node: <SiApacheparquet />, title: 'Parquet' },
+  { node: <SiGithubactions />, title: 'GitHub Actions' },
   { node: <SiFastapi />, title: 'FastAPI' },
   { node: <SiGooglecloud />, title: 'GCP' },
   { node: <SiLatex />, title: 'LaTeX' },
   { node: <SiJsonwebtokens />, title: 'OAuth / JWT' },
 ];
 
+const DVF_ROUTE = '#/projets/dvf';
+
 const projects = [
+  {
+    title: 'Pipeline ELT — Données DVF',
+    desc: 'Transformer les ventes immobilières brutes de l\'État en prix au m² fiables, mis à jour chaque mois. Ingestion depuis data.gouv.fr, data lake bronze/silver, PostgreSQL et schéma en étoile dbt. Orchestré par Airflow dans Docker, 26 tests automatisés, CI GitHub Actions. Projet personnel, exécuté en local.',
+    tech: ['Python', 'dbt', 'Airflow', 'PostgreSQL', 'Parquet', 'Docker'],
+    img: './IMG/dvf-pipeline.svg',
+    page: DVF_ROUTE,
+    link: 'https://github.com/SKGE93/dvf-pipeline',
+    color: '#6c4cff',
+  },
   {
     title: 'Extraction IA de documents',
     desc: 'POC réalisé chez Twini : les factures et registres de déchets sont extraits par LLM en JSON structuré, qui pré-remplit les formulaires de la plateforme. Benchmark de plusieurs modèles, Mistral via OVH AI Endpoints (~0,0003 €/doc) et validation déterministe (SIRET, codes CED, cohérence TVA). L\'IA extrait, le code prouve.',
@@ -82,9 +100,18 @@ const projects = [
     color: '#ff7ac6',
   },
   {
-    title: 'Gestion Utilisateurs — FastAPI',
-    desc: 'Backend de gestion d\'utilisateurs en architecture par couches (routers, services, modèles). ORM SQLAlchemy, gestion de sessions et pratique du TDD, avec séparation des responsabilités et documentation.',
-    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'TDD', 'REST'],
+    title: 'Application communautaire d\'animés',
+    desc: 'Application sociale réalisée en équipe, dont j\'ai conçu le backend de données : modèle relationnel, sécurisation des accès et circulation de la donnée entre profils, publications et abonnements. Supabase / PostgreSQL avec Row-Level Security, fonctions RPC, triggers, migrations SQL versionnées et CI GitHub Actions.',
+    tech: ['PostgreSQL', 'Supabase', 'RLS', 'SQL', 'Flutter', 'GitHub Actions'],
+    img: null,
+    link: null,
+    label: 'Projet perso, en équipe',
+    color: '#34e0b0',
+  },
+  {
+    title: 'API REST — FastAPI',
+    desc: 'API de gestion d\'utilisateurs en Python (TP BUT 3), structurée en couches : elle expose les données via des endpoints REST et les persiste en base avec un ORM. Clean Architecture, mapping modèles / SQL avec SQLAlchemy, validation Pydantic, injection de dépendances, endpoints CRUD.',
+    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'Pydantic', 'SQL'],
     img: null,
     link: null,
     color: '#6c4cff',
@@ -142,7 +169,7 @@ const experiences = [
     ],
   },
   {
-    date: 'Mars — Juin 2026',
+    date: 'Mars — Mai 2026',
     title: 'Stagiaire IT — IFFP',
     desc: 'Institut Français de Formation Professionnelle · Nanterre',
     details: [
@@ -156,7 +183,7 @@ const experiences = [
   },
   {
     date: '2023 — 2026',
-    title: 'BUT Informatique — IUT de Villetaneuse',
+    title: 'BUT Informatique (diplômé) — IUT de Villetaneuse',
     desc: 'Développement d\'applications · USPN',
     details: [
       'Développement full-stack — React, Angular, PHP, Java',
@@ -197,12 +224,13 @@ const experiences = [
 ];
 
 const skillCats = [
+  { title: 'Data Engineering', items: 'Python, SQL, Pandas, Parquet, dbt, Apache Airflow, PostgreSQL, data lake S3 (boto3), schéma en étoile, pytest, GitHub Actions' },
   { title: 'Front-end', items: 'React 19, Next.js 16, Angular 19, TypeScript, Tailwind CSS, React Hook Form, Zod, Vite, JavaScript' },
-  { title: 'Back-end & API', items: 'tRPC, Drizzle ORM, Node.js, PHP (MVC), Java, FastAPI, Better-Auth, REST API, WebSocket' },
+  { title: 'Back-end & API', items: 'tRPC, Drizzle ORM, Node.js, FastAPI, Pydantic, SQLAlchemy, Clean Architecture, Better-Auth, REST API, PHP (MVC), Java' },
   { title: 'IA & Data', items: 'OVH AI Endpoints, Mistral, prompt engineering, extraction de documents, validation déterministe, benchmark de modèles' },
-  { title: 'Bases de données', items: 'MySQL 8, TiDB Cloud, PostgreSQL, MongoDB, Redis, Supabase, SQL' },
+  { title: 'Bases de données', items: 'MySQL 8, TiDB Cloud, PostgreSQL, Supabase (RLS, RPC, triggers), migrations SQL, MongoDB, Redis' },
   { title: 'Mobile', items: 'Flutter, Dart, JSON, applications cross-platform' },
-  { title: 'Outils & DevOps', items: 'Git (rebase workflow), GitHub, Docker, pnpm, Linux, GCP, React Email + Resend' },
+  { title: 'Outils & DevOps', items: 'Git (rebase workflow), GitHub, GitLab, GitHub Actions, Docker, Docker Compose, Linux, Bash, pnpm, GCP' },
 ];
 
 const navLinks = [
@@ -238,6 +266,20 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedExp, setExpandedExp] = useState(0);
+  const [hash, setHash] = useState(() => window.location.hash);
+  const isDvf = hash.startsWith(DVF_ROUTE);
+
+  useEffect(() => {
+    const onHash = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  // Anchors don't exist while the project page is shown, so scroll once the home sections are back.
+  useEffect(() => {
+    if (isDvf || hash.length < 2) return;
+    document.getElementById(hash.slice(1))?.scrollIntoView();
+  }, [isDvf, hash]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -265,6 +307,7 @@ export default function App() {
         </div>
       </header>
 
+      {isDvf ? <DvfProject /> : (<>
       {/* Hero */}
       <section id="hero" className="hero">
         <div className="blob blob-a" />
@@ -331,7 +374,7 @@ export default function App() {
               </Reveal>
             </div>
             <Reveal delay={0.15} className="about-stats">
-              {[['8', 'Projets réalisés'], ['3', 'Années de formation'], ['25+', 'Technologies'], ['2', 'Certifications']].map(([k, v]) => (
+              {[[String(projects.length), 'Projets réalisés'], ['3', 'Années de formation'], ['25+', 'Technologies'], ['2', 'Certifications']].map(([k, v]) => (
                 <div className="stat-card" key={v}>
                   <span className="stat-num">{k}</span>
                   <span className="stat-label">{v}</span>
@@ -387,9 +430,12 @@ export default function App() {
                   <div className="project-tech">
                     {p.tech.map(t => <span key={t}>{t}</span>)}
                   </div>
-                  {p.link
-                    ? <a href={p.link} target="_blank" rel="noreferrer" className="project-link">Voir le code <FaArrowRight /></a>
-                    : <span className="project-link project-link--off">{p.label || 'Projet d’école'}</span>}
+                  <div className="project-links">
+                    {p.page && <a href={p.page} className="project-link">Lire l’étude de cas <FaArrowRight /></a>}
+                    {p.link
+                      ? <a href={p.link} target="_blank" rel="noreferrer" className="project-link">Voir le code <FaArrowRight /></a>
+                      : <span className="project-link project-link--off">{p.label || 'Projet d’école'}</span>}
+                  </div>
                 </div>
               </motion.article>
             ))}
@@ -475,6 +521,7 @@ export default function App() {
         </div>
         <p className="footer-text">© {new Date().getFullYear()} Séraphin Eyala · Développeur Full-Stack</p>
       </section>
+      </>)}
     </>
   );
 }

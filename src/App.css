@@ -188,3 +188,4 @@
 @media (max-width: 600px) {
   .skills-grid, .projects-grid, .certs-grid, .about-stats { grid-template-columns: 1fr; }
 }
+.project-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
