@@ -4,6 +4,7 @@ import LogoLoop from './components/LogoLoop';
 import AsciiStatic from './components/AsciiStatic';
 import CurvedLoop from './components/CurvedLoop';
 import ElectricBorder from './components/ElectricBorder';
+import DvfProject from './pages/DvfProject';
 import {
   SiReact, SiAngular, SiTypescript, SiJavascript, SiPhp,
   SiFlutter, SiDart, SiHtml5, SiCss, SiGit,
@@ -46,7 +47,18 @@ const techLogos = [
   { node: <SiJsonwebtokens />, title: 'OAuth / JWT' },
 ];
 
+const DVF_ROUTE = '#/projets/dvf';
+
 const projects = [
+  {
+    title: 'Pipeline ELT — Données DVF',
+    desc: 'Transformer les ventes immobilières brutes de l\'État en prix au m² fiables, mis à jour chaque mois. Ingestion depuis data.gouv.fr, data lake bronze/silver, PostgreSQL et schéma en étoile dbt. Orchestré par Airflow dans Docker, 26 tests automatisés, CI GitHub Actions. Projet personnel, exécuté en local.',
+    tech: ['Python', 'dbt', 'Airflow', 'PostgreSQL', 'Parquet', 'Docker'],
+    banner: ['data.gouv', 'bronze', 'silver', 'gold'],
+    page: DVF_ROUTE,
+    link: 'https://github.com/SKGE93/dvf-pipeline',
+    color: '#3ad6e8'
+  },
   {
     title: 'CinéSearch',
     desc: 'Application de recherche de films consommant l\'API REST TMDB, avec page de détail et interface en français. SPA React avec hooks personnalisés, recherche avec debounce, routing client-side via React Router, requêtes HTTP Axios. Affichage des films populaires, synopsis, note, date de sortie.',
@@ -169,6 +181,20 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedExp, setExpandedExp] = useState(null);
+  const [hash, setHash] = useState(() => window.location.hash);
+  const isDvf = hash.startsWith(DVF_ROUTE);
+
+  useEffect(() => {
+    const onHash = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  // Anchors don't exist while the project page is shown, so scroll once the home sections are back.
+  useEffect(() => {
+    if (isDvf || hash.length < 2) return;
+    document.getElementById(hash.slice(1))?.scrollIntoView();
+  }, [isDvf, hash]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -201,6 +227,7 @@ export default function App() {
         </div>
       </nav>
 
+      {isDvf ? <DvfProject /> : (<>
       {/* Hero */}
       <section id="hero" className="hero-section">
         <div className="hero-bg">
@@ -261,7 +288,7 @@ export default function App() {
             </div>
             <div className="about-stats">
               <div className="stat-card glass-card cursor-target">
-                <span className="stat-num">7</span>
+                <span className="stat-num">8</span>
                 <span className="stat-label">Projets réalisés</span>
               </div>
               <div className="stat-card glass-card cursor-target">
@@ -326,18 +353,33 @@ export default function App() {
             {projects.map((p, i) => (
               <ElectricBorder key={i} color={p.color} speed={0.8} chaos={0.08} borderRadius={8}>
                 <div className="project-card cursor-target">
-                  <img src={p.img} alt={p.title} />
+                  {p.banner ? (
+                    <div className="project-card-banner" aria-hidden="true">
+                      {p.banner.map((b, j) => (
+                        <span key={b}>{j > 0 && <i>→ </i>}<b style={{ color: p.color }}>{b}</b></span>
+                      ))}
+                    </div>
+                  ) : (
+                    <img src={p.img} alt={p.title} />
+                  )}
                   <div className="project-card-body">
                     <h3 className="project-card-title" style={{ color: p.color }}>{p.title}</h3>
                     <p className="project-card-desc">{p.desc}</p>
                     <div className="project-tech">
                       {p.tech.map(t => <span key={t}>{t}</span>)}
                     </div>
-                    {p.link && (
-                      <a href={p.link} target="_blank" rel="noreferrer" className="btn btn-primary btn-sm">
-                        &gt; voir_code()
-                      </a>
-                    )}
+                    <div className="project-card-actions">
+                      {p.page && (
+                        <a href={p.page} className="btn btn-cyan btn-sm">
+                          &gt; lire_le_projet()
+                        </a>
+                      )}
+                      {p.link && (
+                        <a href={p.link} target="_blank" rel="noreferrer" className="btn btn-primary btn-sm">
+                          &gt; voir_code()
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </ElectricBorder>
@@ -438,6 +480,7 @@ export default function App() {
           </p>
         </div>
       </section>
+      </>)}
     </>
   );
 }
