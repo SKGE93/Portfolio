@@ -239,6 +239,12 @@ const weatherdash = {
       ],
     },
     {
+      title: 'Lire l’API correctement',
+      text: [
+        'En unités métriques, OpenWeatherMap renvoie le vent en m/s. Une première version affichait cette valeur brute suivie de « km/h », ce qui sous-estimait le vent d’un facteur 3,6. La valeur est maintenant convertie avant l’affichage : 4,12 m/s s’affichent 14,8 km/h.',
+      ],
+    },
+    {
       title: 'Le graphique',
       text: [
         'WeatherChart reçoit les prévisions via input(). Il garde les 8 premiers relevés, soit 24 heures avec un point toutes les 3 heures.',
@@ -271,18 +277,18 @@ const weatherdash = {
     visuals: [{
       src: './IMG/weatherdash/dashboard.webp',
       alt: 'Dashboard WeatherDash : météo de Paris et courbe des températures sur 24 heures',
-      caption: 'Météo actuelle de Paris et courbe des températures sur 24 heures, un point toutes les 3 heures.',
+      caption: 'Météo actuelle de Paris et courbe des températures sur 24 heures, un point toutes les 3 heures. Capture prise avant la correction de l’unité du vent.',
     }],
   },
   learnings: [
     { concept: 'Injection de dépendances', text: 'Le composant demande un service au lieu de le créer. Le code d’accès à l’API vit à un seul endroit et peut être remplacé, par exemple pour des tests.' },
     { concept: 'État réactif avec les signals', text: 'L’équivalent du useState de React, natif à Angular : quand un signal change, l’affichage qui en dépend suit.' },
     { concept: 'Cycle de vie des composants', text: 'Savoir quand un composant reçoit de nouvelles données (ngOnChanges), et nettoyer ce qu’on a créé, comme une instance de graphique.' },
+    { concept: 'Vérifier les unités d’une source', text: 'Une valeur qui « a l’air juste » peut être fausse : le vent en est l’exemple. Vérifier les unités dans la documentation d’une source est un réflexe qui compte encore plus quand on manipule des données.' },
     { concept: 'Comparer deux frameworks', text: 'Le même type d’application en React puis en Angular : Angular fixe l’organisation (services, injection, cycle de vie), React laisse ces choix au développeur.' },
   ],
   limits: [
     'Aucun message visible si la ville n’existe pas : l’erreur part seulement dans la console.',
-    'Le vent est affiché en km/h alors que l’API renvoie des m/s en unités métriques : 4,12 m/s correspondent en réalité à environ 15 km/h.',
     'Les réponses de l’API sont typées en any, ce qui retire une partie de l’intérêt de TypeScript.',
     'Les prévisions sur 5 jours sont récupérées, mais seules les 24 premières heures sont affichées.',
     'Pas de tests : les fichiers .spec.ts générés par Angular ne sont pas implémentés.',
@@ -290,7 +296,6 @@ const weatherdash = {
   ],
   next: [
     'Afficher un message clair quand la ville est introuvable',
-    'Convertir le vent en km/h',
     'Typer les réponses de l’API avec des interfaces',
     'Afficher les prévisions sur 5 jours',
     'Tester le service et le composant graphique',
