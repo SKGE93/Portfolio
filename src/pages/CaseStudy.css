@@ -199,3 +199,6 @@
   .dvf-step-num { width: 44px; }
   .dvf-two-col { grid-template-columns: 1fr; }
 }
+
+.dvf-visual-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 768px) { .dvf-visual-pair { grid-template-columns: 1fr; } }
